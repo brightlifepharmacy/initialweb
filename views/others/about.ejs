@@ -1,0 +1,805 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- About Page -->
+<div class="min-h-screen bg-gradient-to-b from-white to-green-50 dark:from-gray-900 dark:to-gray-800">
+  
+  <!-- Hero Section -->
+  <section class="relative py-16 md:py-24 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2310b981" fill-opacity="0.2"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+    
+    <!-- Floating Elements -->
+    <div class="absolute top-20 left-10 animate-float-slow">
+      <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center">
+        <i class="fa-solid fa-heart-pulse text-green-500 dark:text-green-400 text-2xl"></i>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-20 right-10 animate-float">
+      <div class="w-14 h-14 bg-teal-100 dark:bg-teal-900/30 rounded-2xl flex items-center justify-center">
+        <i class="fa-solid fa-stethoscope text-teal-500 dark:text-teal-400 text-xl"></i>
+      </div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+        <!-- Page Header -->
+        <div class="inline-flex items-center space-x-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm mb-8">
+          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">About BrightLife Pharmacy</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <span class="block text-gray-800 dark:text-white">Our Commitment to</span>
+          <span class="block bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent animate-gradient-x">Your Health</span>
+        </h1>
+        
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+          For over a decade, BrightLife Pharmacy has been the trusted healthcare partner for thousands of families, 
+          providing genuine allopathic medicines and surgical supplies with expert care and compassion.
+        </p>
+        
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+              <span class="counter" data-target="15">0</span>+
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+              <span class="counter" data-target="5000">0</span>+
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Products Available</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+              <span class="counter" data-target="50000">0</span>+
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Happy Customers</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+              24/7
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Service Hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="py-16 md:py-24 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Image/Visual -->
+        <div class="relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl">
+            <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-green-400 to-teal-400 relative">
+              <!-- Pharmacy Interior -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent">
+              </div>
+              <div class="relative z-10 p-8 flex flex-col justify-end h-full">
+                <img src="/images/brightlife.png" alt="">
+                <div class="text-white">
+                  <h3 class="text-2xl font-bold mb-2">Our Pharmacy</h3>
+                  <p class="text-white/90">State-of-the-art facility with modern equipment</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Floating Badge -->
+          <div class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-award text-green-600 dark:text-green-400"></i>
+              </div>
+              <div>
+                <div class="font-bold text-gray-800 dark:text-white">ISO 9001:2015</div>
+                <div class="text-xs text-gray-600 dark:text-gray-400">Certified</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="space-y-6">
+          <div class="inline-block">
+            <span class="text-sm font-semibold text-green-600 dark:text-green-400 uppercase tracking-wider">Our Story</span>
+            <div class="w-16 h-1 bg-gradient-to-r from-green-500 to-teal-400 mt-2"></div>
+          </div>
+          
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">
+            A Legacy of Trust & Care Since 2010
+          </h2>
+          
+          <div class="space-y-4 text-gray-600 dark:text-gray-300">
+            <p>
+              Founded in 2010 by Dr. Rajesh Verma, BrightLife Pharmacy began as a small neighborhood pharmacy 
+              with a big vision: to provide accessible, reliable healthcare to every family in our community.
+            </p>
+            
+            <p>
+              What started as a single store has grown into a trusted healthcare institution, serving thousands 
+              of customers with genuine allopathic medicines, surgical supplies, and expert medical guidance.
+            </p>
+            
+            <p>
+              Our journey is built on three core principles: <strong class="text-green-600 dark:text-green-400">Quality, Trust, and Compassion</strong>. 
+              Every medicine we dispense undergoes rigorous quality checks, and every customer receives 
+              personalized care from our certified pharmacists.
+            </p>
+          </div>
+          
+          <!-- Founder Quote -->
+          <div class="bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-2xl border-l-4 border-green-500 mt-8">
+            <i class="fa-solid fa-quote-left text-green-400 text-2xl mb-4"></i>
+            <p class="text-gray-700 dark:text-gray-300 italic">
+              "Healthcare is not just about medicines; it's about understanding each patient's unique needs 
+              and providing solutions with empathy and expertise."
+            </p>
+            <div class="flex items-center mt-4">
+              <div class="w-10 h-10 bg-green-100 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3">
+                <span class="text-green-600 dark:text-green-400 font-bold">RV</span>
+              </div>
+              <div>
+                <div class="font-bold text-gray-800 dark:text-white">Dr. Rajesh Verma</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Founder & Chief Pharmacist</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Mission & Values -->
+  <section class="py-16 md:py-24 bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
+          Our Mission & Values
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          We're committed to setting new standards in pharmaceutical care through innovation, integrity, and 
+          unwavering dedication to our customers' well-being.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Mission Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+          <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-400 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fa-solid fa-bullseye text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Our Mission</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            To provide accessible, affordable, and quality healthcare solutions through genuine medicines, 
+            expert consultation, and compassionate service, ensuring every customer receives personalized care 
+            for their unique health needs.
+          </p>
+        </div>
+        
+        <!-- Vision Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-400 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fa-solid fa-eye text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Our Vision</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            To become the most trusted healthcare partner in the region by 2030, recognized for excellence 
+            in pharmaceutical services, community health initiatives, and innovative healthcare solutions 
+            that improve quality of life.
+          </p>
+        </div>
+        
+        <!-- Values Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+          <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fa-solid fa-hand-holding-heart text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Our Values</h3>
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <i class="fa-solid fa-check text-green-500 mr-3"></i>
+              <span class="text-gray-700 dark:text-gray-300">Integrity & Transparency</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-check text-green-500 mr-3"></i>
+              <span class="text-gray-700 dark:text-gray-300">Patient-Centric Care</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-check text-green-500 mr-3"></i>
+              <span class="text-gray-700 dark:text-gray-300">Quality & Safety First</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-check text-green-500 mr-3"></i>
+              <span class="text-gray-700 dark:text-gray-300">Community Responsibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Team -->
+  <section class="py-16 md:py-24 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
+          Meet Our Expert Team
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          Our team of certified pharmacists and healthcare professionals brings decades of combined experience 
+          to provide you with the best medical guidance and care.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <% const team = [
+          {
+            name: 'Dr. Rajesh Verma',
+            role: 'Founder & Chief Pharmacist',
+            experience: '25+ Years',
+            specialization: 'Clinical Pharmacy',
+            bio: 'M.Pharm, PhD in Pharmaceutical Sciences with extensive experience in clinical practice.',
+            color: 'from-green-500 to-green-400'
+          },
+          {
+            name: 'Dr. Priya Sharma',
+            role: 'Head Pharmacist',
+            experience: '15+ Years',
+            specialization: 'Pediatric Medicine',
+            bio: 'Specialized in pediatric medications and child healthcare. B.Pharm, M.Pharm.',
+            color: 'from-teal-500 to-teal-400'
+          },
+          {
+            name: 'Dr. Amit Patel',
+            role: 'Surgical Specialist',
+            experience: '12+ Years',
+            specialization: 'Surgical Supplies',
+            bio: 'Expert in surgical instruments and medical equipment. Diploma in Medical Technology.',
+            color: 'from-emerald-500 to-emerald-400'
+          },
+          {
+            name: 'Ms. Neha Kapoor',
+            role: 'Customer Care Head',
+            experience: '8+ Years',
+            specialization: 'Patient Relations',
+            bio: 'Ensuring exceptional customer experience and efficient service delivery.',
+            color: 'from-cyan-500 to-cyan-400'
+          }
+        ] %>
+        
+        <% team.forEach(member => { %>
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+            <!-- Team Member Image -->
+            <div class="h-64 bg-gradient-to-r <%= member.color %> flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-black/20"></div>
+              <div class="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-user-doctor text-white text-5xl"></i>
+              </div>
+              
+              <!-- Experience Badge -->
+              <div class="absolute top-4 right-4">
+                <span class="bg-white/90 text-green-600 px-3 py-1 rounded-full text-sm font-bold">
+                  <%= member.experience %>
+                </span>
+              </div>
+            </div>
+            
+            <!-- Team Member Details -->
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">
+                <%= member.name %>
+              </h3>
+              <p class="text-green-600 dark:text-green-400 font-medium mb-3">
+                <%= member.role %>
+              </p>
+              
+              <div class="mb-4">
+                <span class="inline-block bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-medium">
+                  <i class="fa-solid fa-star mr-1"></i>
+                  <%= member.specialization %>
+                </span>
+              </div>
+              
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
+                <%= member.bio %>
+              </p>
+              
+              <!-- Contact Button -->
+              <button class="w-full px-4 py-2 border border-green-500 text-green-600 dark:text-green-400 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 font-medium text-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                <i class="fa-solid fa-comment-medical mr-2"></i>
+                Schedule Consultation
+              </button>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section class="py-16 md:py-24 bg-gradient-to-r from-green-600 to-teal-500">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          Our Comprehensive Services
+        </h2>
+        <p class="text-green-100">
+          From prescription medicines to surgical supplies and expert consultations, we provide 
+          complete healthcare solutions under one roof.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% const services = [
+          {
+            icon: 'fa-prescription',
+            title: 'Allopathic Medicines',
+            description: 'Wide range of genuine prescription and OTC medicines from trusted manufacturers.',
+            features: ['Prescription Drugs', 'OTC Medicines', 'Chronic Care', 'Pediatric']
+          },
+          {
+            icon: 'fa-syringe',
+            title: 'Surgical Supplies',
+            description: 'Complete range of sterile surgical instruments, disposables, and medical equipment.',
+            features: ['Surgical Instruments', 'Disposables', 'Medical Devices', 'Sterilization']
+          },
+          {
+            icon: 'fa-user-doctor',
+            title: 'Medical Consultation',
+            description: 'Free expert guidance from certified pharmacists for medicine usage and health queries.',
+            features: ['Medicine Guidance', 'Dosage Advice', 'Side Effects', 'Interactions']
+          },
+          {
+            icon: 'fa-truck-medical',
+            title: 'Home Delivery',
+            description: 'Fast and reliable medicine delivery to your doorstep within 2 hours.',
+            features: ['Emergency Delivery', 'Regular Refills', 'Prescription Pickup', 'Free Delivery']
+          },
+          {
+            icon: 'fa-kit-medical',
+            title: 'First Aid Solutions',
+            description: 'Complete first aid kits and emergency medical supplies for home and travel.',
+            features: ['First Aid Kits', 'Emergency Supplies', 'Wound Care', 'Burn Treatment']
+          },
+          {
+            icon: 'fa-heart-pulse',
+            title: 'Health Checkups',
+            description: 'Basic health screening and monitoring services at our pharmacy.',
+            features: ['BP Monitoring', 'Sugar Testing', 'Weight Management', 'Health Records']
+          }
+        ] %>
+        
+        <% services.forEach(service => { %>
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
+            <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid <%= service.icon %> text-white text-2xl"></i>
+            </div>
+            
+            <h3 class="text-xl font-bold text-white mb-3">
+              <%= service.title %>
+            </h3>
+            
+            <p class="text-green-100 mb-4">
+              <%= service.description %>
+            </p>
+            
+            <div class="space-y-2">
+              <% service.features.forEach(feature => { %>
+                <div class="flex items-center text-sm text-white/90">
+                  <i class="fa-solid fa-check-circle mr-2 text-green-300"></i>
+                  <span><%= feature %></span>
+                </div>
+              <% }) %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Accreditations -->
+  <section class="py-16 md:py-24 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
+          Certifications & Accreditations
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          Our commitment to quality and safety is validated by certifications from leading healthcare authorities.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <% const certifications = [
+          { name: 'ISO 9001:2015', org: 'Quality Management', icon: 'fa-certificate' },
+          { name: 'FDA Approved', org: 'Drugs Control', icon: 'fa-shield-check' },
+          { name: 'GST Registered', org: 'Govt. of India', icon: 'fa-file-contract' },
+          { name: 'PCI Licensed', org: 'Pharmacy Council', icon: 'fa-award' }
+        ] %>
+        
+        <% certifications.forEach(cert => { %>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-r from-green-100 to-teal-100 dark:from-gray-700 dark:to-gray-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <i class="fa-solid <%= cert.icon %> text-green-600 dark:text-green-400 text-3xl"></i>
+            </div>
+            <div class="font-bold text-gray-800 dark:text-white text-lg mb-1">
+              <%= cert.name %>
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              <%= cert.org %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 md:py-24 bg-gradient-to-br from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
+          Ready to Experience Quality Healthcare?
+        </h2>
+        
+        <p class="text-gray-600 dark:text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+          Visit BrightLife Pharmacy today or contact us for expert medical guidance. 
+          Your health journey begins with us.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" 
+             class="px-8 py-4 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-xl hover:shadow-2xl transition-all duration-300 font-bold text-center hover:scale-105 flex items-center justify-center">
+            <i class="fa-solid fa-location-dot mr-3"></i>
+            Visit Our Pharmacy
+          </a>
+          
+          <a href="tel:+911234567890" 
+             class="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-green-500 text-green-600 dark:text-green-400 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 font-bold text-center flex items-center justify-center">
+            <i class="fa-solid fa-phone mr-3"></i>
+            Call: +91 12345 67890
+          </a>
+        </div>
+        
+        <!-- Pharmacy Info -->
+        <div class="mt-12 pt-8 border-t border-gray-300 dark:border-gray-600">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="font-medium text-gray-800 dark:text-white">8:00 AM - 10:00 PM</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Monday - Saturday</div>
+            </div>
+            
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="font-medium text-gray-800 dark:text-white">123 Medical Street</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Mumbai, Maharashtra 400001</div>
+            </div>
+            
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="font-medium text-gray-800 dark:text-white">info@brightlifepharmacy.com</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Email Us Anytime</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- About Page JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const increment = target / 100;
+      let current = 0;
+      
+      const updateCounter = () => {
+        if (current < target) {
+          current += increment;
+          counter.textContent = Math.ceil(current);
+          setTimeout(updateCounter, 20);
+        } else {
+          counter.textContent = target;
+        }
+      };
+      
+      // Start counter when in viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateCounter();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(counter);
+    });
+    
+    // Team member hover effects
+    const teamCards = document.querySelectorAll('.group');
+    teamCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-8px)';
+        card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(-2px)';
+        card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+      });
+    });
+    
+    // Service cards animation
+    const serviceCards = document.querySelectorAll('.hover\\:-translate-y-2');
+    serviceCards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+    });
+    
+    // Consultation button functionality
+    const consultButtons = document.querySelectorAll('button:contains("Schedule Consultation")');
+    consultButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const memberName = this.closest('.group').querySelector('h3').textContent;
+        showConsultationModal(memberName);
+      });
+    });
+  });
+  
+  function showConsultationModal(memberName) {
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fade-in';
+    modal.innerHTML = `
+      <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-md w-full p-6 animate-slide-up">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Schedule Consultation</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">with ${memberName}</p>
+          </div>
+          <button class="close-modal text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+        
+        <form class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+            <input type="text" required 
+                   class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
+            <input type="tel" required 
+                   class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Preferred Date & Time</label>
+            <input type="datetime-local" required 
+                   class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Purpose of Consultation</label>
+            <select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="">Select purpose</option>
+              <option value="medicine">Medicine Guidance</option>
+              <option value="prescription">Prescription Review</option>
+              <option value="health">Health Advice</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="pt-4">
+            <button type="submit" 
+                    class="w-full px-4 py-3 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-lg hover:shadow-lg transition-all duration-300 font-bold">
+              Schedule Now
+            </button>
+          </div>
+        </form>
+        
+        <div class="mt-6 text-center">
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            <i class="fa-solid fa-phone mr-1"></i>
+            Or call directly: <a href="tel:+911234567890" class="text-green-600 dark:text-green-400 hover:underline">+91 12345 67890</a>
+          </p>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+    
+    // Close modal
+    const closeButtons = modal.querySelectorAll('.close-modal');
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.remove();
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Form submission
+    const form = modal.querySelector('form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      showNotification('Consultation scheduled successfully! Our team will contact you shortly.', 'success');
+      modal.remove();
+      document.body.style.overflow = '';
+    });
+  }
+  
+  function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${
+      type === 'success' 
+        ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300' 
+        : 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300'
+    }`;
+    notification.innerHTML = `
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check"></i>
+        <span class="font-medium">${message}</span>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        notification.remove();
+      }, 300);
+    }, 3000);
+  }
+</script>
+
+<style>
+  @keyframes gradient-x {
+    0%, 100% {
+      background-size: 200% 200%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: right center;
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+  
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(-5deg);
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+  
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 7s ease-in-out infinite;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+  
+  /* Section animations */
+  section {
+    animation: fade-in 0.8s ease-out;
+  }
+  
+  /* Team card hover effect */
+  .team-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .team-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Gradient underline */
+  .gradient-underline {
+    position: relative;
+  }
+  
+  .gradient-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, #10b981, #0d9488);
+    border-radius: 2px;
+  }
+  
+  /* Backdrop blur for modern look */
+  .backdrop-blur {
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .certification-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,717 @@
+<% layout("/layouts/boilerplate") -%>
+
+<!-- Hero Section with Medical Theme -->
+<section class="relative bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  <!-- Medical Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="medical-pattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+          <path d="M0 0h80v80H0z" fill="none"/>
+          <path d="M40 20L60 40 40 60 20 40z" stroke="rgb(59 130 246)" stroke-width="1" fill="none"/>
+          <path d="M20 20h40v40H20z" stroke="rgb(45 212 191)" stroke-width="1" fill="none"/>
+          <circle cx="40" cy="40" r="10" stroke="rgb(59 130 246)" stroke-width="1" fill="none"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#medical-pattern)"/>
+    </svg>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Left Content -->
+      <div class="space-y-6">
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center space-x-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm border border-green-100 dark:border-gray-700">
+          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">24/7 Emergency Service Available</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          <span class="text-gray-800 dark:text-white">Your Trusted</span>
+          <span class="block bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">Medical Partner</span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl">
+          BrightLife Pharmacy provides genuine allopathic medicines and surgical supplies with expert guidance. 
+          Licensed pharmacy serving the community since 2010.
+        </p>
+
+        <!-- Key Features -->
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+              <i class="fa-solid fa-shield-check text-green-600 dark:text-green-400"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-800 dark:text-white">100% Genuine</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Medicines</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
+              <i class="fa-solid fa-user-doctor text-teal-600 dark:text-teal-400"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-800 dark:text-white">Expert</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Consultation</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 pt-6">
+          <a href="/products" 
+             class="px-8 py-3 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-lg hover:shadow-xl transition-all duration-300 font-semibold text-center hover:scale-105 flex items-center justify-center">
+            <i class="fa-solid fa-capsules mr-2"></i>
+            View Available Products
+          </a>
+          <a href="/contact" 
+             class="px-8 py-3 border border-green-500 text-green-600 dark:text-green-400 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 font-semibold text-center flex items-center justify-center">
+            <i class="fa-solid fa-phone mr-2"></i>
+            Contact Pharmacy
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="relative">
+        <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-green-400 to-teal-300">
+            <!-- Pharmacy Image Placeholder -->
+            <div class="w-full h-full flex items-center justify-center p-8">
+              <div class="text-center">
+                <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i class="fa-solid fa-heart-pulse text-white text-4xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">BrightLife Pharmacy</h3>
+                <p class="text-white/90">Allopathic & Surgical Supplies</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Floating Info Cards -->
+        <div class="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl z-20 max-w-xs border border-gray-100 dark:border-gray-700">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+              <i class="fa-solid fa-clock text-green-600 dark:text-green-400"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 dark:text-white">Open 24/7</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Emergency Services</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Available Products Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 ">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Available Products</h2>
+      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Browse our range of genuine allopathic medicines and surgical supplies
+      </p>
+    </div>
+
+    <!-- Product Categories Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <button class="px-4 py-2 bg-green-600 text-white rounded-full text-sm font-medium">All Products</button>
+      <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Allopathic Medicines</button>
+      <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Surgical Items</button>
+      <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">First Aid</button>
+      <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Medical Devices</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <% const products = [
+        {
+          name: 'Paracetamol 500mg',
+          category: 'Pain Relief',
+          manufacturer: 'Cipla Ltd',
+          description: 'Used for fever and mild to moderate pain relief',
+          availability: 'In Stock',
+          price: '₹25',
+          imageColor: 'from-green-400 to-green-600'
+        },
+        {
+          name: 'Surgical Gloves',
+          category: 'Surgical Supplies',
+          manufacturer: 'HLL Lifecare',
+          description: 'Sterile latex gloves for medical procedures',
+          availability: 'In Stock',
+          price: '₹120',
+          imageColor: 'from-teal-400 to-teal-600'
+        },
+        {
+          name: 'BP Monitor Digital',
+          category: 'Medical Devices',
+          manufacturer: 'Dr. Morepen',
+          description: 'Automatic blood pressure monitor with memory',
+          availability: 'Limited Stock',
+          price: '₹1,299',
+          imageColor: 'from-purple-400 to-purple-600'
+        },
+        {
+          name: 'Antiseptic Solution',
+          category: 'First Aid',
+          manufacturer: 'Dettol',
+          description: 'For wound cleaning and disinfection',
+          availability: 'In Stock',
+          price: '₹85',
+          imageColor: 'from-green-400 to-green-600'
+        },
+        {
+          name: 'Insulin Syringes',
+          category: 'Surgical Supplies',
+          manufacturer: 'BD Medical',
+          description: 'Disposable insulin syringes 1ml',
+          availability: 'In Stock',
+          price: '₹45',
+          imageColor: 'from-orange-400 to-orange-600'
+        },
+        {
+          name: 'Vitamin C Tablets',
+          category: 'Supplements',
+          manufacturer: 'HealthVit',
+          description: 'Immune booster with zinc',
+          availability: 'In Stock',
+          price: '₹199',
+          imageColor: 'from-pink-400 to-pink-600'
+        },
+        {
+          name: 'Surgical Mask',
+          category: 'Surgical Supplies',
+          manufacturer: '3M',
+          description: '3-ply surgical mask box of 50',
+          availability: 'In Stock',
+          price: '₹250',
+          imageColor: 'from-gray-400 to-gray-600'
+        },
+        {
+          name: 'Digene Tablets',
+          category: 'Digestive',
+          manufacturer: 'Abbott',
+          description: 'For acidity and gas relief',
+          availability: 'In Stock',
+          price: '₹30',
+          imageColor: 'from-yellow-400 to-yellow-600'
+        }
+      ] %>
+      
+      <% products.forEach(product => { %>
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group">
+          <!-- Product Image/Icon -->
+          <div class="h-40 bg-gradient-to-r <%= product.imageColor %> flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/10"></div>
+            <i class="fa-solid fa-pills text-white text-5xl z-10"></i>
+            
+            <!-- Availability Badge -->
+            <div class="absolute top-3 right-3 z-20">
+              <span class="<%= product.availability === 'In Stock' ? 'bg-green-500' : 'bg-yellow-500' %> text-white px-3 py-1 rounded-full text-xs font-bold">
+                <%= product.availability %>
+              </span>
+            </div>
+          </div>
+
+          <!-- Product Details -->
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <span class="text-xs font-medium text-green-600 dark:text-green-400 uppercase tracking-wider">
+                  <%= product.category %>
+                </span>
+                <h3 class="font-bold text-gray-900 dark:text-white text-lg mt-1">
+                  <%= product.name %>
+                </h3>
+              </div>
+              <span class="text-2xl font-bold text-gray-900 dark:text-white">
+                <%= product.price %>
+              </span>
+            </div>
+
+            <!-- Manufacturer -->
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+              <i class="fa-solid fa-industry mr-1"></i>
+              <%= product.manufacturer %>
+            </p>
+
+            <!-- Description -->
+            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4">
+              <%= product.description %>
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-3">
+              <a href="/products/<%= product.name.toLowerCase().replace(/ /g, '-') %>" 
+                 class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 font-medium text-center text-sm">
+                View Details
+              </a>
+              <button class="px-4 py-2 border border-green-500 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-all duration-300">
+                <i class="fa-solid fa-phone"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- View All Products Button -->
+    <div class="text-center mt-10">
+      <a href="/products" 
+         class="inline-flex items-center px-6 py-3 border-2 border-green-500 text-green-600 dark:text-green-400 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 font-semibold">
+        View All Available Products
+        <i class="fa-solid fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Health & Wellness Blogs -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800/50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Health & Wellness Articles</h2>
+      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Educational articles about medicines, surgical care, and health maintenance
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <% const blogs = [
+        {
+          title: 'Understanding Allopathic Medicines',
+          excerpt: 'Learn about prescription drugs, their proper usage, and safety guidelines.',
+          category: 'Medication Guide',
+          readTime: '4 min read',
+          date: 'Mar 15, 2024'
+        },
+        {
+          title: 'Surgical Item Sterilization',
+          excerpt: 'Importance of proper sterilization techniques for surgical instruments.',
+          category: 'Surgical Care',
+          readTime: '6 min read',
+          date: 'Mar 10, 2024'
+        },
+        {
+          title: 'First Aid Kit Essentials',
+          excerpt: 'Must-have items for your home and car first aid kits.',
+          category: 'First Aid',
+          readTime: '5 min read',
+          date: 'Mar 5, 2024'
+        }
+      ] %>
+      
+      <% blogs.forEach(blog => { %>
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+          <!-- Blog Header -->
+          <div class="h-48 bg-gradient-to-r from-green-500 to-teal-400 relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fa-solid fa-file-medical text-white/20 text-8xl"></i>
+            </div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-white/90 text-green-600 px-3 py-1 rounded-full text-xs font-bold">
+                <%= blog.category %>
+              </span>
+            </div>
+          </div>
+
+          <!-- Blog Content -->
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <i class="fa-solid fa-clock mr-1"></i>
+              <span><%= blog.readTime %></span>
+              <span class="mx-2">•</span>
+              <span><%= blog.date %></span>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <%= blog.title %>
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              <%= blog.excerpt %>
+            </p>
+
+            <a href="/blogs/<%= blog.title.toLowerCase().replace(/ /g, '-') %>" 
+               class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm inline-flex items-center">
+              Read Full Article
+              <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="/blogs" 
+         class="inline-flex items-center px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 font-semibold">
+        View All Articles
+        <i class="fa-solid fa-newspaper ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Customer Reviews Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">What Our Customers Say</h2>
+      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Feedback from our valued customers about our products and services
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <% const reviews = [
+        {
+          name: 'Rajesh Kumar',
+          role: 'Regular Customer (3 years)',
+          review: 'Genuine medicines and excellent service. The 24/7 availability helped during emergencies.',
+          rating: 5,
+          date: '2 weeks ago'
+        },
+        {
+          name: 'Dr. Priya Sharma',
+          role: 'General Physician',
+          review: 'I recommend BrightLife to my patients. Their surgical supplies are always sterile and reliable.',
+          rating: 5,
+          date: '1 month ago'
+        },
+        {
+          name: 'Amit Patel',
+          role: 'Hospital Administrator',
+          review: 'Bulk orders for surgical items are always delivered on time with proper documentation.',
+          rating: 4,
+          date: '3 weeks ago'
+        }
+      ] %>
+      
+      <% reviews.forEach(review => { %>
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+          <!-- Rating Stars -->
+          <div class="flex mb-4">
+            <% for(let i = 0; i < 5; i++) { %>
+              <i class="fa-solid fa-star <%= i < review.rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600' %>"></i>
+            <% } %>
+          </div>
+
+          <!-- Review Text -->
+          <p class="text-gray-700 dark:text-gray-300 italic mb-6">
+            "<%= review.review %>"
+          </p>
+
+          <!-- Reviewer Info -->
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-bold text-gray-900 dark:text-white"><%= review.name %></h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400"><%= review.role %></p>
+            </div>
+            <span class="text-sm text-gray-500 dark:text-gray-500"><%= review.date %></span>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Services Overview -->
+<section class="py-16 bg-gradient-to-r from-green-600 to-teal-500">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center text-white">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Pharmacy Services</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-prescription text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Prescription Medicines</h3>
+          <p class="text-white/90">Allopathic drugs with proper prescription guidance</p>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-syringe text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Surgical Supplies</h3>
+          <p class="text-white/90">Sterile surgical instruments and disposables</p>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-user-doctor text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Medical Consultation</h3>
+          <p class="text-white/90">Free guidance from certified pharmacists</p>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-truck-medical text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Home Delivery</h3>
+          <p class="text-white/90">Medicines delivered to your doorstep</p>
+        </div>
+      </div>
+      
+      <!-- Contact Info -->
+      <div class="mt-12 pt-8 border-t border-white/20">
+        <h3 class="text-2xl font-bold mb-6">Need Assistance?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a href="tel:+911234567890" 
+             class="bg-white text-green-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-all duration-300 font-semibold text-lg flex items-center justify-center">
+            <i class="fa-solid fa-phone mr-2"></i>
+            Call: +91 12345 67890
+          </a>
+          <a href="/contact" 
+             class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold text-lg flex items-center justify-center">
+            <i class="fa-solid fa-map-marker-alt mr-2"></i>
+            Visit Pharmacy
+          </a>
+        </div>
+        <p class="text-white/80 mt-4 text-sm">
+          Address: 123 Medical Street, Health District, Mumbai, Maharashtra 400001
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pharmacy Hours -->
+<section class="py-12 bg-gray-50 dark:bg-gray-800/50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm max-w-2xl mx-auto border border-gray-200 dark:border-gray-700">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-center md:text-left">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+            <i class="fa-solid fa-clock mr-2 text-green-500"></i>
+            Pharmacy Hours
+          </h3>
+          <div class="space-y-1">
+            <p class="text-gray-700 dark:text-gray-300">
+              <span class="font-medium">Monday - Saturday:</span> 8:00 AM - 10:00 PM
+            </p>
+            <p class="text-gray-700 dark:text-gray-300">
+              <span class="font-medium">Sunday:</span> 9:00 AM - 9:00 PM
+            </p>
+            <p class="text-red-600 dark:text-red-400 font-medium">
+              <i class="fa-solid fa-triangle-exclamation mr-1"></i>
+              24/7 Emergency Service Available
+            </p>
+          </div>
+        </div>
+        <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg border border-green-100 dark:border-green-800">
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Need medicines now?</p>
+          <a href="tel:+919876543210" class="text-green-600 dark:text-green-400 font-bold text-lg hover:text-green-800 dark:hover:text-green-300">
+            <i class="fa-solid fa-phone-volume mr-2"></i>
+            Emergency: +91 98765 43210
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Homepage JavaScript -->
+<script>
+  // Product category tabs functionality
+  document.querySelectorAll('button[class*="bg-gray-100"]').forEach(button => {
+    button.addEventListener('click', function() {
+      // Remove active class from all buttons
+      document.querySelectorAll('button').forEach(btn => {
+        btn.classList.remove('bg-green-600', 'text-white');
+        btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      });
+      
+      // Add active class to clicked button
+      this.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      this.classList.add('bg-green-600', 'text-white');
+      
+      // Here you would filter products based on category
+      // For now, we'll just show an alert
+      const category = this.textContent;
+      showNotification(`Filtering by: ${category}`, 'info');
+    });
+  });
+
+  // View Details button functionality
+  document.querySelectorAll('a[href*="/products/"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      // You can add pre-loading or analytics here
+      console.log(`Viewing details for: ${this.closest('.group').querySelector('h3').textContent}`);
+    });
+  });
+
+  // Emergency contact button pulse effect
+  const emergencyBtn = document.querySelector('a[href*="tel:"]');
+  if (emergencyBtn) {
+    setInterval(() => {
+      emergencyBtn.classList.toggle('emergency-pulse');
+    }, 2000);
+  }
+
+  // Newsletter form submission (if added later)
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      if (email) {
+        showNotification('Thank you for subscribing to our health updates!', 'success');
+        this.reset();
+      }
+    });
+  }
+
+  // Simple notification function
+  function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${
+      type === 'success' 
+        ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300' 
+        : 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300'
+    }`;
+    notification.innerHTML = `
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i>
+        <span class="font-medium">${message}</span>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          document.body.removeChild(notification);
+        }
+      }, 300);
+    }, 3000);
+  }
+
+  // Initialize animations on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-slide-up');
+      }
+    });
+  }, observerOptions);
+
+  // Observe sections for animation
+  document.querySelectorAll('section').forEach((section, index) => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    observer.observe(section);
+  });
+</script>
+
+<style>
+  /* Animations */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+  }
+
+  .emergency-pulse {
+    animation: pulse 2s infinite;
+  }
+
+  /* Gradient text for headings */
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #3b82f6, #2dd4bf);
+    border-radius: 5px;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: #374151;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #1d4ed8, #0d9488);
+  }
+
+  /* Product card hover effects */
+  .group:hover .fa-pills {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+</style>
