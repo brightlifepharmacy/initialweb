@@ -11,6 +11,7 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const dummyProducts = require("./utils/dummyProducts.js");
 const filterProducts = require("./utils/filterProducts.js");
+const articles = require("./utils/dummyArticles.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
@@ -27,6 +28,12 @@ const resetRout = require("./routes/authRoutes.js");
 const productsRouter = require("./routes/products.js");
 
 const dbUrl = process.env.ATLUSDB_URL || process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/initialweb";
+
+function findArticle(idOrSlug) {
+  return articles.find(
+    (item) => String(item.id) === idOrSlug || item.slug === idOrSlug,
+  );
+}
 
 main()
   .then(() => {
@@ -140,6 +147,7 @@ app.get("/", async (req, res, next) => {
   const products = filterProducts(dummyProducts, req.query).slice(0, 4);
   res.render("brightlife/home.ejs", {
     products,
+    articles: articles.slice(0, 3),
     selectedCategory: req.query.category || "all",
     selectedPrice: req.query.price || "all",
   });
@@ -156,6 +164,17 @@ app.get("/product/:id", (req, res) => {
   }
 
   res.render("products/product-details", { product });
+});
+
+app.get(["/article/:idOrSlug", "/blogs/:idOrSlug"], (req, res) => {
+  const article = findArticle(req.params.idOrSlug);
+
+  if (!article) {
+    req.flash("error", "Article not found");
+    return res.redirect("/blogs");
+  }
+
+  res.render("blogs/article-details", { article });
 });
 
 app.get(

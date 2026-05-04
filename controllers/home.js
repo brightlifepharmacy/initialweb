@@ -3,11 +3,18 @@ const products = require("../utils/dummyProducts.js");
 const filterProducts = require("../utils/filterProducts.js");
 const articles = require("../utils/dummyArticles.js");
 
+function findArticle(idOrSlug) {
+  return articles.find(
+    (item) => String(item.id) === idOrSlug || item.slug === idOrSlug,
+  );
+}
+
 module.exports.index = async (req, res) => {
   try {
     const filteredProducts = filterProducts(products, req.query).slice(0, 4);
     res.render("brightlife/home.ejs", {
       products: filteredProducts,
+      articles: articles.slice(0, 3),
       selectedCategory: req.query.category || "all",
       selectedPrice: req.query.price || "all",
     });
@@ -38,4 +45,15 @@ module.exports.contact = (req, res) => {
 
 module.exports.blogs = (req, res) => {
   res.render("blogs/index.ejs", { articles });
+};
+
+module.exports.articleDetails = (req, res) => {
+  const article = findArticle(req.params.idOrSlug);
+
+  if (!article) {
+    req.flash("error", "Article not found");
+    return res.redirect("/blogs");
+  }
+
+  res.render("blogs/article-details.ejs", { article });
 };
