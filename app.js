@@ -13,17 +13,17 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const crypto = require("crypto");
-
+const contactRouter = require("./routes/contactRoutes.js");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
+const blogRouter = require("./routes/blogRoutes.js");
 const homeRouter = require("./routes/home.js");
 const userRouter = require("./routes/user.js");
 const resetRout = require("./routes/authRoutes.js");
 
-const dbUrl = process.env.ATLUSDB_URL;
+const dbUrl = process.env.MONGO_URL;
 
 main()
   .then(() => {
@@ -68,7 +68,6 @@ app.set("trust proxy", 1);
 
 app.use(session(sessionOptions));
 app.use(flash());
-
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(
@@ -143,10 +142,11 @@ app.get(
     res.redirect("/");
   },
 );
-
+app.use("/blogs", blogRouter);
 app.use("/", userRouter);
 app.use("/", homeRouter);
 app.use("/", resetRout);
+app.use("/", contactRouter);
 
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page not found!"));
@@ -154,12 +154,13 @@ app.all(/.*/, (req, res, next) => {
 
 app.use((err, req, res, next) => {
   if (res.headersSent) {
-    return next(err); // agar response already sent ho, dobara send mat karo
+    return next(err);
   }
   let { statusCode = 500, message = "Something went wrong!" } = err;
   res.status(statusCode).render("error.ejs", { message, statusCode });
 });
 
-app.listen(3000, () => {
-  console.log(`BrightLife is working at ${3000}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`BrightLife Server is listening on port ${PORT}`);
 });

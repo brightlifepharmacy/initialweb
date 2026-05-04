@@ -9,7 +9,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-
     email: {
       type: String,
       required: true,
@@ -40,6 +39,12 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    role: { 
+      type: String, 
+      enum: ['user', 'admin'], 
+      default: 'user' 
+    },
+    
     createdAt: {
       type: Date,
       default: Date.now,
@@ -50,7 +55,6 @@ const userSchema = new Schema(
   }
 );
 
-// Passport-local plugin
 userSchema.plugin(passportLocalMongoose, {
   usernameField: "email",
   limitAttempts: true,
