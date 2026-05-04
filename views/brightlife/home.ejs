@@ -254,61 +254,77 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <% const blogs = [
+      <% const fallbackArticles = [
         {
+          id: 1,
           title: 'Understanding Allopathic Medicines',
-          excerpt: 'Learn about prescription drugs, their proper usage, and safety guidelines.',
+          description: 'Learn about prescription drugs, their proper usage, and safety guidelines.',
+          image: '/images/brightlife.png',
+          slug: 'understanding-allopathic-medicines',
           category: 'Medication Guide',
           readTime: '4 min read',
           date: 'Mar 15, 2024'
         },
         {
+          id: 3,
           title: 'Surgical Item Sterilization',
-          excerpt: 'Importance of proper sterilization techniques for surgical instruments.',
+          description: 'Importance of proper sterilization techniques for surgical instruments.',
+          image: '/images/logo2.png',
+          slug: 'surgical-item-sterilization',
           category: 'Surgical Care',
           readTime: '6 min read',
           date: 'Mar 10, 2024'
         },
         {
+          id: 2,
           title: 'First Aid Kit Essentials',
-          excerpt: 'Must-have items for your home and car first aid kits.',
+          description: 'Must-have items for your home and car first aid kits.',
+          image: '/images/logo.png',
+          slug: 'first-aid-kit-essentials',
           category: 'First Aid',
           readTime: '5 min read',
           date: 'Mar 5, 2024'
         }
-      ] %>
+      ];
+      const homeArticles =
+        typeof articles !== "undefined" && Array.isArray(articles) && articles.length
+          ? articles.slice(0, 3)
+          : fallbackArticles;
+      %>
       
-      <% blogs.forEach(blog => { %>
+      <% homeArticles.forEach(article => { %>
         <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-          <!-- Blog Header -->
-          <div class="h-48 bg-gradient-to-r from-green-500 to-teal-400 relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <i class="fa-solid fa-file-medical text-white/20 text-8xl"></i>
-            </div>
+          <!-- Article Image -->
+          <div class="h-48 bg-white dark:bg-gray-900 relative overflow-hidden">
+            <img
+              src="<%= article.image %>"
+              alt="<%= article.title %>"
+              class="h-full w-full object-contain p-4"
+            >
             <div class="absolute top-4 left-4">
               <span class="bg-white/90 text-green-600 px-3 py-1 rounded-full text-xs font-bold">
-                <%= blog.category %>
+                <%= article.category || 'Health Guide' %>
               </span>
             </div>
           </div>
 
-          <!-- Blog Content -->
+          <!-- Article Content -->
           <div class="p-6">
             <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
               <i class="fa-solid fa-clock mr-1"></i>
-              <span><%= blog.readTime %></span>
+              <span><%= article.readTime || '4 min read' %></span>
               <span class="mx-2">•</span>
-              <span><%= blog.date %></span>
+              <span><%= article.date || 'Health Article' %></span>
             </div>
 
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              <%= blog.title %>
+              <%= article.title %>
             </h3>
             <p class="text-gray-600 dark:text-gray-400 mb-4">
-              <%= blog.excerpt %>
+              <%= article.description %>
             </p>
 
-            <a href="/blogs/<%= blog.title.toLowerCase().replace(/ /g, '-') %>" 
+            <a href="/article/<%= article.id %>" 
                class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm inline-flex items-center">
               Read Full Article
               <i class="fa-solid fa-arrow-right ml-2"></i>

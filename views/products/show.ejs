@@ -1,0 +1,104 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- Product Details Page -->
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+   
+   <!-- Page Header -->
+   <div class="bg-gradient-to-r from-green-600 to-teal-500">
+     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+         <div>
+           <h1 class="text-3xl md:text-4xl font-bold text-white mb-2"><%= product.name %></h1>
+           <p class="text-green-100 max-w-3xl">
+             <%= product.description %>
+           </p>
+         </div>
+         <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+           <p class="text-white text-sm mb-1">Need assistance?</p>
+           <a href="tel:+911234567890" class="text-white font-bold hover:text-green-100">
+             <i class="fa-solid fa-phone mr-2"></i>Call Pharmacist
+           </a>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <!-- Main Content -->
+   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+     
+     <!-- Product Details -->
+     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 mb-6 border border-gray-200 dark:border-gray-700">
+       
+       <!-- Product Image -->
+       <div class="mb-6">
+         <div class="h-64 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center rounded-lg overflow-hidden">
+           <img src="<%= product.image %>" alt="<%= product.name %>" class="h-full w-full object-contain p-4">
+         </div>
+       </div>
+
+       <!-- Product Info -->
+       <div class="space-y-4">
+         <div class="flex justify-between items-start mb-2">
+           <div>
+             <h2 class="font-bold text-gray-900 dark:text-white text-2xl">
+               <%= product.name %>
+             </h2>
+             <p class="text-sm text-gray-500 dark:text-gray-400">
+               Product ID: <%= product.slug %>
+             </p>
+           </div>
+           <span class="text-2xl font-bold text-gray-900 dark:text-white">
+             <!-- Price would come from product data if available -->
+             Check in-store for pricing
+           </span>
+         </div>
+
+         <!-- Description -->
+         <div>
+           <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Product Description</h3>
+           <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+             <%= product.description %>
+           </p>
+         </div>
+
+         <!-- Additional Details -->
+         <div>
+           <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Additional Information</h3>
+           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+             <div>
+               <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Category</p>
+               <p class="text-gray-900 dark:text-white">Medical Supplies</p>
+             </div>
+             <div>
+               <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Availability</p>
+               <p class="text-gray-900 dark:text-white">In Stock</p>
+             </div>
+             <div>
+               <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Prescription Required</p>
+               <p class="text-gray-900 dark:text-white">No</p>
+             </div>
+             <div>
+               <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Manufacturer</p>
+               <p class="text-gray-900 dark:text-white">Various</p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <!-- Action Buttons -->
+     <div class="flex gap-4">
+       <a href="/products" 
+          class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 font-medium flex items-center justify-center">
+         <i class="fa-solid fa-arrow-left mr-2"></i>
+         Back to Products
+       </a>
+       
+       <a href="tel:+919876543210"
+          class="flex-1 px-6 py-3 border border-green-500 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-all duration-300 font-medium flex items-center justify-center">
+         <i class="fa-solid fa-phone mr-2"></i>
+         Call to Order
+       </a>
+     </div>
+   </div>
+</div>
