@@ -6,6 +6,7 @@ const { isLoggedIn } = require("../middleware");
 router.get("/", isLoggedIn, homeController.index);
 router.get("/about", homeController.about);
 router.get("/products", homeController.products);
+router.get("/blogs", homeController.blogs);
 router.get("/privacy-policy", homeController.privacy);
 router.get("/terms", homeController.terms);
 router.get("/contact", homeController.contact);

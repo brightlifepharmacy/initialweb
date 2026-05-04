@@ -1,0 +1,101 @@
+<% layout("/layouts/boilerplate") -%>
+
+<!-- Product Cards Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 ">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Featured Products</h2>
+      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Browse our range of genuine allopathic medicines and surgical supplies
+      </p>
+    </div>
+
+    <%
+      const fallbackProducts = [
+        {
+          id: 1,
+          name: "Paracetamol 500mg",
+          description: "Fever and mild pain relief tablets for everyday care.",
+          image: "/images/brightlife.png",
+          slug: "paracetamol-500mg",
+        },
+        {
+          id: 5,
+          name: "Surgical Gloves",
+          description: "Sterile disposable gloves for safe medical procedures.",
+          image: "/images/logo2.png",
+          slug: "surgical-gloves",
+        },
+        {
+          id: 10,
+          name: "Digital BP Monitor",
+          description: "Automatic blood pressure monitor for home checks.",
+          image: "/images/logo1.png",
+          slug: "digital-bp-monitor",
+        },
+        {
+          id: 4,
+          name: "First Aid Kit",
+          description: "Essential wound care supplies for quick response.",
+          image: "/images/logo.png",
+          slug: "first-aid-kit",
+        },
+      ];
+      const homepageProducts =
+        typeof featuredProducts !== "undefined" && Array.isArray(featuredProducts) && featuredProducts.length
+          ? featuredProducts
+          : fallbackProducts;
+    %>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <% homepageProducts.forEach(product => { %>
+        <article class="flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-gray-50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+          <div class="h-44 bg-white p-4 dark:bg-gray-900">
+            <img
+              src="<%= product.image %>"
+              alt="<%= product.name %>"
+              class="h-full w-full rounded-lg object-contain"
+            >
+          </div>
+
+          <div class="flex flex-1 flex-col p-5">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+              <%= product.name %>
+            </h3>
+
+            <p class="mt-2 flex-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
+              <%= product.description %>
+            </p>
+
+            <div class="mt-5 flex items-center gap-3">
+              <a
+                href="/product/<%= product.id %>"
+                class="flex-1 rounded-lg bg-green-600 px-4 py-2 text-center text-sm font-semibold text-white transition-colors duration-300 hover:bg-green-700"
+              >
+                View Details
+              </a>
+
+              <a
+                href="/contact"
+                aria-label="Call for <%= product.name %>"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-green-500 text-green-600 transition-colors duration-300 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/20"
+              >
+                <i class="fa-solid fa-phone"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+
+    <!-- View All Products Button -->
+    <div class="text-center mt-10">
+      <a href="/products" 
+         class="inline-flex items-center px-6 py-3 border-2 border-green-500 text-green-600 dark:text-green-400 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 font-semibold">
+        View All Available Products
+        <i class="fa-solid fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
