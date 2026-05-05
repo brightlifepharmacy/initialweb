@@ -1,5 +1,20 @@
 <% layout("/layouts/boilerplate") %>
 
+<%
+  const contact = typeof contactInfo !== 'undefined' && contactInfo ? contactInfo : {
+    phone: '+91 12345 67890',
+    emergencyPhone: '+91 98765 43210',
+    email: 'info@brightlifepharmacy.com',
+    address: '123 Medical Street, Health District\nMumbai, Maharashtra 400001',
+    whatsappPhone: '+911234567890',
+    openingHoursWeekdays: 'Monday - Saturday: 8:00 AM - 10:00 PM',
+    openingHoursSunday: 'Sunday: 9:00 AM - 9:00 PM',
+    emergencyNote: '24/7 Emergency Services Available',
+  };
+  const addressMarkup = typeof addressHtml !== 'undefined' && addressHtml ? addressHtml : String(contact.address || '').replace(/\n/g, '<br>');
+  const mapEmbedUrl = typeof mapSrc !== 'undefined' && mapSrc ? mapSrc : `https://www.google.com/maps?q=${encodeURIComponent(contact.address || '')}&output=embed`;
+%>
+
 <!-- Contact Page -->
 <div class="min-h-screen bg-gradient-to-b from-white to-green-50 dark:from-gray-900 dark:to-gray-800">
   
@@ -46,9 +61,9 @@
               <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
                 For urgent medical assistance or emergency prescriptions
               </p>
-              <a href="tel:+919876543210" 
+              <a href="tel:<%= contact.emergencyPhone.replace(/\s/g, '') %>" 
                  class="text-red-600 dark:text-red-400 font-bold text-lg hover:text-red-700 dark:hover:text-red-300 block mb-1">
-                <i class="fa-solid fa-phone mr-2"></i>+91 98765 43210
+                <i class="fa-solid fa-phone mr-2"></i><%= contact.emergencyPhone %>
               </a>
               <p class="text-xs text-gray-500 dark:text-gray-400">Available 24/7</p>
             </div>
@@ -66,11 +81,11 @@
               <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
                 For general inquiries, medicine availability, and appointments
               </p>
-              <a href="tel:+911234567890" 
+              <a href="tel:<%= contact.phone.replace(/\s/g, '') %>" 
                  class="text-green-600 dark:text-green-400 font-bold text-lg hover:text-green-700 dark:hover:text-green-300 block mb-1">
-                <i class="fa-solid fa-phone mr-2"></i>+91 12345 67890
+                <i class="fa-solid fa-phone mr-2"></i><%= contact.phone %>
               </a>
-              <p class="text-xs text-gray-500 dark:text-gray-400">Mon-Sat: 8AM-10PM</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400"><%= contact.openingHoursWeekdays %></p>
             </div>
           </div>
         </div>
@@ -86,9 +101,9 @@
               <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
                 For prescription requests, feedback, or general inquiries
               </p>
-              <a href="mailto:info@brightlifepharmacy.com" 
+              <a href="mailto:<%= contact.email %>" 
                  class="text-blue-600 dark:text-blue-400 font-bold text-lg hover:text-blue-700 dark:hover:text-blue-300 block mb-1">
-                <i class="fa-solid fa-envelope mr-2"></i>info@brightlifepharmacy.com
+                <i class="fa-solid fa-envelope mr-2"></i><%= contact.email %>
               </a>
               <p class="text-xs text-gray-500 dark:text-gray-400">Response within 24 hours</p>
             </div>
@@ -199,12 +214,11 @@
             
             <div class="space-y-4">
               <div class="flex items-start">
-                <i class="fa-solid fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
+                <i class="fa-solid fa-location-dot text-green-500 mt-1 mr-3"></i>
                 <div>
                   <p class="font-medium text-gray-800 dark:text-white">BrightLife Pharmacy</p>
                   <p class="text-gray-600 dark:text-gray-400">
-                    123 Medical Street, Health District<br>
-                    Mumbai, Maharashtra 400001
+                    <%- addressMarkup %>
                   </p>
                 </div>
               </div>
@@ -214,11 +228,11 @@
                 <div>
                   <p class="font-medium text-gray-800 dark:text-white">Opening Hours</p>
                   <div class="text-gray-600 dark:text-gray-400">
-                    <p class="mb-1">Monday - Saturday: 8:00 AM - 10:00 PM</p>
-                    <p>Sunday: 9:00 AM - 9:00 PM</p>
+                    <p class="mb-1"><%= contact.openingHoursWeekdays %></p>
+                    <p><%= contact.openingHoursSunday %></p>
                     <p class="text-red-500 dark:text-red-400 font-medium mt-1">
                       <i class="fa-solid fa-triangle-exclamation mr-1"></i>
-                      24/7 Emergency Services Available
+                      <%= contact.emergencyNote %>
                     </p>
                   </div>
                 </div>
@@ -254,13 +268,13 @@
             <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Quick Contact Options</h3>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a href="https://wa.me/911234567890" target="_blank" 
+              <a href="https://wa.me/<%= (contact.whatsappPhone || contact.phone || '').replace(/\D/g, '') %>" target="_blank" 
                  class="flex items-center justify-center bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition-all duration-300">
                 <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
                 WhatsApp Chat
               </a>
               
-              <a href="tel:+911234567890" 
+                <a href="tel:<%= contact.phone.replace(/\s/g, '') %>" 
                  class="flex items-center justify-center bg-white dark:bg-gray-800 border-2 border-green-500 text-green-600 dark:text-green-400 px-4 py-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300">
                 <i class="fa-solid fa-phone text-xl mr-2"></i>
                 Call Now
@@ -317,15 +331,16 @@
         </div>
         
         <!-- Map Placeholder -->
-        <div class="p-4">
-          <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-green-100 to-teal-100 dark:from-gray-700 dark:to-gray-600 rounded-lg flex items-center justify-center">
-            <div class="text-center">
-              <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fa-solid fa-location-dot text-white text-2xl"></i>
-              </div>
-              <p class="text-gray-700 dark:text-gray-300 font-medium">BrightLife Pharmacy Location</p>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">123 Medical Street, Mumbai</p>
-            </div>
+          <div class="p-4">
+          <div class="relative overflow-hidden rounded-lg h-64 sm:h-72 lg:h-80 bg-gradient-to-br from-green-100 to-teal-100 dark:from-gray-700 dark:to-gray-600">
+            <iframe
+              src="<%= mapEmbedUrl %>"
+              class="absolute inset-0 h-full w-full"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="BrightLife Pharmacy location on Google Maps"
+              aria-label="BrightLife Pharmacy location map"
+            ></iframe>
           </div>
           
           <!-- Directions -->
@@ -372,10 +387,10 @@
             </div>
           </div>
           
-          <a href="tel:+919876543210" 
+          <a href="tel:<%= contact.emergencyPhone.replace(/\s/g, '') %>" 
              class="bg-white text-red-600 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition-all duration-300 inline-flex items-center">
             <i class="fa-solid fa-phone mr-2"></i>
-            Call Emergency: +91 98765 43210
+            Call Emergency: <%= contact.emergencyPhone %>
           </a>
         </div>
       </div>

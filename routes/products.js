@@ -1,21 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const dummyProducts = require("../utils/dummyProducts.js");
+const productsController = require("../controllers/products.js");
 
-router.get("/", (req, res) => {
-  // This would typically fetch from database
-  res.render("products/index", { products: dummyProducts });
-});
-
-router.get("/:slug", (req, res) => {
-  const product = dummyProducts.find(p => p.slug === req.params.slug);
-  
-  if (!product) {
-    req.flash("error", "Product not found");
-    return res.redirect("/products");
-  }
-  
-  res.render("products/product-details", { product });
-});
+router.get("/api", productsController.api);
+router.get("/", productsController.index);
+router.get("/:slug", productsController.show);
 
 module.exports = router;

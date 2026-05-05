@@ -5,19 +5,19 @@
   
   <!-- Page Header -->
   <div class="bg-gradient-to-r from-green-600 to-teal-500">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div class="container px-4 py-8 mx-auto sm:px-6 lg:px-8">
+      <div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div>
-          <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Available Products</h1>
-          <p class="text-green-100 max-w-3xl">
+          <h1 class="mb-2 text-3xl font-bold text-white md:text-4xl">Available Products</h1>
+          <p class="max-w-3xl text-green-100">
             Browse our comprehensive collection of genuine allopathic medicines and surgical supplies. 
             All products are sourced from certified manufacturers and stored under proper conditions.
           </p>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-          <p class="text-white text-sm mb-1">Need assistance?</p>
-          <a href="tel:+911234567890" class="text-white font-bold hover:text-green-100">
-            <i class="fa-solid fa-phone mr-2"></i>Call Pharmacist
+        <div class="p-4 border rounded-lg bg-white/10 backdrop-blur-sm border-white/20">
+          <p class="mb-1 text-sm text-white">Need assistance?</p>
+          <a href="tel:+911234567890" class="font-bold text-white hover:text-green-100">
+            <i class="mr-2 fa-solid fa-phone"></i>Call Pharmacist
           </a>
         </div>
       </div>
@@ -25,52 +25,62 @@
   </div>
 
   <!-- Main Content -->
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="container px-4 py-8 mx-auto sm:px-6 lg:px-8">
     
+    <% const activeCategory = typeof selectedCategory !== 'undefined' ? selectedCategory : 'all'; %>
+    <% const activeSearch = typeof searchQuery !== 'undefined' ? searchQuery : ''; %>
+    <% const currentPageNumber = typeof currentPage !== 'undefined' ? currentPage : 1; %>
+    <% const totalPageCount = typeof totalPages !== 'undefined' ? totalPages : 1; %>
+    <% const totalProductCount = typeof totalProducts !== 'undefined' ? totalProducts : 0; %>
+    <% const searchSuffix = activeSearch ? '&search=' + encodeURIComponent(activeSearch) : ''; %>
+    <% const categoryLinks = {
+      all: '/products?category=all' + searchSuffix,
+      allopathic: '/products?category=allopathic' + searchSuffix,
+      surgical: '/products?category=surgical' + searchSuffix,
+      devices: '/products?category=devices' + searchSuffix,
+    }; %>
+
     <!-- Search and Filter Bar -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 mb-6 border border-gray-200 dark:border-gray-700">
-      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-        
-        <!-- Search Bar -->
-        <div class="w-full md:w-auto flex-1">
+    <div class="p-4 mb-6 bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
+      <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
+        <form id="product-search-form" method="GET" action="/products" class="w-full lg:max-w-xl">
+          <input type="hidden" name="category" value="<%= activeCategory %>">
           <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <i class="fa-solid fa-search text-gray-400"></i>
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <i class="text-gray-400 fa-solid fa-search"></i>
             </div>
-            <input 
-              type="text" 
+            <input
+              name="search"
+              type="text"
               id="product-search"
+              value="<%= activeSearch %>"
               placeholder="Search medicines, surgical items, brands..."
-              class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              class="w-full py-3 pl-10 pr-12 border border-gray-300 rounded-lg dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             >
-            <button id="search-btn" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-600 dark:text-green-400 hover:text-green-800">
+            <button type="submit" class="absolute text-green-600 transform -translate-y-1/2 right-2 top-1/2 dark:text-green-400 hover:text-green-800">
               <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
-        </div>
+        </form>
 
-        <!-- Filter Buttons -->
-        <div class="flex flex-wrap gap-2">
-          <button class="filter-btn active px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium" data-filter="all">
-            All Products
-          </button>
-          <button class="filter-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600" data-filter="medicine">
-            Allopathic Medicines
-          </button>
-          <button class="filter-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600" data-filter="surgical">
-            Surgical Items
-          </button>
-          <button class="filter-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600" data-filter="device">
-            Medical Devices
-          </button>
+        <div class="flex flex-wrap justify-start gap-2 lg:justify-end">
+          <a href="<%= categoryLinks.all %>" data-category-link data-category="all" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'all' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">All Products</a>
+          <a href="<%= categoryLinks.allopathic %>" data-category-link data-category="allopathic" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'allopathic' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">Allopathic Medicines</a>
+          <a href="<%= categoryLinks.surgical %>" data-category-link data-category="surgical" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'surgical' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">Surgical Items</a>
+          <a href="<%= categoryLinks.devices %>" data-category-link data-category="devices" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'devices' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">Medical Devices</a>
         </div>
+      </div>
+
+      <div class="flex flex-col gap-2 mt-4 text-sm text-gray-600 md:flex-row md:items-center md:justify-between dark:text-gray-400">
+        <p id="products-summary"><%= totalProductCount %> products found</p>
+        <p id="products-page-indicator">Page <%= currentPageNumber %> of <%= totalPageCount %></p>
       </div>
     </div>
 
     <!-- Products Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div id="products-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       
-      <% const displayProducts = typeof products !== "undefined" && Array.isArray(products) && products.length ? products : [
+      <% const displayProducts = typeof products !== "undefined" ? products : [
         // Allopathic Medicines
         {
           id: 1,
@@ -247,32 +257,30 @@
       ]; %>
       
       <% displayProducts.forEach(product => { %>
-        <div class="product-card bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 group" data-type="<%= product.type %>">
+        <div class="overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-sm product-card dark:bg-gray-800 rounded-xl hover:shadow-xl dark:border-gray-700 group" data-type="<%= product.type %>">
           
           <!-- Product Header -->
           <div class="relative">
             <!-- Image/Icon -->
             <div class="h-48 bg-gradient-to-r <%= product.imageColor %> flex items-center justify-center relative overflow-hidden">
               <div class="absolute inset-0 bg-black/10"></div>
-              <% if(product.type === 'medicine') { %>
-                <i class="fa-solid fa-pills text-white text-6xl z-10"></i>
-              <% } else if(product.type === 'surgical') { %>
-                <i class="fa-solid fa-syringe text-white text-6xl z-10"></i>
+              <% if (product.image) { %>
+                <img src="<%= product.image %>" alt="<%= product.name %>" class="z-10 object-contain w-full h-full">
               <% } else { %>
-                <i class="fa-solid fa-stethoscope text-white text-6xl z-10"></i>
+                <img src="/images/logo.png" alt="placeholder" class="z-10 object-contain w-full h-full opacity-90">
               <% } %>
               
               <!-- Prescription Badge -->
               <% if(product.requires_prescription) { %>
-                <div class="absolute top-3 left-3 z-20">
-                  <span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                    <i class="fa-solid fa-prescription mr-1"></i> Rx Required
+                <div class="absolute z-20 top-3 left-3">
+                  <span class="px-3 py-1 text-xs font-bold text-white bg-red-500 rounded-full">
+                    <i class="mr-1 fa-solid fa-prescription"></i> Rx Required
                   </span>
                 </div>
               <% } %>
               
               <!-- Availability Badge -->
-              <div class="absolute top-3 right-3 z-20">
+              <div class="absolute z-20 top-3 right-3">
                 <span class="<%= product.availability === 'In Stock' ? 'bg-green-500' : product.availability === 'Limited Stock' ? 'bg-yellow-500' : 'bg-green-500' %> text-white px-3 py-1 rounded-full text-xs font-bold">
                   <%= product.availability %>
                 </span>
@@ -283,12 +291,12 @@
           <!-- Product Details -->
           <div class="p-5">
             <!-- Category & Manufacturer -->
-            <div class="flex justify-between items-start mb-2">
+            <div class="flex items-start justify-between mb-2">
               <div>
-                <span class="text-xs font-medium text-green-600 dark:text-green-400 uppercase tracking-wider">
+                <span class="text-xs font-medium tracking-wider text-green-600 uppercase dark:text-green-400">
                   <%= product.displayCategory || product.category %>
                 </span>
-                <h3 class="font-bold text-gray-900 dark:text-white text-lg mt-1">
+                <h3 class="mt-1 text-lg font-bold text-gray-900 dark:text-white">
                   <%= product.name %>
                 </h3>
               </div>
@@ -298,45 +306,45 @@
             </div>
 
             <!-- Manufacturer -->
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
-              <i class="fa-solid fa-industry mr-1"></i>
+            <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
+              <i class="mr-1 fa-solid fa-industry"></i>
               <%= product.manufacturer %>
             </p>
 
             <!-- Specifications -->
             <div class="mb-3">
               <% if(product.type === 'medicine') { %>
-                <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <i class="fa-solid fa-capsules mr-2 w-4"></i>
+                <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <i class="w-4 mr-2 fa-solid fa-capsules"></i>
                   <span><%= product.dosage %> • <%= product.pack %></span>
                 </div>
               <% } else if(product.type === 'surgical') { %>
-                <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <i class="fa-solid fa-ruler-combined mr-2 w-4"></i>
+                <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <i class="w-4 mr-2 fa-solid fa-ruler-combined"></i>
                   <span><%= product.size %> • <%= product.pack %></span>
                 </div>
               <% } else { %>
-                <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <i class="fa-solid fa-list-check mr-2 w-4"></i>
+                <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
+                  <i class="w-4 mr-2 fa-solid fa-list-check"></i>
                   <span><%= product.features %></span>
                 </div>
               <% } %>
             </div>
 
             <!-- Description -->
-            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-2">
+            <p class="mb-4 text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
               <%= product.description %>
             </p>
 
             <!-- Action Buttons -->
             <div class="flex gap-2">
-              <a href="/product/<%= product.id %>" 
-                 class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 font-medium text-center text-sm flex items-center justify-center group-hover:scale-105">
-                <i class="fa-solid fa-eye mr-2"></i>
+              <a href="/products/<%= encodeURIComponent(product.slug || product._id || product.id) %>" 
+                 class="flex items-center justify-center flex-1 px-4 py-2 text-sm font-medium text-center text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700 group-hover:scale-105">
+                <i class="mr-2 fa-solid fa-eye"></i>
                 View Details
               </a>
-              <button class="inquiry-btn px-4 py-2 border border-green-500 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-all duration-300" data-product="<%= product.name %>">
-                <i class="fa-solid fa-question"></i>
+              <button type="button" aria-label="Leave a comment for <%= product.name %>" class="flex items-center justify-center w-12 px-4 py-2 text-lg font-bold text-green-600 transition-all duration-300 border border-green-500 rounded-lg inquiry-btn shrink-0 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20" data-product="<%= product.name %>">
+                ?
               </button>
             </div>
           </div>
@@ -344,24 +352,41 @@
       <% }) %>
     </div>
 
-    <!-- No Products Message (Hidden by default) -->
-    <div id="no-products" class="hidden text-center py-12">
-      <div class="w-24 h-24 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-6">
-        <i class="fa-solid fa-search text-gray-400 text-3xl"></i>
-      </div>
-      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">No products found</h3>
-      <p class="text-gray-600 dark:text-gray-400">Try adjusting your search or filter criteria</p>
-      <button id="reset-filters" class="mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300">
-        Reset Filters
-      </button>
+    <% if (totalPageCount > 1) { %>
+    <div id="products-pagination" class="flex flex-wrap items-center justify-center gap-2 mt-10">
+      <% const startPage = Math.max(1, currentPageNumber - 2); %>
+      <% const endPage = Math.min(totalPageCount, currentPageNumber + 2); %>
+      <% if (currentPageNumber > 1) { %>
+        <a href="/products?page=<%= currentPageNumber - 1 %>&category=<%= activeCategory %><%= activeSearch ? '&search=' + encodeURIComponent(activeSearch) : '' %>" data-page-link data-page="<%= currentPageNumber - 1 %>" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Previous</a>
+      <% } %>
+      <% for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) { %>
+        <a href="/products?page=<%= pageNumber %>&category=<%= activeCategory %><%= activeSearch ? '&search=' + encodeURIComponent(activeSearch) : '' %>" data-page-link data-page="<%= pageNumber %>" class="px-4 py-2 text-sm font-medium rounded-lg <%= pageNumber === currentPageNumber ? 'bg-green-600 text-white' : 'bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' %>"><%= pageNumber %></a>
+      <% } %>
+      <% if (currentPageNumber < totalPageCount) { %>
+        <a href="/products?page=<%= currentPageNumber + 1 %>&category=<%= activeCategory %><%= activeSearch ? '&search=' + encodeURIComponent(activeSearch) : '' %>" data-page-link data-page="<%= currentPageNumber + 1 %>" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Next</a>
+      <% } %>
     </div>
+    <% } %>
+
+    <% if (displayProducts.length === 0) { %>
+    <div id="no-products" class="py-12 text-center">
+      <div class="flex items-center justify-center w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full dark:bg-gray-700">
+        <i class="text-3xl text-gray-400 fa-solid fa-search"></i>
+      </div>
+      <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">No products found</h3>
+      <p class="text-gray-600 dark:text-gray-400">Try adjusting your search or filter criteria</p>
+      <a href="/products" class="inline-flex px-6 py-2 mt-4 text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">
+        Reset Filters
+      </a>
+    </div>
+    <% } %>
 
     <!-- Information Banner -->
-    <div class="mt-12 bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border border-green-100 dark:border-gray-600">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="p-6 mt-12 border border-green-100 bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 rounded-xl dark:border-gray-600">
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
         <div class="flex items-center space-x-4">
-          <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-            <i class="fa-solid fa-triangle-exclamation text-green-600 dark:text-green-400"></i>
+          <div class="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full dark:bg-green-900/30">
+            <i class="text-green-600 fa-solid fa-triangle-exclamation dark:text-green-400"></i>
           </div>
           <div>
             <h3 class="font-bold text-gray-900 dark:text-white">Important Information</h3>
@@ -371,8 +396,8 @@
             </p>
           </div>
         </div>
-        <a href="/contact" class="px-6 py-2 bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 rounded-lg border border-green-200 dark:border-gray-600 hover:bg-green-50 dark:hover:bg-gray-600 transition-all duration-300 font-medium whitespace-nowrap">
-          <i class="fa-solid fa-user-doctor mr-2"></i>
+        <a href="/contact" class="px-6 py-2 font-medium text-green-600 transition-all duration-300 bg-white border border-green-200 rounded-lg dark:bg-gray-700 dark:text-green-400 dark:border-gray-600 hover:bg-green-50 dark:hover:bg-gray-600 whitespace-nowrap">
+          <i class="mr-2 fa-solid fa-user-doctor"></i>
           Consult Pharmacist
         </a>
       </div>
@@ -382,257 +407,380 @@
 
 <!-- Products Page JavaScript -->
 <script>
-  // Filter functionality
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const productCards = document.querySelectorAll('.product-card');
-  const searchInput = document.getElementById('product-search');
-  const searchBtn = document.getElementById('search-btn');
-  const noProductsMsg = document.getElementById('no-products');
-  const resetFiltersBtn = document.getElementById('reset-filters');
-
-  // Active filter state
-  let activeFilter = 'all';
-  let searchQuery = '';
-
-  // Filter button click handler
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Update active button
-      filterButtons.forEach(btn => {
-        btn.classList.remove('active', 'bg-green-600', 'text-white');
-        btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-      });
-      
-      this.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-      this.classList.add('active', 'bg-green-600', 'text-white');
-      
-      // Update active filter
-      activeFilter = this.dataset.filter;
-      
-      // Apply filters
-      applyFilters();
-    });
-  });
-
-  // Search functionality
-  searchInput.addEventListener('input', function() {
-    searchQuery = this.value.toLowerCase().trim();
-    applyFilters();
-  });
-
-  searchBtn.addEventListener('click', function() {
-    searchQuery = searchInput.value.toLowerCase().trim();
-    applyFilters();
-  });
-
-  searchInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      searchQuery = this.value.toLowerCase().trim();
-      applyFilters();
-    }
-  });
-
-  // Reset filters
-  resetFiltersBtn?.addEventListener('click', function() {
-    // Reset UI
-    filterButtons.forEach(btn => {
-      btn.classList.remove('active', 'bg-green-600', 'text-white');
-      btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-    });
-    
-    // Set "All Products" as active
-    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active', 'bg-green-600', 'text-white');
-    
-    // Reset values
-    activeFilter = 'all';
-    searchInput.value = '';
-    searchQuery = '';
-    
-    // Apply filters
-    applyFilters();
-  });
-
-  // Inquiry button functionality
-  document.querySelectorAll('.inquiry-btn').forEach(button => {
-    button.addEventListener('click', function() {
-      const productName = this.dataset.product;
-      showInquiryModal(productName);
-    });
-  });
-
-  // Apply filters function
-  function applyFilters() {
-    let visibleCount = 0;
-    
-    productCards.forEach(card => {
-      const productType = card.dataset.type;
-      const productName = card.querySelector('h3').textContent.toLowerCase();
-      const productDesc = card.querySelector('p.text-gray-700').textContent.toLowerCase();
-      const productCategory = card.querySelector('span.uppercase').textContent.toLowerCase();
-      const productManufacturer = card.querySelector('p.text-sm').textContent.toLowerCase();
-      
-      // Check type filter
-      const typeMatch = activeFilter === 'all' || productType === activeFilter;
-      
-      // Check search query
-      const searchMatch = !searchQuery || 
-        productName.includes(searchQuery) ||
-        productDesc.includes(searchQuery) ||
-        productCategory.includes(searchQuery) ||
-        productManufacturer.includes(searchQuery);
-      
-      // Show/hide card
-      if (typeMatch && searchMatch) {
-        card.style.display = 'block';
-        visibleCount++;
-        
-        // Add animation
-        card.style.animation = 'none';
-        setTimeout(() => {
-          card.style.animation = 'fadeIn 0.5s ease-out';
-        }, 10);
-      } else {
-        card.style.display = 'none';
-      }
-    });
-    
-    // Show/hide no products message
-    if (visibleCount === 0) {
-      noProductsMsg.classList.remove('hidden');
-      noProductsMsg.style.animation = 'none';
-      setTimeout(() => {
-        noProductsMsg.style.animation = 'fadeIn 0.5s ease-out';
-      }, 10);
-    } else {
-      noProductsMsg.classList.add('hidden');
-    }
-  }
-
-  // Show inquiry modal
-  function showInquiryModal(productName) {
-    // Create modal
-    const modal = document.createElement('div');
-    modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
-    modal.innerHTML = `
-      <div class="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6 animate-slide-up">
-        <div class="flex justify-between items-center mb-6">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white">Inquiry: ${productName}</h3>
-          <button class="close-modal text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-            <i class="fa-solid fa-xmark text-xl"></i>
-          </button>
-        </div>
-        
-        <form id="inquiry-form" class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
-            <input type="text" required 
-                   class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
-            <input type="tel" required 
-                   class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                   placeholder="+91">
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-            <textarea rows="3" 
-                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Your question about ${productName}..."></textarea>
-          </div>
-          
-          <div class="flex gap-3 pt-4">
-            <button type="submit" 
-                    class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 font-medium">
-              Submit Inquiry
-            </button>
-            <button type="button" 
-                    class="close-modal px-4 py-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300">
-              Cancel
-            </button>
-          </div>
-        </form>
-        
-        <div class="mt-4 text-center">
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            <i class="fa-solid fa-phone mr-1"></i>
-            Or call us directly: <a href="tel:+911234567890" class="text-green-600 dark:text-green-400 hover:underline">+91 12345 67890</a>
-          </p>
-        </div>
-      </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    // Close modal handlers
-    const closeButtons = modal.querySelectorAll('.close-modal');
-    closeButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        modal.remove();
-      });
-    });
-    
-    // Form submission
-    const form = modal.querySelector('#inquiry-form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Show success message
-      showNotification('Inquiry submitted successfully! Our pharmacist will contact you shortly.', 'success');
-      
-      // Close modal
-      modal.remove();
-      
-      // Reset form (optional)
-      this.reset();
-    });
-    
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.remove();
-      }
-    });
-  }
-
-  // Notification function
-  function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${
-      type === 'success' 
-        ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300' 
-        : 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300'
-    }`;
-    notification.innerHTML = `
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i>
-        <span class="font-medium">${message}</span>
-      </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transform = 'translateY(-20px)';
-      setTimeout(() => {
-        if (notification.parentNode) {
-          document.body.removeChild(notification);
-        }
-      }, 300);
-    }, 3000);
-  }
-
-  // Initialize on page load
   document.addEventListener('DOMContentLoaded', function() {
-    applyFilters();
-    
-    // Add animation to product cards
-    productCards.forEach((card, index) => {
-      card.style.animationDelay = `${index * 0.05}s`;
+    const apiEndpoint = '/products';
+    const searchForm = document.getElementById('product-search-form');
+    const searchInput = document.getElementById('product-search');
+    const productsGrid = document.getElementById('products-grid');
+    const summaryEl = document.getElementById('products-summary');
+    const pageIndicatorEl = document.getElementById('products-page-indicator');
+    const initialGridClass = productsGrid ? productsGrid.className : '';
+    const categoryLinks = document.querySelectorAll('[data-category-link]');
+    const filterLinks = document.querySelectorAll('[data-category-link]');
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(/`/g, '&#96;');
+    }
+
+    function formatPrice(product) {
+      if (typeof product.price === 'number') {
+        return `₹${new Intl.NumberFormat('en-IN').format(product.price)}`;
+      }
+
+      if (product.priceText) {
+        return escapeHtml(product.priceText);
+      }
+
+      return escapeHtml(product.price || 'Contact for price');
+    }
+
+    function renderNoProducts() {
+      return `
+        <div class="py-12 text-center">
+          <div class="flex items-center justify-center w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full dark:bg-gray-700">
+            <i class="text-3xl text-gray-400 fa-solid fa-search"></i>
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">No products found</h3>
+          <p class="text-gray-600 dark:text-gray-400">Try adjusting your search or filter criteria</p>
+          <a href="/products" class="inline-flex px-6 py-2 mt-4 text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">Reset Filters</a>
+        </div>
+      `;
+    }
+
+    function renderProductCard(product) {
+      const type = product.type || 'medicine';
+      const iconClass = type === 'surgical' ? 'fa-syringe' : type === 'device' ? 'fa-stethoscope' : 'fa-pills';
+      const categoryLabel = escapeHtml(product.displayCategory || product.category || 'Product');
+      const name = escapeHtml(product.name || 'Unnamed Product');
+      const manufacturer = escapeHtml(product.manufacturer || '');
+      const description = escapeHtml(product.description || '');
+      const availability = escapeHtml(product.availability || 'In Stock');
+      const availabilityClass = availability === 'In Stock' ? 'bg-green-500' : availability === 'Limited Stock' ? 'bg-yellow-500' : 'bg-green-500';
+      const requiresPrescription = Boolean(product.requires_prescription);
+      const detailTarget = encodeURIComponent(product.slug || product.id || name.toLowerCase().replace(/\s+/g, '-'));
+      const detailUrl = `/products/${detailTarget}`;
+      const specText = type === 'medicine'
+        ? escapeHtml(`${product.dosage || ''}${product.dosage && product.pack ? ' • ' : ''}${product.pack || ''}`)
+        : type === 'surgical'
+          ? escapeHtml(`${product.size || ''}${product.size && product.pack ? ' • ' : ''}${product.pack || ''}`)
+          : escapeHtml(product.features || product.pack || '');
+
+      return `
+        <div class="overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-sm product-card dark:bg-gray-800 rounded-xl hover:shadow-xl dark:border-gray-700 group" data-type="${escapeAttr(type)}">
+          <div class="relative">
+            <div class="flex items-center justify-center h-48 overflow-hidden relative bg-gradient-to-r ${escapeAttr(product.imageColor || 'from-green-500 to-teal-500')}">
+              <div class="absolute inset-0 bg-black/10"></div>
+              ${product.image ? `
+                <img src="${escapeAttr(product.image)}" alt="${escapeAttr(product.name || '')}" class="z-10 object-contain w-full h-full" />
+              ` : `
+                <img src="/images/logo.png" alt="placeholder" class="z-10 object-contain w-full h-full opacity-90" />
+              `}
+              ${requiresPrescription ? `
+                <div class="absolute z-20 top-3 left-3">
+                  <span class="px-3 py-1 text-xs font-bold text-white bg-red-500 rounded-full"><i class="mr-1 fa-solid fa-prescription"></i> Rx Required</span>
+                </div>
+              ` : ''}
+              <div class="absolute z-20 top-3 right-3">
+                <span class="${availabilityClass} text-white px-3 py-1 rounded-full text-xs font-bold">${availability}</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between mb-2">
+              <div>
+                <span class="text-xs font-medium tracking-wider text-green-600 uppercase dark:text-green-400">${categoryLabel}</span>
+                <h3 class="mt-1 text-lg font-bold text-gray-900 dark:text-white">${name}</h3>
+              </div>
+              <span class="text-2xl font-bold text-gray-900 dark:text-white">${formatPrice(product)}</span>
+            </div>
+            <p class="mb-2 text-sm text-gray-600 dark:text-gray-400"><i class="mr-1 fa-solid fa-industry"></i>${manufacturer}</p>
+            <div class="mb-3">
+              <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
+                <i class="w-4 mr-2 fa-solid ${type === 'medicine' ? 'fa-capsules' : type === 'surgical' ? 'fa-ruler-combined' : 'fa-list-check'}"></i>
+                <span>${specText}</span>
+              </div>
+            </div>
+            <p class="mb-4 text-sm text-gray-700 dark:text-gray-300 line-clamp-2">${description}</p>
+            <div class="flex gap-2">
+              <a href="${detailUrl}" class="flex items-center justify-center flex-1 px-4 py-2 text-sm font-medium text-center text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700 group-hover:scale-105"><i class="mr-2 fa-solid fa-eye"></i>View Details</a>
+              <button type="button" aria-label="Leave a comment for ${name}" class="flex items-center justify-center w-12 px-4 py-2 text-lg font-bold text-green-600 transition-all duration-300 border border-green-500 rounded-lg inquiry-btn shrink-0 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20" data-product="${escapeAttr(product.name || '')}">?</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPagination(currentPage, totalPages, category, search) {
+      if (!totalPages || totalPages <= 1) {
+        return '';
+      }
+
+      const safeCategory = category || 'all';
+      const searchPart = search ? `&search=${encodeURIComponent(search)}` : '';
+      const startPage = Math.max(1, currentPage - 2);
+      const endPage = Math.min(totalPages, currentPage + 2);
+      const pages = [];
+
+      if (currentPage > 1) {
+        pages.push(`<a href="/products?page=${currentPage - 1}&category=${encodeURIComponent(safeCategory)}${searchPart}" data-page-link data-page="${currentPage - 1}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Previous</a>`);
+      }
+
+      for (let pageNumber = startPage; pageNumber <= endPage; pageNumber += 1) {
+        pages.push(`<a href="/products?page=${pageNumber}&category=${encodeURIComponent(safeCategory)}${searchPart}" data-page-link data-page="${pageNumber}" class="px-4 py-2 text-sm font-medium rounded-lg ${pageNumber === currentPage ? 'bg-green-600 text-white' : 'bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'}">${pageNumber}</a>`);
+      }
+
+      if (currentPage < totalPages) {
+        pages.push(`<a href="/products?page=${currentPage + 1}&category=${encodeURIComponent(safeCategory)}${searchPart}" data-page-link data-page="${currentPage + 1}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Next</a>`);
+      }
+
+      return `<div class="flex flex-wrap items-center justify-center gap-2 mt-10">${pages.join('')}</div>`;
+    }
+
+    function ensurePaginationContainer() {
+      let pagination = document.getElementById('products-pagination');
+      if (!pagination) {
+        pagination = document.createElement('div');
+        pagination.id = 'products-pagination';
+        productsGrid.insertAdjacentElement('afterend', pagination);
+      }
+
+      return pagination;
+    }
+
+    function updateCategoryLinks(activeCategory) {
+      filterLinks.forEach(link => {
+        const linkCategory = link.dataset.category || 'all';
+        const isActive = linkCategory === activeCategory;
+        link.classList.toggle('bg-green-600', isActive);
+        link.classList.toggle('text-white', isActive);
+        link.classList.toggle('bg-gray-100', !isActive);
+        link.classList.toggle('dark:bg-gray-700', !isActive);
+        link.classList.toggle('text-gray-700', !isActive);
+        link.classList.toggle('dark:text-gray-300', !isActive);
+      });
+    }
+
+    function updateLocation(targetUrl) {
+      window.history.pushState({}, '', targetUrl.pathname + targetUrl.search);
+    }
+
+    function updateViewFromResponse(data) {
+      const products = Array.isArray(data.products) ? data.products : [];
+      const pagination = ensurePaginationContainer();
+
+      if (products.length > 0) {
+        productsGrid.className = initialGridClass;
+        productsGrid.innerHTML = products.map(renderProductCard).join('');
+      } else {
+        productsGrid.className = 'py-12 text-center';
+        productsGrid.innerHTML = renderNoProducts();
+      }
+
+      pagination.innerHTML = renderPagination(data.currentPage || 1, data.totalPages || 1, data.category || 'all', data.search || '');
+      pagination.classList.toggle('hidden', !data.totalPages || data.totalPages <= 1);
+
+      if (summaryEl) {
+        summaryEl.textContent = `${data.totalProducts || 0} products found`;
+      }
+
+      if (pageIndicatorEl) {
+        pageIndicatorEl.textContent = `Page ${data.currentPage || 1} of ${data.totalPages || 1}`;
+      }
+
+      updateCategoryLinks(data.category || 'all');
+    }
+
+    async function loadProducts(targetUrl, shouldPushState = true) {
+      const apiUrl = new URL(apiEndpoint, window.location.origin);
+      const params = targetUrl.searchParams;
+      apiUrl.searchParams.set('format', 'json');
+      ['category', 'search', 'page', 'limit'].forEach(key => {
+        const value = params.get(key);
+        if (value) {
+          apiUrl.searchParams.set(key, value);
+        }
+      });
+
+      const response = await fetch(apiUrl.toString(), {
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload.message || 'Unable to load products.');
+      }
+
+      const data = await response.json();
+      updateViewFromResponse(data);
+
+      if (shouldPushState) {
+        updateLocation(targetUrl);
+      }
+    }
+
+    function buildTargetUrl(sourceUrl, overrides = {}) {
+      const targetUrl = new URL(sourceUrl, window.location.origin);
+      Object.entries(overrides).forEach(([key, value]) => {
+        if (value === null || value === undefined || value === '') {
+          targetUrl.searchParams.delete(key);
+        } else {
+          targetUrl.searchParams.set(key, value);
+        }
+      });
+
+      return targetUrl;
+    }
+
+    document.addEventListener('click', async function(event) {
+      const inquiryButton = event.target.closest('.inquiry-btn');
+      if (inquiryButton) {
+        showCommentModal(inquiryButton.dataset.product || 'this product');
+        return;
+      }
+
+      const categoryLink = event.target.closest('[data-category-link]');
+      if (categoryLink) {
+        event.preventDefault();
+        const targetUrl = new URL(categoryLink.href, window.location.origin);
+        targetUrl.searchParams.delete('page');
+
+        try {
+          await loadProducts(targetUrl);
+        } catch (error) {
+          showNotification(error.message, 'error');
+        }
+        return;
+      }
+
+      const pageLink = event.target.closest('[data-page-link]');
+      if (pageLink) {
+        event.preventDefault();
+        const targetUrl = new URL(pageLink.href, window.location.origin);
+
+        try {
+          await loadProducts(targetUrl);
+        } catch (error) {
+          showNotification(error.message, 'error');
+        }
+      }
     });
+
+    if (searchForm) {
+      searchForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(searchForm);
+        const targetUrl = buildTargetUrl(searchForm.action, {
+          category: formData.get('category') || 'all',
+          search: formData.get('search') || '',
+          page: '1',
+        });
+
+        try {
+          await loadProducts(targetUrl);
+        } catch (error) {
+          showNotification(error.message, 'error');
+        }
+      });
+    }
+
+    window.addEventListener('popstate', async function() {
+      try {
+        await loadProducts(window.location.href, false);
+      } catch (error) {
+        showNotification(error.message, 'error');
+      }
+    });
+
+    function showCommentModal(productName) {
+      const existingModal = document.getElementById('comment-modal');
+      if (existingModal) {
+        existingModal.remove();
+      }
+
+      const modal = document.createElement('div');
+      modal.id = 'comment-modal';
+      modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
+      modal.innerHTML = `
+        <div class="w-full max-w-md p-6 bg-white dark:bg-gray-800 rounded-xl animate-slide-up">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Comment on ${escapeHtml(productName)}</h3>
+            <button type="button" class="text-gray-400 close-modal hover:text-gray-600 dark:hover:text-gray-300">
+              <i class="text-xl fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <form id="comment-form" class="space-y-4">
+            <div>
+              <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Your Comment</label>
+              <textarea rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Write your comment about ${escapeAttr(productName)}..."></textarea>
+            </div>
+
+            <div class="flex gap-3 pt-4">
+              <button type="submit" class="flex-1 px-4 py-2 font-medium text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">
+                Submit Comment
+              </button>
+            </div>
+          </form>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      modal.querySelectorAll('.close-modal').forEach(btn => {
+        btn.addEventListener('click', () => modal.remove());
+      });
+
+      const form = modal.querySelector('#comment-form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showNotification('Comment submitted successfully!', 'success');
+        modal.remove();
+        this.reset();
+      });
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      });
+    }
+
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${type === 'success' ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300' : 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300'}`;
+      notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i>
+          <span class="font-medium">${escapeHtml(message)}</span>
+        </div>
+      `;
+
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            document.body.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    updateCategoryLinks('<%= activeCategory %>');
   });
 </script>
 
@@ -681,6 +829,7 @@
   /* Line clamp for description */
   .line-clamp-2 {
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;

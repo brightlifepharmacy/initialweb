@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate") -%>
+
+<section class="py-16 bg-gradient-to-b from-green-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-green-600 dark:text-green-400">Healthcare Information</p>
+      <h1 class="mt-3 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">Prescription Medicine</h1>
+      <p class="mt-4 text-base leading-8 text-gray-600 dark:text-gray-300">
+        Safe access to prescription medicines with pharmacist guidance and proper compliance.
+      </p>
+    </div>
+
+    <div class="grid max-w-5xl grid-cols-1 gap-6 mx-auto mt-12 md:grid-cols-3">
+      <article class="p-6 bg-white border border-gray-200 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+        <div class="inline-flex items-center justify-center w-12 h-12 mb-4 text-green-600 bg-green-100 rounded-xl dark:bg-green-900/30 dark:text-green-300">
+          <i class="text-xl fa-solid fa-file-prescription"></i>
+        </div>
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Valid Prescription Required</h2>
+        <p class="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+          Prescription-only medicines are dispensed only after verifying a valid doctor prescription.
+        </p>
+      </article>
+
+      <article class="p-6 bg-white border border-gray-200 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+        <div class="inline-flex items-center justify-center w-12 h-12 mb-4 text-teal-600 bg-teal-100 rounded-xl dark:bg-teal-900/30 dark:text-teal-300">
+          <i class="text-xl fa-solid fa-shield-heart"></i>
+        </div>
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Safety First</h2>
+        <p class="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+          Our team verifies dosage instructions, interactions, and storage guidance for safer use.
+        </p>
+      </article>
+
+      <article class="p-6 bg-white border border-gray-200 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+        <div class="inline-flex items-center justify-center w-12 h-12 mb-4 text-orange-600 bg-orange-100 rounded-xl dark:bg-orange-900/30 dark:text-orange-300">
+          <i class="text-xl fa-solid fa-user-doctor"></i>
+        </div>
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Pharmacist Support</h2>
+        <p class="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+          Need help understanding your medicine schedule? Our pharmacist is available to assist.
+        </p>
+      </article>
+    </div>
+
+    <div class="max-w-5xl p-6 mx-auto mt-10 bg-white border border-green-100 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white">Important Notes</h2>
+      <ul class="mt-4 space-y-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+        <li class="flex items-start">
+          <i class="mt-1 mr-2 text-green-600 fa-solid fa-check dark:text-green-400"></i>
+          Always follow your doctor instructions for dose and duration.
+        </li>
+        <li class="flex items-start">
+          <i class="mt-1 mr-2 text-green-600 fa-solid fa-check dark:text-green-400"></i>
+          Do not stop antibiotics early unless advised by a doctor.
+        </li>
+        <li class="flex items-start">
+          <i class="mt-1 mr-2 text-green-600 fa-solid fa-check dark:text-green-400"></i>
+          Keep medicines out of children’s reach and away from heat/moisture.
+        </li>
+      </ul>
+
+      <div class="flex flex-col gap-3 mt-6 sm:flex-row">
+        <a href="/products?category=allopathic" class="inline-flex items-center justify-center px-5 py-3 text-sm font-semibold text-white transition-colors bg-green-600 rounded-lg hover:bg-green-700">
+          Browse Medicines
+          <i class="ml-2 fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center px-5 py-3 text-sm font-semibold text-green-600 transition-colors border border-green-500 rounded-lg hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/20">
+          Contact Pharmacist
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
