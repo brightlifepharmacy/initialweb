@@ -112,8 +112,19 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>AOS.init();</script>
 
-  <!-- App Script -->
-  <script src="/js/script.js"></script>
+   <!-- App Script -->
+   <script src="/js/script.js"></script>
 
+   <!-- Global image error handling -->
+   <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       document.querySelectorAll('img').forEach(img => {
+         img.onerror = function() {
+           this.onerror = null;
+           this.src = '/images/logo.png';
+         };
+       });
+     });
+   </script>
 </body>
 </html>

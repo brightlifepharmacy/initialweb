@@ -1,0 +1,77 @@
+<% layout("/layouts/boilerplate") -%>
+
+<section class="py-16 bg-gradient-to-b from-purple-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400">Expert Guidance</p>
+      <h1 class="mt-3 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">Free Consultation</h1>
+      <p class="mt-4 text-base leading-8 text-gray-600 dark:text-gray-300">
+        Talk to our experienced healthcare professionals for personalized medical advice, medicine recommendations, and health management tips. Completely free and confidential.
+      </p>
+    </div>
+
+    <div class="grid max-w-5xl grid-cols-1 gap-6 mx-auto mt-12 md:grid-cols-3">
+      <article class="p-6 bg-white border border-gray-200 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+        <div class="inline-flex items-center justify-center w-12 h-12 mb-4 text-purple-600 bg-purple-100 rounded-xl dark:bg-purple-900/30 dark:text-purple-300">
+          <i class="text-xl fa-solid fa-user-doctor"></i>
+        </div>
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Expert Pharmacists</h2>
+        <p class="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+          Consult with qualified pharmacists about medication interactions, side effects, and proper usage.
+        </p>
+      </article>
+
+      <article class="p-6 bg-white border border-gray-200 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+        <div class="inline-flex items-center justify-center w-12 h-12 mb-4 text-pink-600 bg-pink-100 rounded-xl dark:bg-pink-900/30 dark:text-pink-300">
+          <i class="text-xl fa-solid fa-video"></i>
+        </div>
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Video & Phone Calls</h2>
+        <p class="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+          Flexible consultation options via video call or phone, available at times convenient for you.
+        </p>
+      </article>
+
+      <article class="p-6 bg-white border border-gray-200 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+        <div class="inline-flex items-center justify-center w-12 h-12 mb-4 text-indigo-600 bg-indigo-100 rounded-xl dark:bg-indigo-900/30 dark:text-indigo-300">
+          <i class="text-xl fa-solid fa-shield-check"></i>
+        </div>
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white">100% Confidential</h2>
+        <p class="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+          Your health information is completely secure and private. We maintain strict confidentiality standards.
+        </p>
+      </article>
+    </div>
+
+    <div class="max-w-5xl p-6 mx-auto mt-10 bg-white border border-purple-100 shadow-sm rounded-2xl dark:border-gray-700 dark:bg-gray-800">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white">How to Book Your Consultation</h2>
+      <ol class="mt-4 space-y-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
+        <li class="flex items-start">
+          <span class="inline-flex items-center justify-center w-6 h-6 mr-3 text-sm font-bold text-white bg-purple-600 rounded-full shrink-0">1</span>
+          <span>Click the "Schedule Consultation" button below</span>
+        </li>
+        <li class="flex items-start">
+          <span class="inline-flex items-center justify-center w-6 h-6 mr-3 text-sm font-bold text-white bg-purple-600 rounded-full shrink-0">2</span>
+          <span>Fill in your health concerns and preferred time</span>
+        </li>
+        <li class="flex items-start">
+          <span class="inline-flex items-center justify-center w-6 h-6 mr-3 text-sm font-bold text-white bg-purple-600 rounded-full shrink-0">3</span>
+          <span>Our team will confirm and send you call/video link</span>
+        </li>
+        <li class="flex items-start">
+          <span class="inline-flex items-center justify-center w-6 h-6 mr-3 text-sm font-bold text-white bg-purple-600 rounded-full shrink-0">4</span>
+          <span>Get expert advice and medication recommendations</span>
+        </li>
+      </ol>
+
+      <div class="flex flex-col gap-3 mt-6 sm:flex-row">
+        <a href="/contact" class="inline-flex items-center justify-center px-5 py-3 text-sm font-semibold text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700">
+          Schedule Consultation
+          <i class="ml-2 fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="/products" class="inline-flex items-center justify-center px-5 py-3 text-sm font-semibold text-purple-600 transition-colors border border-purple-500 rounded-lg hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20">
+          Browse Products
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

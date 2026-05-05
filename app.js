@@ -11,7 +11,6 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const dummyProducts = require("./utils/dummyProducts.js");
 const filterProducts = require("./utils/filterProducts.js");
-const articles = require("./utils/dummyArticles.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
@@ -21,18 +20,21 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const { Strategy: LocalStrategy } = require("passport-local");
 const User = require("./models/user.js");
+const Article = require("./models/article.js");
 
 const homeRouter = require("./routes/home.js");
 const userRouter = require("./routes/user.js");
 const resetRout = require("./routes/authRoutes.js");
 const productsRouter = require("./routes/products.js");
+const productsController = require("./controllers/products.js");
 
 const dbUrl = process.env.ATLUSDB_URL || process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/initialweb";
 
-function findArticle(idOrSlug) {
-  return articles.find(
-    (item) => String(item.id) === idOrSlug || item.slug === idOrSlug,
-  );
+function getLatestArticles(limit = 3) {
+  return Article.find({})
+    .sort({ publishedAt: -1, createdAt: -1 })
+    .limit(limit)
+    .lean();
 }
 
 main()
@@ -59,6 +61,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
+
+// Fallback placeholder for missing image.png requests
+app.get('/image.png', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'image.png'));
+});
 
 const hasMongoSessionStore = Boolean(process.env.ATLUSDB_URL || process.env.MONGODB_URI);
 const store = hasMongoSessionStore
@@ -146,9 +153,10 @@ app.use((req, res, next) => {
 
 app.get("/", async (req, res, next) => {
   const products = filterProducts(dummyProducts, req.query).slice(0, 4);
+  const articles = await getLatestArticles(3);
   res.render("brightlife/home.ejs", {
     products,
-    articles: articles.slice(0, 3),
+    articles,
     selectedCategory: req.query.category || "all",
     selectedPrice: req.query.price || "all",
   });
@@ -167,15 +175,35 @@ app.get("/product/:id", (req, res) => {
   res.render("products/product-details", { product });
 });
 
-app.get(["/article/:idOrSlug", "/blogs/:idOrSlug"], (req, res) => {
-  const article = findArticle(req.params.idOrSlug);
+app.get("/categories", (req, res) => {
+  const categoryCards = [
+    {
+      title: "Allopathic Medicines",
+      description: "Prescription and over-the-counter medicines for everyday care and treatment.",
+      icon: "fa-pills",
+      count: dummyProducts.filter((product) => product.category === "allopathic").length,
+      href: "/products?category=allopathic",
+      accent: "from-green-500 to-emerald-500",
+    },
+    {
+      title: "Surgical Supplies",
+      description: "Sterile gloves, masks, gauze, and essential disposables for procedures.",
+      icon: "fa-syringe",
+      count: dummyProducts.filter((product) => product.category === "surgical").length,
+      href: "/products?category=surgical",
+      accent: "from-teal-500 to-cyan-500",
+    },
+    {
+      title: "Medical Devices",
+      description: "Home and clinical monitoring devices like thermometers, BP monitors, and oximeters.",
+      icon: "fa-stethoscope",
+      count: dummyProducts.filter((product) => product.category === "devices").length,
+      href: "/products?category=devices",
+      accent: "from-orange-500 to-amber-500",
+    },
+  ];
 
-  if (!article) {
-    req.flash("error", "Article not found");
-    return res.redirect("/blogs");
-  }
-
-  res.render("blogs/article-details", { article });
+  res.render("categories.ejs", { categoryCards });
 });
 
 app.get(
@@ -195,9 +223,12 @@ app.get(
   },
 );
 
+app.get("/api/products", productsController.api);
+app.get("/products", productsController.index);
+
+app.use("/products", productsRouter);
 app.use("/", userRouter);
 app.use("/", homeRouter);
-app.use("/products", productsRouter);
 app.use("/", resetRout);
 
 app.all(/.*/, (req, res, next) => {

@@ -8,7 +8,7 @@ module.exports = [
       "Always follow the prescribed dose, timing, and duration. Stopping antibiotics early or taking extra tablets can reduce effectiveness and may create avoidable health risks.",
       "If you notice side effects, allergies, or confusion about dosage, speak with a doctor or pharmacist before changing the medicine yourself.",
     ],
-    image: "/images/brightlife.png",
+    image: "/images/article-allopathic.svg",
     slug: "understanding-allopathic-medicines",
   },
   {
@@ -20,7 +20,7 @@ module.exports = [
       "Keep bandages, sterile gauze, antiseptic solution, cotton, medical tape, scissors, gloves, pain relief medicine, and a digital thermometer in one clean, dry box.",
       "Check expiry dates every few months and replace used or expired items so the kit is ready when you need it.",
     ],
-    image: "/images/logo.png",
+    image: "/images/article-first-aid.svg",
     slug: "first-aid-kit-essentials",
   },
   {
@@ -32,7 +32,7 @@ module.exports = [
       "Disposable gloves, masks, syringes, and dressings should not be reused. Reuse can spread infection and reduce protection.",
       "Store supplies away from moisture, heat, and direct sunlight, and dispose of sharp or contaminated items responsibly.",
     ],
-    image: "/images/logo2.png",
+    image: "/images/article-surgical.svg",
     slug: "safe-use-of-surgical-supplies",
   },
   {
@@ -44,7 +44,7 @@ module.exports = [
       "Sit calmly for five minutes before checking, keep your arm supported at heart level, and avoid caffeine, exercise, or smoking just before measurement.",
       "Record readings with date and time. Share repeated high or unusual readings with your healthcare provider.",
     ],
-    image: "/images/logo1.png",
+    image: "/images/article-bp.svg",
     slug: "monitoring-blood-pressure-at-home",
   },
 ];

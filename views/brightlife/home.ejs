@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") -%>
 
 <!-- Hero Section with Medical Theme -->
-<section class="relative bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+<section class="relative overflow-hidden bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800">
   <!-- Medical Background Pattern -->
   <div class="absolute inset-0 opacity-5">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -17,61 +17,64 @@
     </svg>
   </div>
 
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <div class="container relative px-4 py-12 mx-auto sm:px-6 lg:px-8 md:py-20">
+    <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
       
       <!-- Left Content -->
       <div class="space-y-6">
         <!-- Trust Badge -->
-        <div class="inline-flex items-center space-x-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm border border-green-100 dark:border-gray-700">
+        <div class="inline-flex items-center px-4 py-2 space-x-2 bg-white border border-green-100 rounded-full shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
           <span class="text-sm font-medium text-gray-700 dark:text-gray-300">24/7 Emergency Service Available</span>
         </div>
 
         <!-- Main Heading -->
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+        <h1 class="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
           <span class="text-gray-800 dark:text-white">Your Trusted</span>
-          <span class="block bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">Medical Partner</span>
+          <span class="block text-transparent bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text">Medical Partner</span>
         </h1>
 
         <!-- Subheading -->
-        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl">
+        <p class="max-w-xl text-lg text-gray-600 dark:text-gray-400">
           BrightLife Pharmacy provides genuine allopathic medicines and surgical supplies with expert guidance. 
           Licensed pharmacy serving the community since 2010.
         </p>
 
         <!-- Key Features -->
-        <div class="grid grid-cols-2 gap-4 pt-4">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-              <i class="fa-solid fa-shield-check text-green-600 dark:text-green-400"></i>
+        <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
+          <div class="flex flex-col items-center p-4 space-y-3 transition-shadow duration-300 bg-white border border-gray-100 shadow-sm sm:flex-row sm:items-start sm:space-y-0 sm:space-x-4 dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:shadow-md">
+            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-green-100 rounded-full md:w-14 md:h-14 dark:bg-green-900/30">
+              <!-- Inline shield-check SVG to ensure the icon is visible regardless of external font loading -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 md:w-8 md:h-8 dark:text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 2.04c-.7 0-1.39.14-2.02.41C6.82 2.9 6 3.45 5.2 3.95c-.8.5-1.61.9-2.56 1.29-.7.28-1.2.96-1.2 1.7v1.2c0 4.23 2.12 8.11 5.58 9.72.24.1.51.1.76 0C13.48 16.25 15.6 12.37 15.6 8.14V6.94c0-.74-.5-1.42-1.2-1.7-.95-.39-1.76-.79-2.56-1.29-.8-.5-1.62-1.05-2.78-1.35-.13-.03-.26-.05-.39-.05zM8.3 9.1a1 1 0 011.4-.1l1.9 1.9 3.2-3.2a1 1 0 011.4 1.42l-4 4a1 1 0 01-1.4 0L8.7 10.5a1 1 0 01-.4-.4z" clip-rule="evenodd"/>
+              </svg>
             </div>
-            <div>
-              <p class="font-semibold text-gray-800 dark:text-white">100% Genuine</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Medicines</p>
+            <div class="text-center sm:text-left">
+              <p class="font-bold text-gray-900 dark:text-white">100% Genuine Medicines</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">FDA approved products</p>
             </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-              <i class="fa-solid fa-user-doctor text-teal-600 dark:text-teal-400"></i>
+          <div class="flex flex-col items-center p-4 space-y-3 transition-shadow duration-300 bg-white border border-gray-100 shadow-sm sm:flex-row sm:items-start sm:space-y-0 sm:space-x-4 dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:shadow-md">
+            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-teal-100 rounded-full md:w-14 md:h-14 dark:bg-teal-900/30">
+              <i class="text-2xl text-teal-600 fa-solid fa-user-doctor dark:text-teal-400 md:text-3xl" aria-hidden="true"></i>
             </div>
-            <div>
-              <p class="font-semibold text-gray-800 dark:text-white">Expert</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Consultation</p>
+            <div class="text-center sm:text-left">
+              <p class="font-bold text-gray-900 dark:text-white">Expert Consultation</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Free pharmacist guidance</p>
             </div>
           </div>
         </div>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 pt-6">
+        <div class="flex flex-col gap-4 pt-6 sm:flex-row">
           <a href="/products" 
-             class="px-8 py-3 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-lg hover:shadow-xl transition-all duration-300 font-semibold text-center hover:scale-105 flex items-center justify-center">
-            <i class="fa-solid fa-capsules mr-2"></i>
+             class="flex items-center justify-center px-8 py-3 font-semibold text-center text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-green-600 to-teal-500 hover:shadow-xl hover:scale-105">
+            <i class="mr-2 fa-solid fa-capsules"></i>
             View Available Products
           </a>
           <a href="/contact" 
-             class="px-8 py-3 border border-green-500 text-green-600 dark:text-green-400 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 font-semibold text-center flex items-center justify-center">
-            <i class="fa-solid fa-phone mr-2"></i>
+             class="flex items-center justify-center px-8 py-3 font-semibold text-center text-green-600 transition-all duration-300 border border-green-500 rounded-lg dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20">
+            <i class="mr-2 fa-solid fa-phone"></i>
             Contact Pharmacy
           </a>
         </div>
@@ -79,15 +82,15 @@
 
       <!-- Right Image -->
       <div class="relative">
-        <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="relative z-10 overflow-hidden shadow-2xl rounded-2xl">
           <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-green-400 to-teal-300">
             <!-- Pharmacy Image Placeholder -->
-            <div class="w-full h-full flex items-center justify-center p-8">
+            <div class="flex items-center justify-center w-full h-full p-8">
               <div class="text-center">
-                <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i class="fa-solid fa-heart-pulse text-white text-4xl"></i>
+                <div class="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-white/20">
+                  <i class="text-4xl text-white fa-solid fa-heart-pulse"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-2">BrightLife Pharmacy</h3>
+                <h3 class="mb-2 text-2xl font-bold text-white">BrightLife Pharmacy</h3>
                 <p class="text-white/90">Allopathic & Surgical Supplies</p>
               </div>
             </div>
@@ -95,10 +98,10 @@
         </div>
         
         <!-- Floating Info Cards -->
-        <div class="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl z-20 max-w-xs border border-gray-100 dark:border-gray-700">
+        <div class="absolute z-20 max-w-xs p-4 bg-white border border-gray-100 shadow-xl -bottom-4 -left-4 dark:bg-gray-800 rounded-xl dark:border-gray-700">
           <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-              <i class="fa-solid fa-clock text-green-600 dark:text-green-400"></i>
+            <div class="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full dark:bg-green-900/30">
+              <i class="text-green-600 fa-solid fa-clock dark:text-green-400"></i>
             </div>
             <div>
               <h3 class="font-bold text-gray-800 dark:text-white">Open 24/7</h3>
@@ -113,10 +116,10 @@
 
 <!-- Available Products Section -->
 <section class="py-16 bg-white dark:bg-gray-900">
-  <div class="container mx-auto px-4 ">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Available Products</h2>
-      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+  <div class="container px-4 mx-auto ">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Available Products</h2>
+      <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
         Browse our range of genuine allopathic medicines and surgical supplies
       </p>
     </div>
@@ -182,21 +185,21 @@
     <!-- Products Grid -->
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <% homeProducts.forEach(product => { %>
-        <article class="flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-gray-50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
-          <div class="h-44 bg-white p-4 dark:bg-gray-900">
+        <article class="flex flex-col h-full overflow-hidden transition-all duration-300 border border-gray-200 shadow-sm rounded-xl bg-gray-50 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+          <div class="p-4 bg-white h-44 dark:bg-gray-900">
             <img
               src="<%= product.image %>"
               alt="<%= product.name %>"
-              class="h-full w-full rounded-lg object-contain"
+              class="object-contain w-full h-full rounded-lg"
             >
           </div>
 
-          <div class="flex flex-1 flex-col p-5">
+          <div class="flex flex-col flex-1 p-5">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white">
               <%= product.name %>
             </h3>
 
-            <p class="mt-2 flex-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
+            <p class="flex-1 mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
               <%= product.description %>
             </p>
 
@@ -204,21 +207,17 @@
               Rs.<%= product.price %>
             </p>
 
-            <div class="mt-5 flex items-center gap-3">
+            <div class="flex items-center gap-3 mt-5">
               <a
-                href="/product/<%= product.id %>"
-                class="flex-1 rounded-lg bg-green-600 px-4 py-2 text-center text-sm font-semibold text-white transition-colors duration-300 hover:bg-green-700"
+                href="/products/<%= encodeURIComponent(product.slug || product._id || product.id) %>"
+                class="flex-1 px-4 py-2 text-sm font-semibold text-center text-white transition-colors duration-300 bg-green-600 rounded-lg hover:bg-green-700"
               >
                 View Details
               </a>
 
-              <a
-                href="/contact"
-                aria-label="Call for <%= product.name %>"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-green-500 text-green-600 transition-colors duration-300 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/20"
-              >
-                <i class="fa-solid fa-phone"></i>
-              </a>
+              <button type="button" aria-label="Leave a comment for <%= product.name %>" class="inline-flex items-center justify-center w-10 h-10 text-lg font-bold text-green-600 transition-colors duration-300 border border-green-500 rounded-lg inquiry-btn hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/20" data-product="<%= product.name %>">
+                ?
+              </button>
             </div>
           </div>
         </article>
@@ -226,18 +225,18 @@
     </div>
 
     <% if (homeProducts.length === 0) { %>
-      <div class="rounded-xl border border-gray-200 bg-gray-50 p-8 text-center dark:border-gray-700 dark:bg-gray-800">
+      <div class="p-8 text-center border border-gray-200 rounded-xl bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
         <p class="font-semibold text-gray-900 dark:text-white">No products found</p>
-        <a href="/" class="mt-3 inline-flex text-sm font-semibold text-green-600 dark:text-green-400">Clear filters</a>
+        <a href="/" class="inline-flex mt-3 text-sm font-semibold text-green-600 dark:text-green-400">Clear filters</a>
       </div>
     <% } %>
 
     <!-- View All Products Button -->
-    <div class="text-center mt-10">
+    <div class="mt-10 text-center">
       <a href="/products" 
-         class="inline-flex items-center px-6 py-3 border-2 border-green-500 text-green-600 dark:text-green-400 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 font-semibold">
+         class="inline-flex items-center px-6 py-3 font-semibold text-green-600 transition-all duration-300 border-2 border-green-500 rounded-lg dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20">
         View All Available Products
-        <i class="fa-solid fa-arrow-right ml-2"></i>
+        <i class="ml-2 fa-solid fa-arrow-right"></i>
       </a>
     </div>
   </div>
@@ -245,21 +244,21 @@
 
 <!-- Health & Wellness Blogs -->
 <section class="py-16 bg-gray-50 dark:bg-gray-800/50">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Health & Wellness Articles</h2>
-      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Health & Wellness Articles</h2>
+      <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
         Educational articles about medicines, surgical care, and health maintenance
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       <% const fallbackArticles = [
         {
           id: 1,
           title: 'Understanding Allopathic Medicines',
           description: 'Learn about prescription drugs, their proper usage, and safety guidelines.',
-          image: '/images/brightlife.png',
+          image: '/images/article-allopathic.svg',
           slug: 'understanding-allopathic-medicines',
           category: 'Medication Guide',
           readTime: '4 min read',
@@ -269,7 +268,7 @@
           id: 3,
           title: 'Surgical Item Sterilization',
           description: 'Importance of proper sterilization techniques for surgical instruments.',
-          image: '/images/logo2.png',
+          image: '/images/article-surgical.svg',
           slug: 'surgical-item-sterilization',
           category: 'Surgical Care',
           readTime: '6 min read',
@@ -279,7 +278,7 @@
           id: 2,
           title: 'First Aid Kit Essentials',
           description: 'Must-have items for your home and car first aid kits.',
-          image: '/images/logo.png',
+          image: '/images/article-first-aid.svg',
           slug: 'first-aid-kit-essentials',
           category: 'First Aid',
           readTime: '5 min read',
@@ -293,52 +292,53 @@
       %>
       
       <% homeArticles.forEach(article => { %>
-        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+        <div class="flex flex-col h-full overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-sm rounded-2xl hover:-translate-y-1 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
           <!-- Article Image -->
-          <div class="h-48 bg-white dark:bg-gray-900 relative overflow-hidden">
+          <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-green-50 via-white to-teal-50 p-5 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
             <img
               src="<%= article.image %>"
               alt="<%= article.title %>"
-              class="h-full w-full object-contain p-4"
+              class="object-contain w-full h-full rounded-xl"
             >
-            <div class="absolute top-4 left-4">
-              <span class="bg-white/90 text-green-600 px-3 py-1 rounded-full text-xs font-bold">
+            <div class="absolute left-4 top-4">
+              <span class="px-3 py-1 text-xs font-bold text-green-600 rounded-full shadow-sm bg-white/90 backdrop-blur dark:bg-gray-900/80 dark:text-green-300">
                 <%= article.category || 'Health Guide' %>
               </span>
             </div>
           </div>
 
           <!-- Article Content -->
-          <div class="p-6">
-            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
-              <i class="fa-solid fa-clock mr-1"></i>
+          <div class="flex flex-col flex-1 p-6">
+            <div class="flex items-center mb-3 text-sm text-gray-500 dark:text-gray-400">
+              <i class="mr-1 fa-solid fa-clock"></i>
               <span><%= article.readTime || '4 min read' %></span>
               <span class="mx-2">•</span>
               <span><%= article.date || 'Health Article' %></span>
             </div>
 
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+            <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white">
               <%= article.title %>
             </h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4">
+
+            <p class="flex-1 mt-3 leading-7 text-gray-600 dark:text-gray-400">
               <%= article.description %>
             </p>
 
-            <a href="/article/<%= article.id %>" 
-               class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm inline-flex items-center">
+            <a href="/blog/<%= article.slug || article._id || article.id %>" 
+               class="inline-flex items-center mt-6 text-sm font-medium text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300">
               Read Full Article
-              <i class="fa-solid fa-arrow-right ml-2"></i>
+              <i class="ml-2 fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
       <% }) %>
     </div>
 
-    <div class="text-center mt-10">
+    <div class="mt-10 text-center">
       <a href="/blogs" 
-         class="inline-flex items-center px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 font-semibold">
+         class="inline-flex items-center px-6 py-3 font-semibold text-gray-800 transition-all duration-300 bg-gray-200 rounded-lg dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600">
         View All Articles
-        <i class="fa-solid fa-newspaper ml-2"></i>
+        <i class="ml-2 fa-solid fa-newspaper"></i>
       </a>
     </div>
   </div>
@@ -346,15 +346,15 @@
 
 <!-- Customer Reviews Section -->
 <section class="py-16 bg-white dark:bg-gray-900">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">What Our Customers Say</h2>
-      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">What Our Customers Say</h2>
+      <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
         Feedback from our valued customers about our products and services
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
       <% const reviews = [
         {
           name: 'Rajesh Kumar',
@@ -380,7 +380,7 @@
       ] %>
       
       <% reviews.forEach(review => { %>
-        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+        <div class="p-6 transition-all duration-300 border border-gray-200 bg-gray-50 dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:shadow-lg">
           <!-- Rating Stars -->
           <div class="flex mb-4">
             <% for(let i = 0; i < 5; i++) { %>
@@ -389,7 +389,7 @@
           </div>
 
           <!-- Review Text -->
-          <p class="text-gray-700 dark:text-gray-300 italic mb-6">
+          <p class="mb-6 italic text-gray-700 dark:text-gray-300">
             "<%= review.review %>"
           </p>
 
@@ -409,60 +409,60 @@
 
 <!-- Services Overview -->
 <section class="py-16 bg-gradient-to-r from-green-600 to-teal-500">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto text-center text-white">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Pharmacy Services</h2>
+      <h2 class="mb-6 text-3xl font-bold md:text-4xl">Our Pharmacy Services</h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fa-solid fa-prescription text-2xl"></i>
+      <div class="grid grid-cols-1 gap-8 mt-10 md:grid-cols-2">
+        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
+          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
+            <i class="text-2xl fa-solid fa-prescription"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Prescription Medicines</h3>
+          <h3 class="mb-2 text-xl font-bold">Prescription Medicines</h3>
           <p class="text-white/90">Allopathic drugs with proper prescription guidance</p>
         </div>
         
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fa-solid fa-syringe text-2xl"></i>
+        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
+          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
+            <i class="text-2xl fa-solid fa-syringe"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Surgical Supplies</h3>
+          <h3 class="mb-2 text-xl font-bold">Surgical Supplies</h3>
           <p class="text-white/90">Sterile surgical instruments and disposables</p>
         </div>
         
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fa-solid fa-user-doctor text-2xl"></i>
+        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
+          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
+            <i class="text-2xl fa-solid fa-user-doctor"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Medical Consultation</h3>
+          <h3 class="mb-2 text-xl font-bold">Medical Consultation</h3>
           <p class="text-white/90">Free guidance from certified pharmacists</p>
         </div>
         
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fa-solid fa-truck-medical text-2xl"></i>
+        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
+          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
+            <i class="text-2xl fa-solid fa-truck-medical"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2">Home Delivery</h3>
+          <h3 class="mb-2 text-xl font-bold">Home Delivery</h3>
           <p class="text-white/90">Medicines delivered to your doorstep</p>
         </div>
       </div>
       
       <!-- Contact Info -->
-      <div class="mt-12 pt-8 border-t border-white/20">
-        <h3 class="text-2xl font-bold mb-6">Need Assistance?</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="pt-8 mt-12 border-t border-white/20">
+        <h3 class="mb-6 text-2xl font-bold">Need Assistance?</h3>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <a href="tel:+911234567890" 
-             class="bg-white text-green-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-all duration-300 font-semibold text-lg flex items-center justify-center">
-            <i class="fa-solid fa-phone mr-2"></i>
+             class="flex items-center justify-center px-6 py-3 text-lg font-semibold text-green-600 transition-all duration-300 bg-white rounded-lg hover:bg-gray-100">
+            <i class="mr-2 fa-solid fa-phone"></i>
             Call: +91 12345 67890
           </a>
           <a href="/contact" 
-             class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold text-lg flex items-center justify-center">
-            <i class="fa-solid fa-map-marker-alt mr-2"></i>
+             class="flex items-center justify-center px-6 py-3 text-lg font-semibold text-white transition-all duration-300 bg-transparent border-2 border-white rounded-lg hover:bg-white/10">
+            <i class="mr-2 fa-solid fa-map-marker-alt"></i>
             Visit Pharmacy
           </a>
         </div>
-        <p class="text-white/80 mt-4 text-sm">
+        <p class="mt-4 text-sm text-white/80">
           Address: 123 Medical Street, Health District, Mumbai, Maharashtra 400001
         </p>
       </div>
@@ -472,12 +472,12 @@
 
 <!-- Pharmacy Hours -->
 <section class="py-12 bg-gray-50 dark:bg-gray-800/50">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm max-w-2xl mx-auto border border-gray-200 dark:border-gray-700">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-2xl p-6 mx-auto bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
+      <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
         <div class="text-center md:text-left">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-            <i class="fa-solid fa-clock mr-2 text-green-500"></i>
+          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+            <i class="mr-2 text-green-500 fa-solid fa-clock"></i>
             Pharmacy Hours
           </h3>
           <div class="space-y-1">
@@ -487,16 +487,16 @@
             <p class="text-gray-700 dark:text-gray-300">
               <span class="font-medium">Sunday:</span> 9:00 AM - 9:00 PM
             </p>
-            <p class="text-red-600 dark:text-red-400 font-medium">
-              <i class="fa-solid fa-triangle-exclamation mr-1"></i>
+            <p class="font-medium text-red-600 dark:text-red-400">
+              <i class="mr-1 fa-solid fa-triangle-exclamation"></i>
               24/7 Emergency Service Available
             </p>
           </div>
         </div>
-        <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg border border-green-100 dark:border-green-800">
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Need medicines now?</p>
-          <a href="tel:+919876543210" class="text-green-600 dark:text-green-400 font-bold text-lg hover:text-green-800 dark:hover:text-green-300">
-            <i class="fa-solid fa-phone-volume mr-2"></i>
+        <div class="p-4 border border-green-100 rounded-lg bg-green-50 dark:bg-green-900/30 dark:border-green-800">
+          <p class="mb-1 text-sm text-gray-600 dark:text-gray-400">Need medicines now?</p>
+          <a href="tel:+919876543210" class="text-lg font-bold text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300">
+            <i class="mr-2 fa-solid fa-phone-volume"></i>
             Emergency: +91 98765 43210
           </a>
         </div>
@@ -606,6 +606,115 @@
     section.style.transform = 'translateY(20px)';
     observer.observe(section);
   });
+
+  // Inquiry button functionality
+  document.addEventListener('click', function(event) {
+    const button = event.target.closest('.inquiry-btn');
+    if (!button) return;
+
+    const productName = button.dataset.product;
+    showCommentModal(productName);
+  });
+
+  // Show comment modal
+  function showCommentModal(productName) {
+    const existingModal = document.getElementById('comment-modal');
+    if (existingModal) {
+      existingModal.remove();
+    }
+
+    // Create modal
+    const modal = document.createElement('div');
+    modal.id = 'comment-modal';
+    modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
+    modal.innerHTML = `
+      <div class="w-full max-w-md p-6 bg-white dark:bg-gray-800 rounded-xl animate-slide-up">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white">Comment on ${productName}</h3>
+          <button class="text-gray-400 close-modal hover:text-gray-600 dark:hover:text-gray-300">
+            <i class="text-xl fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="comment-form" class="space-y-4">
+          <div>
+            <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Your Comment</label>
+            <textarea rows="3"
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="Write your comment about ${productName}..."></textarea>
+          </div>
+
+          <div class="flex gap-3 pt-4">
+            <button type="submit"
+                    class="flex-1 px-4 py-2 font-medium text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">
+              Submit Comment
+            </button>
+          </div>
+        </form>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Close modal handlers
+    const closeButtons = modal.querySelectorAll('.close-modal');
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.remove();
+      });
+    });
+
+    // Form submission
+    const form = modal.querySelector('#comment-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Show success message
+      showNotification('Comment submitted successfully!', 'success');
+
+      // Close modal
+      modal.remove();
+
+      // Reset form
+      this.reset();
+    });
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
+  }
+
+  // Notification function
+  function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${
+      type === 'success'
+        ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300'
+        : 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300'
+    }`;
+    notification.innerHTML = `
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i>
+        <span class="font-medium">${message}</span>
+      </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          document.body.removeChild(notification);
+        }
+      }, 300);
+    }, 3000);
+  }
 </script>
 
 <style>

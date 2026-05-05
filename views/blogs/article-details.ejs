@@ -1,27 +1,27 @@
 <% layout("/layouts/boilerplate") -%>
 
-<section class="bg-white py-12 dark:bg-gray-900">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <article class="mx-auto max-w-4xl">
+<section class="py-12 bg-white dark:bg-gray-900">
+  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+    <article class="max-w-4xl mx-auto">
       <a
         href="/blogs"
-        class="mb-6 inline-flex items-center text-sm font-semibold text-green-600 transition-colors hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
+        class="inline-flex items-center mb-6 text-sm font-semibold text-green-600 transition-colors hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
       >
-        <i class="fa-solid fa-arrow-left mr-2"></i>
+        <i class="mr-2 fa-solid fa-arrow-left"></i>
         Back to Articles
       </a>
 
-      <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-        <div class="bg-white p-6 dark:bg-gray-900 sm:p-8">
+      <div class="overflow-hidden border border-gray-200 shadow-sm rounded-xl bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
+        <div class="p-6 bg-white dark:bg-gray-900 sm:p-8">
           <img
-            src="<%= article.image %>"
+            src="<%= article.image || '/images/article-allopathic.svg' %>"
             alt="<%= article.title %>"
-            class="h-72 w-full rounded-lg object-contain"
+            class="object-contain w-full rounded-lg h-72"
           >
         </div>
 
         <div class="p-6 sm:p-8">
-          <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-green-600 dark:text-green-400">
+          <p class="mb-3 text-sm font-semibold tracking-wider text-green-600 uppercase dark:text-green-400">
             Health & Wellness
           </p>
 
@@ -29,12 +29,17 @@
             <%= article.title %>
           </h1>
 
+          <div class="flex flex-wrap items-center gap-3 mt-4 text-sm text-gray-500 dark:text-gray-400">
+            <span class="px-3 py-1 font-semibold text-green-700 rounded-full bg-green-50 dark:bg-green-900/30 dark:text-green-300"><%= article.category || 'Health Guide' %></span>
+            <span><%= article.readTime || '4 min read' %></span>
+          </div>
+
           <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
             <%= article.description %>
           </p>
 
-          <div class="mt-8 space-y-5 border-t border-gray-200 pt-8 dark:border-gray-700">
-            <% article.content.forEach(paragraph => { %>
+          <div class="pt-8 mt-8 space-y-5 border-t border-gray-200 dark:border-gray-700">
+            <% (article.content || []).forEach(paragraph => { %>
               <p class="text-base leading-8 text-gray-700 dark:text-gray-300">
                 <%= paragraph %>
               </p>

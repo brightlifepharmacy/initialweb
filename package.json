@@ -4,6 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
+    "seed": "node seeds/seedProducts.js",
+    "seed:articles": "node seeds/seedArticles.js",
+    "seed:contact": "node seeds/seedContact.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Saurabh Mishra",

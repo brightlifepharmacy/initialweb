@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Surgical supplies illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f3ff"/>
+      <stop offset="100%" stop-color="#ecfeff"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="560" rx="40" fill="url(#bg)"/>
+  <circle cx="674" cy="120" r="66" fill="#e0f2fe"/>
+  <circle cx="124" cy="124" r="56" fill="#ede9fe"/>
+  <rect x="168" y="126" width="464" height="306" rx="32" fill="#ffffff" opacity="0.95"/>
+  <rect x="244" y="188" width="140" height="18" rx="9" fill="url(#steel)"/>
+  <rect x="338" y="152" width="18" height="150" rx="9" fill="url(#steel)"/>
+  <rect x="324" y="218" width="48" height="18" rx="9" fill="#cbd5e1"/>
+  <path d="M468 172l78 78" stroke="#0f172a" stroke-width="18" stroke-linecap="round"/>
+  <path d="M546 172l-78 78" stroke="#0f172a" stroke-width="18" stroke-linecap="round"/>
+  <rect x="452" y="280" width="158" height="18" rx="9" fill="#cbd5e1"/>
+  <rect x="452" y="314" width="116" height="18" rx="9" fill="#e2e8f0"/>
+  <path d="M108 452c74-30 136-40 204-28 80 14 164 48 256 40 78-7 144-28 206-62" fill="none" stroke="#c4b5fd" stroke-width="18" stroke-linecap="round" opacity="0.5"/>
+</svg>
