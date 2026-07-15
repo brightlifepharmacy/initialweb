@@ -16,7 +16,7 @@ const crypto = require("crypto");
 const contactRouter = require("./routes/contactRoutes.js");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const { Strategy: LocalStrategy } = require("passport-local");
+const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const blogRouter = require("./routes/blogRoutes.js");
 
