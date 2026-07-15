@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Article = require('../models/article');
 const dummyArticles = require('../utils/dummyArticles');
 
-const dbUrl = process.env.ATLUSDB_URL || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/initialweb';
+const dbUrl = process.env.ATLUSDB_URL || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/brightlifepharmacy';
 
 async function seed() {
   try {

@@ -1,115 +1,320 @@
+<!-- login.ejs -->
 <% layout("/layouts/boilerplate") -%>
 
-<div class="min-h-screen flex items-center justify-center 
-            bg-gradient-to-r from-green-300 via-green-50 to-green-200 
-            dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-900
-            px-4 transition-all">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 
-  <div class="w-full max-w-md">
-    <!-- Card -->
-    <div class="bg-white/30 dark:bg-gray-600/40 backdrop-blur-lg 
-                rounded-2xl shadow-lg p-8 border 
-                border-white/30 dark:border-gray-700/40 
-                transition-all duration-300">
+<style>
+  .font-display { font-family: 'Fraunces', serif; }
+  .font-body { font-family: 'Inter', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; }
 
-      <!-- Heading -->
-      <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 text-center mb-6">
-        Login
-      </h1>
+  /* Login Card Styles */
+  .login-card {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Input Focus Effects */
+  .login-input {
+    transition: all 0.3s ease;
+  }
+  
+  .login-input:focus {
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+  }
+  
+  /* Social Login Buttons */
+  .social-btn {
+    transition: all 0.3s ease;
+  }
+  
+  .social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+  
+  /* Password Toggle */
+  .password-toggle {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .password-toggle:hover {
+    color: #2E7D32;
+  }
+  
+  .dark .password-toggle:hover {
+    color: #66BB6A;
+  }
+  
+  /* Divider */
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #E3E8E1;
+  }
+  
+  .dark .divider::before,
+  .dark .divider::after {
+    background: #22302A;
+  }
+</style>
 
-      <!-- Form -->
-      <form action="/login" method="POST" class="space-y-5">
-
-        <!-- Username -->
-        <div>
-          <label for="username" class="block font-medium mb-1 text-gray-700 dark:text-gray-300">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="example@gmail.com"
-            required
-            class="w-full px-4 py-2 rounded-xl border 
-                   border-gray-300 dark:border-gray-600 
-                   bg-white dark:bg-gray-800 
-                   text-gray-800 dark:text-gray-200
-                   focus:border-green-500 focus:ring-1 focus:ring-green-300 
-                   outline-none transition"
-          />
+<main class="font-body min-h-screen bg-[#F7F8F5] dark:bg-[#0E1712] text-[#12261A] dark:text-[#E9F2E7] transition-colors duration-300 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  
+  <!-- Decorative Background -->
+  <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2E7D32] via-[#C99A2E] to-[#2E7D32] dark:from-[#4CAF50] dark:via-[#E3C069] dark:to-[#4CAF50] opacity-60"></div>
+  <div class="absolute top-0 right-0 w-1/2 h-full opacity-5 dark:opacity-5 pointer-events-none">
+    <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#2E7D32] blur-3xl"></div>
+    <div class="absolute bottom-20 right-40 w-96 h-96 rounded-full bg-[#C99A2E] blur-3xl"></div>
+  </div>
+  
+  <div class="w-full max-w-md relative">
+    
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <a href="/" class="inline-flex items-center gap-2.5">
+        <div class="w-12 h-12 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center p-1.5">
+          <img src="images/logo2.png" alt="Bright-Life Pharmacy logo" class="w-full h-full object-contain" />
         </div>
-
+        <div class="leading-tight">
+          <p class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0]">Bright-Life</p>
+          <p class="text-[11px] font-mono text-[#4B5C50] dark:text-[#8FA393] -mt-0.5">Pharmacy</p>
+        </div>
+      </a>
+    </div>
+    
+    <!-- Login Card -->
+    <div class="login-card bg-white dark:bg-[#111B15] rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] shadow-lg p-6 sm:p-8">
+      
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="font-display text-2xl font-bold text-[#12261A] dark:text-[#F2F8F0]">
+          Welcome Back
+        </h1>
+        <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-2">
+          Sign in to access your account and manage orders
+        </p>
+      </div>
+      
+      <!-- Login Form -->
+      <form id="login-form" class="space-y-5">
+        
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] mb-1.5">
+            Email Address
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="fa-regular fa-envelope text-[#8A978C] dark:text-[#6E8175]"></i>
+            </div>
+            <input type="email" id="email" required
+              class="login-input w-full pl-10 pr-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all"
+              placeholder="john@example.com">
+          </div>
+        </div>
+        
         <!-- Password -->
         <div>
-          <label for="password" class="block font-medium mb-1 text-gray-700 dark:text-gray-300">
-            Password
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="password" class="block text-sm font-medium text-[#12261A] dark:text-[#E9F2E7]">
+              Password
+            </label>
+            <a href="/forgot-password" class="text-xs text-[#2E7D32] dark:text-[#66BB6A] hover:underline transition-colors">
+              Forgot password?
+            </a>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="fa-solid fa-lock text-[#8A978C] dark:text-[#6E8175]"></i>
+            </div>
+            <input type="password" id="password" required
+              class="login-input w-full pl-10 pr-12 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all"
+              placeholder="Enter your password">
+            <button type="button" id="password-toggle" class="password-toggle absolute inset-y-0 right-0 pr-3 flex items-center text-[#8A978C] dark:text-[#6E8175] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors">
+              <i class="fa-regular fa-eye" id="password-icon"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Remember Me -->
+        <div class="flex items-center justify-between">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="w-4 h-4 rounded border-[#E3E8E1] dark:border-[#22302A] text-[#2E7D32] focus:ring-[#2E7D32] dark:focus:ring-[#4CAF50] transition-colors">
+            <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">Remember me</span>
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="password"
-            required
-            class="w-full px-4 py-2 rounded-xl border 
-                   border-gray-300 dark:border-gray-600 
-                   bg-white dark:bg-gray-800 
-                   text-gray-800 dark:text-gray-200
-                   focus:border-green-500 focus:ring-1 focus:ring-green-300 
-                   outline-none transition"
-          />
         </div>
-
-        <!-- Forgot Password -->
-        <div class=" -mt-2">
-          <a href="/forgot-password" 
-             class="text-sm text-green-600 dark:text-green-400 hover:underline">
-            Forgot password?
-          </a>
-        </div>
-
+        
         <!-- Submit Button -->
-        <button type="submit"
-          class="w-full py-2 bg-green-500 hover:bg-green-600 
-                 dark:bg-green-600 dark:hover:bg-green-500
-                 text-white font-semibold rounded-2xl 
-                 transition-all duration-300">
-          Login
+        <button type="submit" 
+          class="w-full py-3.5 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+          <span id="login-btn-text">Sign In</span>
+          <i class="fa-solid fa-spinner fa-spin hidden" id="login-spinner"></i>
         </button>
+        
+        <!-- Response Message -->
+        <div id="login-response" class="hidden text-center text-sm py-2 rounded-lg"></div>
       </form>
-
-
-
+      
       <!-- Divider -->
-<div class="flex items-center my-6">
-  <div class="flex-1 border-t border-gray-300 dark:border-gray-600"></div>
-  <span class="px-3 text-gray-600 dark:text-gray-300 text-sm">OR</span>
-  <div class="flex-1 border-t border-gray-300 dark:border-gray-600"></div>
-</div>
-
-<!-- Google Login Button -->
-<a
-  href="/auth/google"
-  class="w-full flex items-center justify-center gap-3 
-         py-2 mt-2 bg-white dark:bg-gray-800 
-         border border-gray-300 dark:border-gray-600 
-         rounded-xl shadow-sm hover:shadow-md
-         transition-all duration-300 text-gray-700 dark:text-gray-200 font-medium"
->
-  <img src="https://www.svgrepo.com/show/475656/google-color.svg" 
-       class="w-5 h-5 bg-transparent dark:bg-transparent" />
-  Continue with Google
-</a>
-
-
-
-      <!-- Signup Link -->
-      <p class="mt-4 text-center text-gray-700 dark:text-gray-300">
-        Don't have an account?
-        <a href="/signup" class="text-green-500 dark:text-green-400 font-semibold hover:underline">
-          Signup here
+      <div class="divider flex items-center gap-4 my-6">
+        <span class="text-xs text-[#4B5C50] dark:text-[#8FA393] whitespace-nowrap">or continue with</span>
+      </div>
+      
+      <!-- Social Login -->
+      <div class="grid grid-cols-1">
+        <button class="social-btn flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] hover:bg-[#F0F4EE] dark:hover:bg-[#1D2E21] transition-all">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Google
+        </button>
+        <!-- <button class="social-btn flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] hover:bg-[#F0F4EE] dark:hover:bg-[#1D2E21] transition-all">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12z" fill="#1877F2"/>
+          </svg>
+          Facebook
+        </button> -->
+      </div>
+      
+      <!-- Sign Up Link -->
+      <p class="text-center text-sm text-[#4B5C50] dark:text-[#8FA393] mt-6">
+        Don't have an account? 
+        <a href="/signup" class="font-medium text-[#2E7D32] dark:text-[#66BB6A] hover:underline transition-colors">
+          Sign up now
         </a>
       </p>
     </div>
+    
+    <!-- Footer Note -->
+    <p class="text-center text-xs text-[#8A978C] dark:text-[#6E8175] mt-6">
+      By signing in, you agree to our Terms of Service and Privacy Policy
+    </p>
   </div>
-</div>
+</main>
+
+<script>
+  // ===================== PASSWORD TOGGLE =====================
+  const passwordToggle = document.getElementById('password-toggle');
+  const passwordInput = document.getElementById('password');
+  const passwordIcon = document.getElementById('password-icon');
+  
+  passwordToggle?.addEventListener('click', function() {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    passwordIcon.className = type === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
+  });
+
+  // ===================== LOGIN FORM =====================
+  const loginForm = document.getElementById('login-form');
+  const loginResponse = document.getElementById('login-response');
+  const loginBtnText = document.getElementById('login-btn-text');
+  const loginSpinner = document.getElementById('login-spinner');
+  
+  loginForm?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    
+    // Validation
+    if (!email || !password) {
+      loginResponse.className = 'text-center text-sm py-2 rounded-lg bg-[#FFEBEE] dark:bg-[#2B1815] text-[#C62828] dark:text-[#E28880]';
+      loginResponse.textContent = '⚠️ Please fill in all fields.';
+      loginResponse.classList.remove('hidden');
+      setTimeout(() => loginResponse.classList.add('hidden'), 3000);
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      loginResponse.className = 'text-center text-sm py-2 rounded-lg bg-[#FFEBEE] dark:bg-[#2B1815] text-[#C62828] dark:text-[#E28880]';
+      loginResponse.textContent = '⚠️ Please enter a valid email address.';
+      loginResponse.classList.remove('hidden');
+      setTimeout(() => loginResponse.classList.add('hidden'), 3000);
+      return;
+    }
+    
+    // Show loading state
+    loginBtnText.textContent = 'Signing In...';
+    loginSpinner.classList.remove('hidden');
+    loginResponse.classList.add('hidden');
+    
+    // Simulate API call
+    setTimeout(() => {
+      // Demo login - accept any valid credentials
+      // In real app, you would make an API call here
+      const success = true; // For demo, always success
+      
+      if (success) {
+        loginResponse.className = 'text-center text-sm py-2 rounded-lg bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A]';
+        loginResponse.innerHTML = '✅ Login successful! Redirecting...';
+        loginResponse.classList.remove('hidden');
+        
+        // Reset button
+        loginBtnText.textContent = 'Sign In';
+        loginSpinner.classList.add('hidden');
+        
+        // Redirect after delay
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1500);
+      } else {
+        loginResponse.className = 'text-center text-sm py-2 rounded-lg bg-[#FFEBEE] dark:bg-[#2B1815] text-[#C62828] dark:text-[#E28880]';
+        loginResponse.textContent = '❌ Invalid email or password. Please try again.';
+        loginResponse.classList.remove('hidden');
+        
+        loginBtnText.textContent = 'Sign In';
+        loginSpinner.classList.add('hidden');
+      }
+    }, 1500);
+  });
+
+  // ===================== ENTER KEY SUPPORT =====================
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const activeElement = document.activeElement;
+      if (activeElement && (activeElement.id === 'email' || activeElement.id === 'password')) {
+        loginForm?.dispatchEvent(new Event('submit'));
+      }
+    }
+  });
+
+  // ===================== DEMO CREDENTIALS HELPER =====================
+  // For demo purposes, show hint
+  console.log('🔑 Demo Login Credentials:');
+  console.log('📧 Email: demo@brightlife.com');
+  console.log('🔒 Password: password123');
+  
+  // Add a small helper tooltip (optional)
+  const emailInput = document.getElementById('email');
+  emailInput?.addEventListener('focus', function() {
+    if (!this.value) {
+      this.placeholder = 'demo@brightlife.com (demo)';
+    }
+  });
+  emailInput?.addEventListener('blur', function() {
+    if (!this.value) {
+      this.placeholder = 'john@example.com';
+    }
+  });
+</script>

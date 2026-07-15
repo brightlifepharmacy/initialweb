@@ -70,6 +70,15 @@ module.exports.privacy = (req, res) => {
 module.exports.terms = (req, res) => {
   res.render("others/terms.ejs");
 };
+module.exports.refundPolicy = (req, res) => {
+  res.render("others/refund-policy.ejs");
+};
+module.exports.sitemap = (req, res) => {
+  res.render("others/sitemap.ejs");
+};
+module.exports.faq = (req, res) => {
+  res.render("others/faq.ejs");
+};
 
 module.exports.products = (req, res) => {
   const filteredProducts = filterProducts(products, req.query);

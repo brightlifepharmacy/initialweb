@@ -1,0 +1,13 @@
+{
+  "watch": [
+    "views",
+    "public",
+    "*.js",
+    ".env"
+  ],
+  "ext": "js,json,ejs,css",
+  "ignore": [
+    "node_modules"
+  ],
+  "exec": "node app.js"
+}

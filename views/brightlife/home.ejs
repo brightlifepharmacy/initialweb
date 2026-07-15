@@ -1,812 +1,490 @@
 <% layout("/layouts/boilerplate") -%>
 
-<!-- Hero Section with Medical Theme -->
-<section class="relative overflow-hidden bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800">
-  <!-- Medical Background Pattern -->
-  <div class="absolute inset-0 opacity-5">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="medical-pattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-          <path d="M0 0h80v80H0z" fill="none"/>
-          <path d="M40 20L60 40 40 60 20 40z" stroke="rgb(59 130 246)" stroke-width="1" fill="none"/>
-          <path d="M20 20h40v40H20z" stroke="rgb(45 212 191)" stroke-width="1" fill="none"/>
-          <circle cx="40" cy="40" r="10" stroke="rgb(59 130 246)" stroke-width="1" fill="none"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#medical-pattern)"/>
-    </svg>
-  </div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 
-  <div class="container relative px-4 py-12 mx-auto sm:px-6 lg:px-8 md:py-20">
-    <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
+<style>
+  .font-display { font-family: 'Fraunces', serif; }
+  .font-body { font-family: 'Inter', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .rx-label {
+    transform: rotate(-2deg);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .rx-label::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: inherit;
+  }
+
+  /* 3D Scene Perspective Core */
+  .scene-3d {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+  .object-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .layer-depth-sm { transform: translateZ(20px); }
+  .layer-depth-md { transform: translateZ(50px); }
+  .layer-depth-lg { transform: translateZ(90px); }
+
+  /* Smooth Levitation Keyframes */
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0px) rotate(6deg); }
+    50% { transform: translateY(-12px) rotate(4deg); }
+  }
+  @keyframes float-reverse {
+    0%, 100% { transform: translateY(0px) rotate(-3deg); }
+    50% { transform: translateY(10px) rotate(-1deg); }
+  }
+  .animate-float { animation: float-y 6s ease-in-out infinite; }
+  .animate-float-reverse { animation: float-reverse 7s ease-in-out infinite; }
+</style>
+
+<div class="font-body bg-[#F7F8F5] dark:bg-[#0E1712] text-[#12261A] dark:text-[#E9F2E7] transition-colors duration-300">
+
+  <!-- ============ IMPROVED HERO WITH INTERACTIVE 3D ANIMATION ============ -->
+  <section class="relative overflow-hidden border-b border-[#E3E8E1] dark:border-[#22302A] scene-3d">
+    <!-- Ambient Backdrop elements -->
+    <div class="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-[40%] bg-[#E8F5E9] dark:bg-[#16261C] opacity-70 dark:opacity-40 rotate-12 pointer-events-none"></div>
+    <div class="absolute top-40 -right-10 w-[220px] h-[220px] rounded-full border-[10px] border-[#D4A63A]/30 dark:border-[#D4A63A]/20 pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-28 grid md:grid-cols-2 gap-12 items-center">
       
-      <!-- Left Content -->
-      <div class="space-y-6">
-        <!-- Trust Badge -->
-        <div class="inline-flex items-center px-4 py-2 space-x-2 bg-white border border-green-100 rounded-full shadow-sm dark:bg-gray-800 dark:border-gray-700">
-          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">24/7 Emergency Service Available</span>
-        </div>
+      <!-- Left Column: Content + Smart Search & Upload -->
+      <div class="z-10">
+        <span class="relative inline-block bg-white dark:bg-[#16211A] border border-[#2E7D32]/30 dark:border-[#4CAF50]/40 text-[#2E7D32] dark:text-[#66BB6A] text-xs font-mono tracking-wide px-4 py-1.5 rounded-full rx-label shadow-sm">
+          Rx &middot; licensed pharmacy
+        </span>
 
-        <!-- Main Heading -->
-        <h1 class="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-          <span class="text-gray-800 dark:text-white">Your Trusted</span>
-          <span class="block text-transparent bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text">Medical Partner</span>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-[3.6rem] leading-[1.1] font-semibold mt-6 text-[#12261A] dark:text-[#F2F8F0]">
+          Genuine allopathic medicines,
+          <span class="text-[#2E7D32] dark:text-[#66BB6A] italic block mt-1">delivered with care.</span>
         </h1>
 
-        <!-- Subheading -->
-        <p class="max-w-xl text-lg text-gray-600 dark:text-gray-400">
-          BrightLife Pharmacy provides genuine allopathic medicines and surgical supplies with expert guidance. 
-          Licensed pharmacy serving the community since 2010.
+        <p class="mt-5 text-base md:text-lg text-[#4B5C50] dark:text-[#A9BDAE] max-w-xl leading-relaxed">
+          Bright-Life Pharmacy connects you to verified allopathic medicines, trained home-care support, and pharmacist-reviewed guidance &mdash; from one dependable counter.
         </p>
 
-        <!-- Key Features -->
-        <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
-          <div class="flex flex-col items-center p-4 space-y-3 transition-shadow duration-300 bg-white border border-gray-100 shadow-sm sm:flex-row sm:items-start sm:space-y-0 sm:space-x-4 dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:shadow-md">
-            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-green-100 rounded-full md:w-14 md:h-14 dark:bg-green-900/30">
-              <!-- Inline shield-check SVG to ensure the icon is visible regardless of external font loading -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 md:w-8 md:h-8 dark:text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10 2.04c-.7 0-1.39.14-2.02.41C6.82 2.9 6 3.45 5.2 3.95c-.8.5-1.61.9-2.56 1.29-.7.28-1.2.96-1.2 1.7v1.2c0 4.23 2.12 8.11 5.58 9.72.24.1.51.1.76 0C13.48 16.25 15.6 12.37 15.6 8.14V6.94c0-.74-.5-1.42-1.2-1.7-.95-.39-1.76-.79-2.56-1.29-.8-.5-1.62-1.05-2.78-1.35-.13-.03-.26-.05-.39-.05zM8.3 9.1a1 1 0 011.4-.1l1.9 1.9 3.2-3.2a1 1 0 011.4 1.42l-4 4a1 1 0 01-1.4 0L8.7 10.5a1 1 0 01-.4-.4z" clip-rule="evenodd"/>
+        <!-- Improved Unified Search / Upload Container -->
+        <div class="mt-8 bg-white dark:bg-[#16211A] p-2 rounded-2xl border border-[#E3E8E1] dark:border-[#2A3A31] shadow-md max-w-xl transition-all hover:shadow-lg focus-within:ring-2 focus-within:ring-[#2E7D32]/30 dark:focus-within:ring-[#4CAF50]/30">
+          <form class="flex flex-col sm:flex-row items-center gap-2">
+            <div class="relative flex-1 w-full">
+              <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4B5C50] dark:text-[#7C9482]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="text" placeholder="Search medicines (e.g., Paracetamol 500mg)..."
+                class="w-full pl-11 pr-24 py-3 bg-transparent text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none" />
+              
+              <!-- Inline Quick Prescription Upload alternative -->
+              <label class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#22302A] text-[11px] font-medium text-[#4B5C50] dark:text-[#A9BDAE] cursor-pointer hover:bg-[#E8F5E9] dark:hover:bg-[#1D2E21] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                <span>Upload Rx</span>
+                <input type="file" class="hidden" accept="image/*,.pdf" />
+              </label>
+            </div>
+            
+            <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white text-sm font-semibold transition-colors shadow-sm shrink-0">
+              Search
+            </button>
+          </form>
+        </div>
+
+        <div class="mt-4 flex flex-wrap gap-2 text-xs text-[#4B5C50] dark:text-[#A9BDAE] pl-1">
+          <span class="opacity-75">Popular searches:</span>
+          <a href="#" class="hover:text-[#2E7D32] dark:hover:text-[#66BB6A] underline underline-offset-2 decoration-[#2E7D32]/30">Paracetamol</a>
+          <a href="#" class="hover:text-[#2E7D32] dark:hover:text-[#66BB6A] underline underline-offset-2 decoration-[#2E7D32]/30">Cetirizine</a>
+          <a href="#" class="hover:text-[#2E7D32] dark:hover:text-[#66BB6A] underline underline-offset-2 decoration-[#2E7D32]/30">Metformin</a>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="mt-12 grid grid-cols-3 gap-6 max-w-md border-t border-[#E3E8E1] dark:border-[#22302A] pt-6">
+          <div class="transform transition-transform hover:-translate-y-1">
+            <p class="font-display text-2xl md:text-3xl font-semibold text-[#12261A] dark:text-[#F2F8F0]">1,200+</p>
+            <p class="text-xs text-[#4B5C50] dark:text-[#8FA393] mt-1 font-medium">Medicines listed</p>
+          </div>
+          <div class="transform transition-transform hover:-translate-y-1">
+            <p class="font-display text-2xl md:text-3xl font-semibold text-[#12261A] dark:text-[#F2F8F0]">45 min</p>
+            <p class="text-xs text-[#4B5C50] dark:text-[#8FA393] mt-1 font-medium">Avg. delivery time</p>
+          </div>
+          <div class="transform transition-transform hover:-translate-y-1">
+            <p class="font-display text-2xl md:text-3xl font-semibold text-[#12261A] dark:text-[#F2F8F0]">4.7 / 5</p>
+            <p class="text-xs text-[#4B5C50] dark:text-[#8FA393] mt-1 font-medium">App rating</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Parallax 3D Animation Graphic -->
+      <div class="relative flex justify-center items-center py-8 min-h-[400px]" id="hero-interactive-zone">
+        <div class="object-3d relative w-80 h-80 md:w-[26rem] md:h-[26rem] flex items-center justify-center">
+          
+          <!-- Layer 1: Base 3D Shifting Backdrop Blob -->
+          <div class="animate-float absolute w-72 h-72 md:w-96 md:h-96 rounded-[38%] bg-gradient-to-br from-[#66BB6A] to-[#2E7D32] dark:from-[#3F9142] dark:to-[#1B5E20] shadow-2xl opacity-95 transition-transform duration-300"></div>
+          
+          <!-- Layer 2: Concentric 3D Geometric Border Frame -->
+          <div class="animate-float-reverse absolute w-76 h-76 md:w-[25rem] md:h-[25rem] rounded-[42%] border-2 border-white/40 dark:border-white/10 transition-transform duration-300"></div>
+
+          <!-- Layer 3: Central Floating Medical Icon (Deep Depth Z-Axis) -->
+          <div class="layer-depth-md absolute transition-transform duration-300 drop-shadow-[0_15px_40px_rgba(0,0,0,0.35)]">
+            <svg class="w-48 h-48 md:w-60 md:h-60 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 20c0-4.5 3-7.5 6-9s6 4.5 6 9" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 11c-1-3 0-6 3-8 3 2 4 5 3 8" fill="none"/>
+              <circle cx="16.5" cy="7.5" r="0.9" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+
+          <!-- Layer 4: Interactive Floating Microcard (Frontmost Layer) -->
+          <div class="layer-depth-lg absolute -bottom-4 -left-4 md:-left-8 bg-white dark:bg-[#16211A] border border-[#E3E8E1] dark:border-[#2A3A31] rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.12)] px-5 py-4 flex items-center gap-3.5 transform transition-transform duration-300 hover:scale-105">
+            <div class="w-10 h-10 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center shadow-inner shrink-0">
+              <svg class="w-5 h-5 text-[#2E7D32] dark:text-[#66BB6A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
-            <div class="text-center sm:text-left">
-              <p class="font-bold text-gray-900 dark:text-white">100% Genuine Medicines</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400">FDA approved products</p>
-            </div>
-          </div>
-          <div class="flex flex-col items-center p-4 space-y-3 transition-shadow duration-300 bg-white border border-gray-100 shadow-sm sm:flex-row sm:items-start sm:space-y-0 sm:space-x-4 dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:shadow-md">
-            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-teal-100 rounded-full md:w-14 md:h-14 dark:bg-teal-900/30">
-              <i class="text-2xl text-teal-600 fa-solid fa-user-doctor dark:text-teal-400 md:text-3xl" aria-hidden="true"></i>
-            </div>
-            <div class="text-center sm:text-left">
-              <p class="font-bold text-gray-900 dark:text-white">Expert Consultation</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Free pharmacist guidance</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CTA Buttons -->
-        <div class="flex flex-col gap-4 pt-6 sm:flex-row">
-          <a href="/products" 
-             class="flex items-center justify-center px-8 py-3 font-semibold text-center text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-green-600 to-teal-500 hover:shadow-xl hover:scale-105">
-            <i class="mr-2 fa-solid fa-capsules"></i>
-            View Available Products
-          </a>
-          <a href="/contact" 
-             class="flex items-center justify-center px-8 py-3 font-semibold text-center text-green-600 transition-all duration-300 border border-green-500 rounded-lg dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20">
-            <i class="mr-2 fa-solid fa-phone"></i>
-            Contact Pharmacy
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Image -->
-      <div class="relative">
-        <div class="relative z-10 overflow-hidden shadow-2xl rounded-2xl">
-          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-green-400 to-teal-300">
-            <!-- Pharmacy Image Placeholder -->
-            <div class="flex items-center justify-center w-full h-full p-8">
-              <div class="text-center">
-                <div class="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-white/20">
-                  <i class="text-4xl text-white fa-solid fa-heart-pulse"></i>
-                </div>
-                <h3 class="mb-2 text-2xl font-bold text-white">BrightLife Pharmacy</h3>
-                <p class="text-white/90">Allopathic & Surgical Supplies</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Floating Info Cards -->
-        <div class="absolute z-20 max-w-xs p-4 bg-white border border-gray-100 shadow-xl -bottom-4 -left-4 dark:bg-gray-800 rounded-xl dark:border-gray-700">
-          <div class="flex items-center space-x-3">
-            <div class="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full dark:bg-green-900/30">
-              <i class="text-green-600 fa-solid fa-clock dark:text-green-400"></i>
-            </div>
             <div>
-              <h3 class="font-bold text-gray-800 dark:text-white">Open 24/7</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400">Emergency Services</p>
+              <p class="text-xs font-bold text-[#12261A] dark:text-[#F2F8F0] tracking-wide uppercase">Pharmacist Verified</p>
+              <p class="text-[11px] text-[#4B5C50] dark:text-[#8FA393] font-medium mt-0.5">Every order checked twice</p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Available Products Section -->
-<section class="py-16 bg-white dark:bg-gray-900">
-  <div class="container px-4 mx-auto ">
-    <div class="mb-12 text-center">
-      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Available Products</h2>
-      <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
-        Browse our range of genuine allopathic medicines and surgical supplies
-      </p>
-    </div>
-
-    <% const activeCategory = typeof selectedCategory !== "undefined" ? selectedCategory : "all"; %>
-    <% const activePrice = typeof selectedPrice !== "undefined" ? selectedPrice : "all"; %>
-
-    <!-- Product Filters -->
-    <div class="mb-8 space-y-4">
-      <div class="flex flex-wrap justify-center gap-2">
-        <a href="/?category=all&price=<%= activePrice %>" class="px-4 py-2 <%= activeCategory === 'all' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">All Products</a>
-        <a href="/?category=allopathic&price=<%= activePrice %>" class="px-4 py-2 <%= activeCategory === 'allopathic' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">Allopathic Medicines</a>
-        <a href="/?category=surgical&price=<%= activePrice %>" class="px-4 py-2 <%= activeCategory === 'surgical' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">Surgical Items</a>
-        <a href="/?category=first-aid&price=<%= activePrice %>" class="px-4 py-2 <%= activeCategory === 'first-aid' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">First Aid</a>
-        <a href="/?category=devices&price=<%= activePrice %>" class="px-4 py-2 <%= activeCategory === 'devices' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">Medical Devices</a>
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-2">
-        <a href="/?category=<%= activeCategory %>&price=all" class="px-4 py-2 <%= activePrice === 'all' ? 'bg-teal-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">Any Price</a>
-        <a href="/?category=<%= activeCategory %>&price=under-100" class="px-4 py-2 <%= activePrice === 'under-100' ? 'bg-teal-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">Under Rs.100</a>
-        <a href="/?category=<%= activeCategory %>&price=100-500" class="px-4 py-2 <%= activePrice === '100-500' ? 'bg-teal-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">Rs.100 - Rs.500</a>
-        <a href="/?category=<%= activeCategory %>&price=above-500" class="px-4 py-2 <%= activePrice === 'above-500' ? 'bg-teal-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' %> rounded-full text-sm font-medium">Above Rs.500</a>
-      </div>
-    </div>
-
-    <%
-      const fallbackProducts = [
-        {
-          id: 1,
-          name: "Paracetamol 500mg",
-          description: "Fever and mild pain relief tablets for everyday care.",
-          image: "/images/brightlife.png",
-          slug: "paracetamol-500mg",
-        },
-        {
-          id: 5,
-          name: "Surgical Gloves",
-          description: "Sterile disposable gloves for safe medical procedures.",
-          image: "/images/logo2.png",
-          slug: "surgical-gloves",
-        },
-        {
-          id: 10,
-          name: "Digital BP Monitor",
-          description: "Automatic blood pressure monitor for home checks.",
-          image: "/images/logo1.png",
-          slug: "digital-bp-monitor",
-        },
-        {
-          id: 4,
-          name: "First Aid Kit",
-          description: "Essential wound care supplies for quick response.",
-          image: "/images/logo.png",
-          slug: "first-aid-kit",
-        },
-      ];
-      const homeProducts =
-        typeof products !== "undefined" && Array.isArray(products) && products.length
-          ? products
-          : fallbackProducts;
-    %>
-
-    <!-- Products Grid -->
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <% homeProducts.forEach(product => { %>
-        <article class="flex flex-col h-full overflow-hidden transition-all duration-300 border border-gray-200 shadow-sm rounded-xl bg-gray-50 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
-          <div class="p-4 bg-white h-44 dark:bg-gray-900">
-            <img
-              src="<%= product.image %>"
-              alt="<%= product.name %>"
-              class="object-contain w-full h-full rounded-lg"
-            >
+          <!-- Layer 5: Secondary Floating Microcard (Right Top Layer) -->
+          <div class="layer-depth-sm absolute -top-4 -right-4 md:-right-8 bg-white dark:bg-[#16211A] border border-[#E3E8E1] dark:border-[#2A3A31] rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.12)] px-4 py-3 flex items-center gap-3 transform transition-transform duration-300">
+            <span class="flex h-3 w-3 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+            <p class="text-xs font-semibold text-[#12261A] dark:text-[#F2F8F0]">100% Genuine Stock</p>
           </div>
 
-          <div class="flex flex-col flex-1 p-5">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-              <%= product.name %>
-            </h3>
+        </div>
+      </div>
 
-            <p class="flex-1 mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
-              <%= product.description %>
-            </p>
+    </div>
+  </section>
 
-            <p class="mt-3 text-sm font-semibold text-green-600 dark:text-green-400">
-              Rs.<%= product.price %>
-            </p>
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="border-b border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#111B15]">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <% [
+            { icon: "M9 12l2 2 4-4m5-2a9 9 0 11-18 0 9 9 0 0118 0z", text: "Licensed pharmacists" },
+            { icon: "M13 10V3L4 14h7v7l9-11h-7z", text: "Fast, tracked delivery" },
+            { icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v2", text: "Secure checkout" },
+            { icon: "M5 13l4 4L19 7", text: "Genuine allopathic stock" }
+          ].forEach(item => { %>
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 shrink-0 text-[#2E7D32] dark:text-[#66BB6A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="<%= item.icon %>" />
+            </svg>
+            <span class="text-sm text-[#4B5C50] dark:text-[#A9BDAE]"><%= item.text %></span>
+          </div>
+      <% }) %>
+    </div>
+  </section>
 
-            <div class="flex items-center gap-3 mt-5">
-              <a
-                href="/products/<%= encodeURIComponent(product.slug || product._id || product.id) %>"
-                class="flex-1 px-4 py-2 text-sm font-semibold text-center text-white transition-colors duration-300 bg-green-600 rounded-lg hover:bg-green-700"
-              >
-                View Details
-              </a>
+  <!-- ============ CATEGORIES ============ -->
+  <section class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <span class="text-xs font-mono tracking-wide text-[#C99A2E]">shop by category</span>
+        <h2 class="font-display text-2xl md:text-3xl font-semibold mt-1">Find what you need, quickly</h2>
+      </div>
+      <a href="#" class="hidden md:inline-flex items-center gap-1 text-sm text-[#2E7D32] dark:text-[#66BB6A] font-medium hover:underline underline-offset-2">
+        View all categories
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
 
-              <button type="button" aria-label="Leave a comment for <%= product.name %>" class="inline-flex items-center justify-center w-10 h-10 text-lg font-bold text-green-600 transition-colors duration-300 border border-green-500 rounded-lg inquiry-btn hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/20" data-product="<%= product.name %>">
-                ?
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <% [
+        { name: "Tablets", icon: "M8.5 15.5l7-7a3.5 3.5 0 10-5-5l-7 7a3.5 3.5 0 105 5z M9 9l6 6" },
+        { name: "Syrups", icon: "M9 3h6M10 3v4l-4 8v4a2 2 0 002 2h8a2 2 0 002-2v-4l-4-8V3" },
+        { name: "Injectables", icon: "M18.5 5.5l-11 11M15 3l6 6-2 2-6-6zM4 20l3-1 8-8-2-2-8 8-1 3z" },
+        { name: "Diabetic care", icon: "M12 3v3m0 12v3M4.2 4.2l2.1 2.1m11.4 11.4l2.1 2.1M3 12h3m12 0h3M4.2 19.8l2.1-2.1m11.4-11.4l2.1-2.1" },
+        { name: "Baby & mom", icon: "M12 21c4-2 7-5.5 7-9a7 7 0 10-14 0c0 3.5 3 7 7 9z" },
+        { name: "First aid", icon: "M12 4v16m-8-8h16" }
+      ].forEach(cat => { %>
+        <a href="#" class="group flex flex-col items-center text-center gap-3 p-5 rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] hover:border-[#2E7D32] dark:hover:border-[#4CAF50] hover:shadow-md transition-all">
+          <div class="w-12 h-12 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center group-hover:bg-[#2E7D32] dark:group-hover:bg-[#4CAF50] transition-colors">
+            <svg class="w-6 h-6 text-[#2E7D32] dark:text-[#66BB6A] group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="<%= cat.icon %>" />
+            </svg>
+          </div>
+          <span class="text-sm font-medium text-[#12261A] dark:text-[#E9F2E7]"><%= cat.name %></span>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED MEDICINES ============ -->
+  <section class="bg-white dark:bg-[#111B15] border-y border-[#E3E8E1] dark:border-[#22302A]">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <span class="text-xs font-mono tracking-wide text-[#C99A2E]">featured stock</span>
+          <h2 class="font-display text-2xl md:text-3xl font-semibold mt-1">Frequently requested medicines</h2>
+        </div>
+        <a href="#" class="hidden md:inline-flex items-center gap-1 text-sm text-[#2E7D32] dark:text-[#66BB6A] font-medium hover:underline underline-offset-2">
+          Browse full shop
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <% [
+          { name: "Paracip 650", cat: "Fever & pain relief", price: 32, mrp: 40, rating: 4.6, reviews: 128, rx: false },
+          { name: "Azithral 500", cat: "Antibiotic", price: 118, mrp: 140, rating: 4.5, reviews: 76, rx: true },
+          { name: "Cetzine", cat: "Allergy relief", price: 24, mrp: 30, rating: 4.4, reviews: 95, rx: false },
+          { name: "Glycomet 500 SR", cat: "Diabetic care", price: 88, mrp: 102, rating: 4.7, reviews: 210, rx: true },
+          { name: "Pantocid 40", cat: "Acidity & gas", price: 96, mrp: 115, rating: 4.6, reviews: 154, rx: true },
+          { name: "Volini Gel", cat: "Pain relief", price: 145, mrp: 165, rating: 4.5, reviews: 88, rx: false },
+          { name: "Shelcal 500", cat: "Calcium supplement", price: 132, mrp: 150, rating: 4.8, reviews: 302, rx: false },
+          { name: "Betadine Ointment", cat: "Wound care", price: 68, mrp: 80, rating: 4.3, reviews: 61, rx: false }
+        ].forEach(med => { %>
+          <div class="group relative rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] bg-[#FBFAF7] dark:bg-[#16211A] overflow-hidden hover:border-[#2E7D32] dark:hover:border-[#4CAF50] hover:shadow-md transition-all">
+
+            <% if (med.rx) { %>
+              <span class="absolute top-3 left-3 z-10 bg-white dark:bg-[#16211A] border border-[#D4A63A]/50 text-[#8a6a1f] dark:text-[#E3C069] text-[10px] font-mono px-2.5 py-1 rounded-full rx-label shadow-sm">
+                Rx required
+              </span>
+            <% } %>
+
+            <div class="h-32 flex items-center justify-center bg-gradient-to-br from-[#E8F5E9] to-[#D2E9D5] dark:from-[#1D2E21] dark:to-[#16241A]">
+              <svg class="w-12 h-12 text-[#2E7D32] dark:text-[#66BB6A] opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.5 15.5l7-7a3.5 3.5 0 10-5-5l-7 7a3.5 3.5 0 105 5z M9 9l6 6" />
+              </svg>
+            </div>
+
+            <div class="p-4">
+              <p class="text-[11px] text-[#4B5C50] dark:text-[#8FA393] font-mono"><%= med.cat %></p>
+              <h3 class="font-semibold text-sm mt-1 text-[#12261A] dark:text-[#F2F8F0]"><%= med.name %></h3>
+
+              <div class="flex items-center gap-1 mt-2">
+                <svg class="w-3.5 h-3.5 text-[#C99A2E]" viewBox="0 0 20 20" fill="currentColor"><path d="M9.05 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.363 1.118l1.287 3.957c.3.922-.755 1.688-1.538 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.783.57-1.838-.196-1.539-1.118l1.287-3.957a1 1 0 00-.363-1.118L2.062 9.386c-.784-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.958z"/></svg>
+                <span class="text-xs font-medium text-[#12261A] dark:text-[#E9F2E7]"><%= med.rating %></span>
+                <span class="text-[11px] text-[#4B5C50] dark:text-[#8FA393]">(<%= med.reviews %>)</span>
+              </div>
+
+              <div class="flex items-baseline gap-2 mt-3">
+                <span class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">&#8377;<%= med.price %></span>
+                <span class="text-xs text-[#8A978C] dark:text-[#6E8175] line-through">&#8377;<%= med.mrp %></span>
+              </div>
+
+              <button class="mt-3 w-full text-xs font-semibold py-2.5 rounded-lg bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white transition-colors">
+                Request purchase
+              </button>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="mb-10">
+      <span class="text-xs font-mono tracking-wide text-[#C99A2E]">our services</span>
+      <h2 class="font-display text-2xl md:text-3xl font-semibold mt-1">Care that reaches your doorstep</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <% [
+        { title: "Home delivery", desc: "Order your prescribed medicines and get them delivered to your door, usually within the hour.", icon: "M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8h4l3 3v5a1 1 0 01-1 1h-1m-6-1a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0z" },
+        { title: "Home health care", desc: "Book trained nursing and elder-care attendants for post-surgery care, injections and daily assistance at home.", icon: "M12 4.5C9.5 2 5.5 2.8 4 6c-1.7 3.6.9 6.9 8 11.5 7.1-4.6 9.7-7.9 8-11.5-1.5-3.2-5.5-4-8-1.5z" },
+        { title: "Teleconsultation", desc: "Connect with registered physicians for quick consultations before your medicines are dispatched.", icon: "M15 10l4.55-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.45.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" }
+      ].forEach(svc => { %>
+        <div class="p-6 rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] hover:shadow-md transition-shadow">
+          <div class="w-11 h-11 rounded-xl bg-[#FDF6E3] dark:bg-[#2B2412] flex items-center justify-center mb-4">
+            <svg class="w-5.5 h-5.5 text-[#C99A2E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="<%= svc.icon %>" />
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0]"><%= svc.title %></h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#A9BDAE] mt-2 leading-relaxed"><%= svc.desc %></p>
+          <a href="#" class="inline-flex items-center gap-1 mt-4 text-sm font-medium text-[#2E7D32] dark:text-[#66BB6A] hover:underline underline-offset-2">
+            Learn more
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="bg-[#F0F4EE] dark:bg-[#111B15] border-y border-[#E3E8E1] dark:border-[#22302A]">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+      <div class="mb-10">
+        <span class="text-xs font-mono tracking-wide text-[#C99A2E]">the process</span>
+        <h2 class="font-display text-2xl md:text-3xl font-semibold mt-1">From request to doorstep, in four steps</h2>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-6">
+        <% [
+          { step: "01", title: "Search or upload", desc: "Find your medicine or upload a prescription for our pharmacists to review." },
+          { step: "02", title: "Pharmacist review", desc: "A licensed pharmacist verifies availability, dosage and any substitutions." },
+          { step: "03", title: "Request purchase", desc: "Confirm your order and choose delivery or in-store pickup." },
+          { step: "04", title: "Delivered to you", desc: "Track your order in real time until it reaches your door." }
+        ].forEach(s => { %>
+          <div class="relative pl-1">
+            <span class="font-display text-3xl font-semibold text-[#2E7D32]/25 dark:text-[#4CAF50]/25"><%= s.step %></span>
+            <h3 class="font-semibold mt-2 text-[#12261A] dark:text-[#F2F8F0]"><%= s.title %></h3>
+            <p class="text-sm text-[#4B5C50] dark:text-[#A9BDAE] mt-1.5 leading-relaxed"><%= s.desc %></p>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOG ============ -->
+  <section class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <span class="text-xs font-mono tracking-wide text-[#C99A2E]">health journal</span>
+        <h2 class="font-display text-2xl md:text-3xl font-semibold mt-1">From the Bright-Life blog</h2>
+      </div>
+      <a href="#" class="hidden md:inline-flex items-center gap-1 text-sm text-[#2E7D32] dark:text-[#66BB6A] font-medium hover:underline underline-offset-2">
+        Visit blog
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <% [
+        { tag: "Diabetes", title: "Managing blood sugar with diet and medication together", views: 1240, likes: 86 },
+        { tag: "Allergies", title: "Seasonal allergies: when to see a doctor vs. self-medicate", views: 860, likes: 54 },
+        { tag: "Elder care", title: "5 signs your ageing parent may need home nursing support", views: 2010, likes: 143 }
+      ].forEach(post => { %>
+        <article class="rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] overflow-hidden hover:shadow-md transition-shadow">
+          <div class="h-36 bg-gradient-to-br from-[#D2E9D5] to-[#FDF6E3] dark:from-[#1D2E21] dark:to-[#241E10] flex items-center justify-center">
+            <svg class="w-9 h-9 text-[#2E7D32]/70 dark:text-[#66BB6A]/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 016.5 22H20a2 2 0 002-2V4a2 2 0 00-2-2H6.5A2.5 2.5 0 004 4.5v15z"/></svg>
+          </div>
+          <div class="p-5">
+            <span class="text-[11px] font-mono text-[#8a6a1f] dark:text-[#E3C069] bg-[#FDF6E3] dark:bg-[#2B2412] px-2 py-1 rounded-full"><%= post.tag %></span>
+            <h3 class="font-display font-semibold text-base mt-3 leading-snug text-[#12261A] dark:text-[#F2F8F0]"><%= post.title %></h3>
+
+            <div class="flex items-center gap-4 mt-4 pt-4 border-t border-[#E3E8E1] dark:border-[#22302A] text-[#4B5C50] dark:text-[#8FA393]">
+              <span class="flex items-center gap-1 text-xs">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <%= post.views %>
+              </span>
+              <span class="flex items-center gap-1 text-xs">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                <%= post.likes %>
+              </span>
+              <button class="ml-auto hover:text-[#2E7D32] dark:hover:text-[#66BB6A]" aria-label="Save article">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17 3H7a2 2 0 00-2 2v16l7-4 7 4V5a2 2 0 00-2-2z"/></svg>
               </button>
             </div>
           </div>
         </article>
       <% }) %>
     </div>
+  </section>
 
-    <% if (homeProducts.length === 0) { %>
-      <div class="p-8 text-center border border-gray-200 rounded-xl bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
-        <p class="font-semibold text-gray-900 dark:text-white">No products found</p>
-        <a href="/" class="inline-flex mt-3 text-sm font-semibold text-green-600 dark:text-green-400">Clear filters</a>
-      </div>
-    <% } %>
-
-    <!-- View All Products Button -->
-    <div class="mt-10 text-center">
-      <a href="/products" 
-         class="inline-flex items-center px-6 py-3 font-semibold text-green-600 transition-all duration-300 border-2 border-green-500 rounded-lg dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20">
-        View All Available Products
-        <i class="ml-2 fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Health & Wellness Blogs -->
-<section class="py-16 bg-gray-50 dark:bg-gray-800/50">
-  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-    <div class="mb-12 text-center">
-      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Health & Wellness Articles</h2>
-      <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
-        Educational articles about medicines, surgical care, and health maintenance
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-      <% const fallbackArticles = [
-        {
-          id: 1,
-          title: 'Understanding Allopathic Medicines',
-          description: 'Learn about prescription drugs, their proper usage, and safety guidelines.',
-          image: '/images/article-allopathic.svg',
-          slug: 'understanding-allopathic-medicines',
-          category: 'Medication Guide',
-          readTime: '4 min read',
-          date: 'Mar 15, 2024'
-        },
-        {
-          id: 3,
-          title: 'Surgical Item Sterilization',
-          description: 'Importance of proper sterilization techniques for surgical instruments.',
-          image: '/images/article-surgical.svg',
-          slug: 'surgical-item-sterilization',
-          category: 'Surgical Care',
-          readTime: '6 min read',
-          date: 'Mar 10, 2024'
-        },
-        {
-          id: 2,
-          title: 'First Aid Kit Essentials',
-          description: 'Must-have items for your home and car first aid kits.',
-          image: '/images/article-first-aid.svg',
-          slug: 'first-aid-kit-essentials',
-          category: 'First Aid',
-          readTime: '5 min read',
-          date: 'Mar 5, 2024'
-        }
-      ];
-      const homeArticles =
-        typeof articles !== "undefined" && Array.isArray(articles) && articles.length
-          ? articles.slice(0, 3)
-          : fallbackArticles;
-      %>
-      
-      <% homeArticles.forEach(article => { %>
-        <div class="flex flex-col h-full overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-sm rounded-2xl hover:-translate-y-1 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
-          <!-- Article Image -->
-          <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-green-50 via-white to-teal-50 p-5 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-            <img
-              src="<%= article.image %>"
-              alt="<%= article.title %>"
-              class="object-contain w-full h-full rounded-xl"
-            >
-            <div class="absolute left-4 top-4">
-              <span class="px-3 py-1 text-xs font-bold text-green-600 rounded-full shadow-sm bg-white/90 backdrop-blur dark:bg-gray-900/80 dark:text-green-300">
-                <%= article.category || 'Health Guide' %>
-              </span>
-            </div>
-          </div>
-
-          <!-- Article Content -->
-          <div class="flex flex-col flex-1 p-6">
-            <div class="flex items-center mb-3 text-sm text-gray-500 dark:text-gray-400">
-              <i class="mr-1 fa-solid fa-clock"></i>
-              <span><%= article.readTime || '4 min read' %></span>
-              <span class="mx-2">•</span>
-              <span><%= article.date || 'Health Article' %></span>
-            </div>
-
-            <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white">
-              <%= article.title %>
-            </h3>
-
-            <p class="flex-1 mt-3 leading-7 text-gray-600 dark:text-gray-400">
-              <%= article.description %>
-            </p>
-
-            <a href="/blog/<%= article.slug || article._id || article.id %>" 
-               class="inline-flex items-center mt-6 text-sm font-medium text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300">
-              Read Full Article
-              <i class="ml-2 fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
+  <!-- ============ TESTIMONIALS / APP FEEDBACK ============ -->
+  <section class="bg-white dark:bg-[#111B15] border-y border-[#E3E8E1] dark:border-[#22302A]">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div>
+          <span class="text-xs font-mono tracking-wide text-[#C99A2E]">what people say</span>
+          <h2 class="font-display text-2xl md:text-3xl font-semibold mt-1">Trusted by our customers</h2>
         </div>
-      <% }) %>
-    </div>
-
-    <div class="mt-10 text-center">
-      <a href="/blogs" 
-         class="inline-flex items-center px-6 py-3 font-semibold text-gray-800 transition-all duration-300 bg-gray-200 rounded-lg dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600">
-        View All Articles
-        <i class="ml-2 fa-solid fa-newspaper"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Customer Reviews Section -->
-<section class="py-16 bg-white dark:bg-gray-900">
-  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-    <div class="mb-12 text-center">
-      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">What Our Customers Say</h2>
-      <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
-        Feedback from our valued customers about our products and services
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-      <% const reviews = [
-        {
-          name: 'Rajesh Kumar',
-          role: 'Regular Customer (3 years)',
-          review: 'Genuine medicines and excellent service. The 24/7 availability helped during emergencies.',
-          rating: 5,
-          date: '2 weeks ago'
-        },
-        {
-          name: 'Dr. Priya Sharma',
-          role: 'General Physician',
-          review: 'I recommend BrightLife to my patients. Their surgical supplies are always sterile and reliable.',
-          rating: 5,
-          date: '1 month ago'
-        },
-        {
-          name: 'Amit Patel',
-          role: 'Hospital Administrator',
-          review: 'Bulk orders for surgical items are always delivered on time with proper documentation.',
-          rating: 4,
-          date: '3 weeks ago'
-        }
-      ] %>
-      
-      <% reviews.forEach(review => { %>
-        <div class="p-6 transition-all duration-300 border border-gray-200 bg-gray-50 dark:bg-gray-800 rounded-xl dark:border-gray-700 hover:shadow-lg">
-          <!-- Rating Stars -->
-          <div class="flex mb-4">
-            <% for(let i = 0; i < 5; i++) { %>
-              <i class="fa-solid fa-star <%= i < review.rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600' %>"></i>
-            <% } %>
-          </div>
-
-          <!-- Review Text -->
-          <p class="mb-6 italic text-gray-700 dark:text-gray-300">
-            "<%= review.review %>"
-          </p>
-
-          <!-- Reviewer Info -->
-          <div class="flex items-center justify-between">
-            <div>
-              <h4 class="font-bold text-gray-900 dark:text-white"><%= review.name %></h4>
-              <p class="text-sm text-gray-600 dark:text-gray-400"><%= review.role %></p>
-            </div>
-            <span class="text-sm text-gray-500 dark:text-gray-500"><%= review.date %></span>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-
-<!-- Services Overview -->
-<section class="py-16 bg-gradient-to-r from-green-600 to-teal-500">
-  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto text-center text-white">
-      <h2 class="mb-6 text-3xl font-bold md:text-4xl">Our Pharmacy Services</h2>
-      
-      <div class="grid grid-cols-1 gap-8 mt-10 md:grid-cols-2">
-        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
-          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
-            <i class="text-2xl fa-solid fa-prescription"></i>
-          </div>
-          <h3 class="mb-2 text-xl font-bold">Prescription Medicines</h3>
-          <p class="text-white/90">Allopathic drugs with proper prescription guidance</p>
-        </div>
-        
-        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
-          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
-            <i class="text-2xl fa-solid fa-syringe"></i>
-          </div>
-          <h3 class="mb-2 text-xl font-bold">Surgical Supplies</h3>
-          <p class="text-white/90">Sterile surgical instruments and disposables</p>
-        </div>
-        
-        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
-          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
-            <i class="text-2xl fa-solid fa-user-doctor"></i>
-          </div>
-          <h3 class="mb-2 text-xl font-bold">Medical Consultation</h3>
-          <p class="text-white/90">Free guidance from certified pharmacists</p>
-        </div>
-        
-        <div class="p-6 bg-white/10 backdrop-blur-sm rounded-xl">
-          <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-white/20">
-            <i class="text-2xl fa-solid fa-truck-medical"></i>
-          </div>
-          <h3 class="mb-2 text-xl font-bold">Home Delivery</h3>
-          <p class="text-white/90">Medicines delivered to your doorstep</p>
-        </div>
-      </div>
-      
-      <!-- Contact Info -->
-      <div class="pt-8 mt-12 border-t border-white/20">
-        <h3 class="mb-6 text-2xl font-bold">Need Assistance?</h3>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <a href="tel:+911234567890" 
-             class="flex items-center justify-center px-6 py-3 text-lg font-semibold text-green-600 transition-all duration-300 bg-white rounded-lg hover:bg-gray-100">
-            <i class="mr-2 fa-solid fa-phone"></i>
-            Call: +91 12345 67890
-          </a>
-          <a href="/contact" 
-             class="flex items-center justify-center px-6 py-3 text-lg font-semibold text-white transition-all duration-300 bg-transparent border-2 border-white rounded-lg hover:bg-white/10">
-            <i class="mr-2 fa-solid fa-map-marker-alt"></i>
-            Visit Pharmacy
-          </a>
-        </div>
-        <p class="mt-4 text-sm text-white/80">
-          Address: 123 Medical Street, Health District, Mumbai, Maharashtra 400001
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Pharmacy Hours -->
-<section class="py-12 bg-gray-50 dark:bg-gray-800/50">
-  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-    <div class="max-w-2xl p-6 mx-auto bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
-      <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
-        <div class="text-center md:text-left">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-            <i class="mr-2 text-green-500 fa-solid fa-clock"></i>
-            Pharmacy Hours
-          </h3>
-          <div class="space-y-1">
-            <p class="text-gray-700 dark:text-gray-300">
-              <span class="font-medium">Monday - Saturday:</span> 8:00 AM - 10:00 PM
-            </p>
-            <p class="text-gray-700 dark:text-gray-300">
-              <span class="font-medium">Sunday:</span> 9:00 AM - 9:00 PM
-            </p>
-            <p class="font-medium text-red-600 dark:text-red-400">
-              <i class="mr-1 fa-solid fa-triangle-exclamation"></i>
-              24/7 Emergency Service Available
-            </p>
-          </div>
-        </div>
-        <div class="p-4 border border-green-100 rounded-lg bg-green-50 dark:bg-green-900/30 dark:border-green-800">
-          <p class="mb-1 text-sm text-gray-600 dark:text-gray-400">Need medicines now?</p>
-          <a href="tel:+919876543210" class="text-lg font-bold text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300">
-            <i class="mr-2 fa-solid fa-phone-volume"></i>
-            Emergency: +91 98765 43210
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Homepage JavaScript -->
-<script>
-  // Product category tabs functionality
-  document.querySelectorAll('button[class*="bg-gray-100"]').forEach(button => {
-    button.addEventListener('click', function() {
-      // Remove active class from all buttons
-      document.querySelectorAll('button').forEach(btn => {
-        btn.classList.remove('bg-green-600', 'text-white');
-        btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
-      });
-      
-      // Add active class to clicked button
-      this.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
-      this.classList.add('bg-green-600', 'text-white');
-      
-      // Here you would filter products based on category
-      // For now, we'll just show an alert
-      const category = this.textContent;
-      showNotification(`Filtering by: ${category}`, 'info');
-    });
-  });
-
-  // View Details button functionality
-  document.querySelectorAll('a[href*="/product/"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      // You can add pre-loading or analytics here
-      const card = this.closest('article, .group');
-      const title = card?.querySelector('h3')?.textContent?.trim() || 'selected product';
-      console.log(`Viewing details for: ${title}`);
-    });
-  });
-
-  // Emergency contact button pulse effect
-  const emergencyBtn = document.querySelector('a[href*="tel:"]');
-  if (emergencyBtn) {
-    setInterval(() => {
-      emergencyBtn.classList.toggle('emergency-pulse');
-    }, 2000);
-  }
-
-  // Newsletter form submission (if added later)
-  const newsletterForm = document.getElementById('newsletter-form');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = this.querySelector('input[type="email"]').value;
-      if (email) {
-        showNotification('Thank you for subscribing to our health updates!', 'success');
-        this.reset();
-      }
-    });
-  }
-
-  // Simple notification function
-  function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${
-      type === 'success' 
-        ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300' 
-        : 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300'
-    }`;
-    notification.innerHTML = `
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i>
-        <span class="font-medium">${message}</span>
-      </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transform = 'translateY(-20px)';
-      setTimeout(() => {
-        if (notification.parentNode) {
-          document.body.removeChild(notification);
-        }
-      }, 300);
-    }, 3000);
-  }
-
-  // Initialize animations on scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-slide-up');
-      }
-    });
-  }, observerOptions);
-
-  // Observe sections for animation
-  document.querySelectorAll('section').forEach((section, index) => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    observer.observe(section);
-  });
-
-  // Inquiry button functionality
-  document.addEventListener('click', function(event) {
-    const button = event.target.closest('.inquiry-btn');
-    if (!button) return;
-
-    const productName = button.dataset.product;
-    showCommentModal(productName);
-  });
-
-  // Show comment modal
-  function showCommentModal(productName) {
-    const existingModal = document.getElementById('comment-modal');
-    if (existingModal) {
-      existingModal.remove();
-    }
-
-    // Create modal
-    const modal = document.createElement('div');
-    modal.id = 'comment-modal';
-    modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
-    modal.innerHTML = `
-      <div class="w-full max-w-md p-6 bg-white dark:bg-gray-800 rounded-xl animate-slide-up">
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white">Comment on ${productName}</h3>
-          <button class="text-gray-400 close-modal hover:text-gray-600 dark:hover:text-gray-300">
-            <i class="text-xl fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <form id="comment-form" class="space-y-4">
+        <div class="flex items-center gap-3 bg-[#F0F4EE] dark:bg-[#16211A] px-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#22302A]">
+          <span class="font-display text-2xl font-semibold text-[#12261A] dark:text-[#F2F8F0]">4.7</span>
           <div>
-            <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Your Comment</label>
-            <textarea rows="3"
-                      required
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Write your comment about ${productName}..."></textarea>
+            <div class="flex gap-0.5">
+              <% for (let i=0;i<5;i++) { %>
+                <svg class="w-3.5 h-3.5 text-[#C99A2E]" viewBox="0 0 20 20" fill="currentColor"><path d="M9.05 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.363 1.118l1.287 3.957c.3.922-.755 1.688-1.538 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.783.57-1.838-.196-1.539-1.118l1.287-3.957a1 1 0 00-.363-1.118L2.062 9.386c-.784-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.958z"/></svg>
+              <% } %>
+            </div>
+            <p class="text-[11px] text-[#4B5C50] dark:text-[#8FA393] mt-0.5">from 3,400+ app reviews</p>
           </div>
+        </div>
+      </div>
 
-          <div class="flex gap-3 pt-4">
-            <button type="submit"
-                    class="flex-1 px-4 py-2 font-medium text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">
-              Submit Comment
-            </button>
+      <div class="grid md:grid-cols-3 gap-6">
+        <% [
+          { name: "Ritika Sharma", role: "Verified customer", text: "Ordered my mother's diabetes medicines at night and they arrived before 9am. The pharmacist even called to confirm the dosage.", initials: "RS" },
+          { name: "Arjun Mehta", role: "Home care client", text: "Booked a home nurse for my father's post-surgery care through the app. Professional staff, easy scheduling, fair pricing.", initials: "AM" },
+          { name: "Fatima Khan", role: "App reviewer", text: "The app is simple to use and the blog articles actually helped me understand my prescription better before it arrived.", initials: "FK" }
+        ].forEach(t => { %>
+          <div class="p-6 rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] bg-[#FBFAF7] dark:bg-[#16211A]">
+            <div class="flex gap-0.5 mb-4">
+              <% for (let i=0;i<5;i++) { %>
+                <svg class="w-3.5 h-3.5 text-[#C99A2E]" viewBox="0 0 20 20" fill="currentColor"><path d="M9.05 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.363 1.118l1.287 3.957c.3.922-.755 1.688-1.538 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.783.57-1.838-.196-1.539-1.118l1.287-3.957a1 1 0 00-.363-1.118L2.062 9.386c-.784-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.958z"/></svg>
+              <% } %>
+            </div>
+            <p class="text-sm text-[#4B5C50] dark:text-[#A9BDAE] leading-relaxed">&ldquo;<%= t.text %>&rdquo;</p>
+            <div class="flex items-center gap-3 mt-5 pt-5 border-t border-[#E3E8E1] dark:border-[#22302A]">
+              <div class="w-9 h-9 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] flex items-center justify-center text-xs font-semibold"><%= t.initials %></div>
+              <div>
+                <p class="text-sm font-medium text-[#12261A] dark:text-[#F2F8F0]"><%= t.name %></p>
+                <p class="text-[11px] text-[#4B5C50] dark:text-[#8FA393]"><%= t.role %></p>
+              </div>
+            </div>
           </div>
-        </form>
+        <% }) %>
       </div>
-    `;
+    </div>
+  </section>
 
-    document.body.appendChild(modal);
+  <!-- ============ CTA BANNER ============ -->
+  <section class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="relative overflow-hidden rounded-3xl bg-[#1B5E20] dark:bg-[#14301A] px-8 py-12 md:px-14 md:py-16 grid md:grid-cols-2 gap-8 items-center">
+      <div class="absolute -bottom-16 -left-10 w-64 h-64 rounded-full bg-white/5"></div>
+      <div class="absolute -top-10 right-10 w-40 h-40 rounded-full border-2 border-[#D4A63A]/30"></div>
 
-    // Close modal handlers
-    const closeButtons = modal.querySelectorAll('.close-modal');
-    closeButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        modal.remove();
-      });
-    });
-
-    // Form submission
-    const form = modal.querySelector('#comment-form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Show success message
-      showNotification('Comment submitted successfully!', 'success');
-
-      // Close modal
-      modal.remove();
-
-      // Reset form
-      this.reset();
-    });
-
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.remove();
-      }
-    });
-  }
-
-  // Notification function
-  function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${
-      type === 'success'
-        ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300'
-        : 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300'
-    }`;
-    notification.innerHTML = `
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i>
-        <span class="font-medium">${message}</span>
+      <div class="relative">
+        <h2 class="font-display text-2xl md:text-3xl font-semibold text-white leading-snug">
+          Have your prescription ready? Request your medicines in under two minutes.
+        </h2>
+        <p class="text-sm text-white/70 mt-3 max-w-md">Upload your prescription or search manually &mdash; our pharmacists take it from there.</p>
       </div>
-    `;
 
-    document.body.appendChild(notification);
+      <div class="relative flex flex-col sm:flex-row md:justify-end gap-3">
+        <button class="px-6 py-3.5 rounded-xl bg-white text-[#1B5E20] text-sm font-semibold hover:bg-[#F0F4EE] transition-colors">
+          Upload prescription
+        </button>
+        <button class="px-6 py-3.5 rounded-xl border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition-colors">
+          Browse medicines
+        </button>
+      </div>
+    </div>
+  </section>
 
-    setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transform = 'translateY(-20px)';
-      setTimeout(() => {
-        if (notification.parentNode) {
-          document.body.removeChild(notification);
-        }
-      }, 300);
-    }, 3000);
-  }
+</div>
+
+<!-- Interactive Mouse Tracking Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const interactiveZone = document.getElementById('hero-interactive-zone');
+    const target3DObject = interactiveZone?.querySelector('.object-3d');
+
+    if (!interactiveZone || !target3DObject) return;
+
+    interactiveZone.addEventListener('mousemove', (e) => {
+      const rect = interactiveZone.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // Calculate smooth tilt values
+      const rotateX = -(y / rect.height) * 24; 
+      const rotateY = (x / rect.width) * 24;
+
+      target3DObject.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    interactiveZone.addEventListener('mouseleave', () => {
+      // Return smoothly to original state on mouse leave
+      target3DObject.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  });
 </script>
-
-<style>
-  /* Animations */
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-out forwards;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-    }
-    50% {
-      box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
-    }
-  }
-
-  .emergency-pulse {
-    animation: pulse 2s infinite;
-  }
-
-  /* Gradient text for headings */
-  .gradient-text {
-    background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #3b82f6, #2dd4bf);
-    border-radius: 5px;
-  }
-
-  .dark ::-webkit-scrollbar-track {
-    background: #374151;
-  }
-
-  .dark ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #1d4ed8, #0d9488);
-  }
-
-  /* Product card hover effects */
-  .group:hover .fa-pills {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 640px) {
-    .container {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    
-    section {
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-    }
-  }
-</style>

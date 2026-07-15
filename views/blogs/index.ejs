@@ -1,56 +1,640 @@
-<% layout("/layouts/boilerplate") -%>
+<!-- blogs.ejs -->
+<% layout("/layouts/boilerplate") %>
 
-<section class="py-16 bg-white dark:bg-gray-900">
-  <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-    <div class="max-w-2xl mx-auto mb-12 text-center">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-        Health & Wellness Articles
-      </h1>
-      <p class="mt-3 text-gray-600 dark:text-gray-400">
-        Helpful guides about medicines, first aid, surgical care, and home health.
-      </p>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  .font-display { font-family: 'Fraunces', serif; }
+  .font-body { font-family: 'Inter', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; }
+
+  /* Blog Card Styles */
+  .blog-card {
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Tag Styles */
+  .blog-tag {
+    transition: all 0.2s;
+  }
+  
+  .blog-tag:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Comment Section */
+  .comment-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  /* Like Button Animation */
+  .like-btn.liked {
+    color: #E53E3E;
+  }
+  
+  .like-btn.liked i {
+    animation: heartBeat 0.3s ease;
+  }
+  
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+  
+  /* Save Button */
+  .save-btn.saved {
+    color: #2E7D32;
+  }
+  
+  .save-btn.saved i {
+    animation: savePop 0.3s ease;
+  }
+  
+  @keyframes savePop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  /* Comment Input Focus */
+  .comment-input:focus {
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+  }
+  
+  /* Featured Badge */
+  .featured-badge {
+    background: linear-gradient(135deg, #2E7D32, #C99A2E);
+  }
+  
+  .dark .featured-badge {
+    background: linear-gradient(135deg, #3F9142, #E3C069);
+  }
+  
+  /* Category Pills */
+  .category-pill {
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .category-pill.active {
+    background: #2E7D32;
+    color: white;
+    border-color: #2E7D32;
+  }
+  
+  .dark .category-pill.active {
+    background: #3F9142;
+    border-color: #3F9142;
+  }
+  
+  .category-pill:hover:not(.active) {
+    border-color: #2E7D32;
+    color: #2E7D32;
+  }
+  
+  .dark .category-pill:hover:not(.active) {
+    border-color: #66BB6A;
+    color: #66BB6A;
+  }
+</style>
+
+<main class="font-body bg-[#F7F8F5] dark:bg-[#0E1712] text-[#12261A] dark:text-[#E9F2E7] transition-colors duration-300 min-h-screen">
+  
+  <!-- Page Header -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#E8F5E9] via-white to-[#F7F8F5] dark:from-[#0E1712] dark:via-[#111B15] dark:to-[#0A120E] pt-12 pb-16 lg:pt-16 lg:pb-20 transition-colors duration-300 border-b border-[#E3E8E1] dark:border-[#22302A]">
+    <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2E7D32] via-[#C99A2E] to-[#2E7D32] dark:from-[#4CAF50] dark:via-[#E3C069] dark:to-[#4CAF50] opacity-60"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 dark:opacity-5">
+      <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#2E7D32] blur-3xl"></div>
+      <div class="absolute bottom-20 right-40 w-96 h-96 rounded-full bg-[#C99A2E] blur-3xl"></div>
     </div>
-
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-      <% if (articles && articles.length) { %>
-      <% articles.forEach(article => { %>
-        <article class="flex flex-col h-full overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-sm rounded-2xl hover:-translate-y-1 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
-          <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-green-50 via-white to-teal-50 p-5 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-            <img
-              src="<%= article.image || '/images/article-allopathic.svg' %>"
-              alt="<%= article.title %>"
-              class="object-contain w-full h-full rounded-xl"
-            >
-            <div class="absolute px-3 py-1 text-xs font-semibold text-green-700 rounded-full shadow-sm left-4 top-4 bg-white/90 backdrop-blur dark:bg-gray-900/80 dark:text-green-300">
-              Health Guide
-            </div>
-          </div>
-
-          <div class="flex flex-col flex-1 p-6">
-            <h2 class="text-lg font-bold leading-tight text-gray-900 dark:text-white">
-              <%= article.title %>
-            </h2>
-
-            <p class="flex-1 mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
-              <%= article.description %>
-            </p>
-
-            <a
-              href="/blog/<%= article.slug || article._id || article.id %>"
-              class="inline-flex items-center justify-center px-4 py-3 mt-6 text-sm font-semibold text-white transition-colors duration-300 bg-green-600 rounded-xl hover:bg-green-700"
-            >
-              Read Full Article
-              <i class="ml-2 fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-      <% }) %>
-      <% } else { %>
-        <div class="p-10 text-center border border-gray-300 border-dashed col-span-full rounded-2xl dark:border-gray-700">
-          <p class="text-lg font-semibold text-gray-900 dark:text-white">No articles available right now</p>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Please check back after articles are added to the database.</p>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32] mb-6 animate-fade-in">
+          <i class="fa-solid fa-blog text-[#2E7D32] dark:text-[#66BB6A] text-sm"></i>
+          <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">Health Blog</span>
         </div>
-      <% } %>
+        
+        <h1 class="font-display font-bold text-4xl md:text-5xl text-[#12261A] dark:text-[#F2F8F0] mb-4 animate-slide-up">
+          Health <span class="text-[#2E7D32] dark:text-[#66BB6A]">Insights</span> & <span class="text-[#C99A2E] dark:text-[#E3C069]">Wellness</span>
+        </h1>
+        
+        <p class="text-lg text-[#4B5C50] dark:text-[#8FA393] max-w-2xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
+          Expert articles on allopathic medicines, health tips, and wellness advice from our pharmacists
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    
+    <!-- Categories & Search -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+      <div class="flex flex-wrap gap-2">
+        <button class="category-pill px-4 py-2 rounded-full border border-[#E3E8E1] dark:border-[#22302A] text-sm font-medium text-[#4B5C50] dark:text-[#8FA393] bg-white dark:bg-[#16211A] active" data-category="all">
+          All
+        </button>
+        <button class="category-pill px-4 py-2 rounded-full border border-[#E3E8E1] dark:border-[#22302A] text-sm font-medium text-[#4B5C50] dark:text-[#8FA393] bg-white dark:bg-[#16211A]" data-category="medicines">
+          Medicines
+        </button>
+        <button class="category-pill px-4 py-2 rounded-full border border-[#E3E8E1] dark:border-[#22302A] text-sm font-medium text-[#4B5C50] dark:text-[#8FA393] bg-white dark:bg-[#16211A]" data-category="diabetes">
+          Diabetes
+        </button>
+        <button class="category-pill px-4 py-2 rounded-full border border-[#E3E8E1] dark:border-[#22302A] text-sm font-medium text-[#4B5C50] dark:text-[#8FA393] bg-white dark:bg-[#16211A]" data-category="heart">
+          Heart Health
+        </button>
+        <button class="category-pill px-4 py-2 rounded-full border border-[#E3E8E1] dark:border-[#22302A] text-sm font-medium text-[#4B5C50] dark:text-[#8FA393] bg-white dark:bg-[#16211A]" data-category="elder-care">
+          Elder Care
+        </button>
+        <button class="category-pill px-4 py-2 rounded-full border border-[#E3E8E1] dark:border-[#22302A] text-sm font-medium text-[#4B5C50] dark:text-[#8FA393] bg-white dark:bg-[#16211A]" data-category="allergies">
+          Allergies
+        </button>
+      </div>
+      
+      <div class="relative">
+        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-[#8A978C] dark:text-[#6E8175] text-sm"></i>
+        <input type="text" id="blog-search" placeholder="Search articles..." 
+          class="pl-9 pr-4 py-2 w-full md:w-64 rounded-full border border-[#E3E8E1] dark:border-[#2A3A31] bg-white dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all">
+      </div>
+    </div>
+    
+    <!-- Blog Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-grid">
+      <!-- Blogs will be rendered here -->
+    </div>
+    
+    <!-- Load More -->
+    <div class="text-center mt-10">
+      <button id="load-more" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] text-sm font-medium text-[#4B5C50] dark:text-[#8FA393] hover:border-[#2E7D32] dark:hover:border-[#66BB6A] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all">
+        <i class="fa-solid fa-rotate"></i>
+        Load More Articles
+      </button>
     </div>
   </div>
-</section>
+
+  <!-- Featured Article Section -->
+  <section class="bg-white dark:bg-[#111B15] border-y border-[#E3E8E1] dark:border-[#22302A] py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-2 mb-8">
+        <span class="featured-badge text-white text-xs font-mono px-3 py-1 rounded-full">Featured</span>
+        <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">Editor's Pick</span>
+      </div>
+      
+      <div id="featured-blog" class="grid lg:grid-cols-2 gap-8 items-center">
+        <!-- Featured blog will be rendered here -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+
+<script>
+  // ===================== BLOG DATA =====================
+  const blogData = [
+    {
+      id: 1,
+      title: "Managing Blood Sugar with Diet and Medication Together",
+      excerpt: "Learn how combining proper nutrition with allopathic medications can help you maintain healthy blood sugar levels effectively.",
+      category: "diabetes",
+      author: "Dr. James Davidson",
+      authorAvatar: "JD",
+      date: "Dec 15, 2024",
+      readTime: "6 min read",
+      views: 1240,
+      likes: 86,
+      saved: false,
+      liked: false,
+      tags: ["Diabetes", "Nutrition", "Medication"],
+      featured: true,
+      comments: [
+        { id: 1, author: "Ritika Sharma", avatar: "RS", text: "This is really helpful! I've been struggling with my sugar levels.", date: "2 hours ago", likes: 12 },
+        { id: 2, author: "Arjun Mehta", avatar: "AM", text: "Great article. The combination of diet and medication is key.", date: "5 hours ago", likes: 8 }
+      ],
+      image: "🩸"
+    },
+    {
+      id: 2,
+      title: "Seasonal Allergies: When to See a Doctor vs. Self-Medicate",
+      excerpt: "Understanding the difference between mild allergy symptoms and those that require professional medical attention.",
+      category: "allergies",
+      author: "Sarah Mitchell",
+      authorAvatar: "SM",
+      date: "Dec 12, 2024",
+      readTime: "4 min read",
+      views: 860,
+      likes: 54,
+      saved: false,
+      liked: false,
+      tags: ["Allergies", "Seasonal", "OTC"],
+      featured: false,
+      comments: [
+        { id: 3, author: "Fatima Khan", avatar: "FK", text: "Finally some clarity on when to visit a doctor!", date: "1 day ago", likes: 5 }
+      ],
+      image: "🤧"
+    },
+    {
+      id: 3,
+      title: "5 Signs Your Ageing Parent May Need Home Nursing Support",
+      excerpt: "Recognizing the early warning signs that indicate your elderly parents might require professional home care services.",
+      category: "elder-care",
+      author: "Dr. Anita Kumar",
+      authorAvatar: "AK",
+      date: "Dec 10, 2024",
+      readTime: "5 min read",
+      views: 2010,
+      likes: 143,
+      saved: false,
+      liked: false,
+      tags: ["Elder Care", "Home Nursing", "Senior Health"],
+      featured: false,
+      comments: [
+        { id: 4, author: "Vikram Singh", avatar: "VS", text: "This helped me decide to get help for my mother.", date: "3 days ago", likes: 15 },
+        { id: 5, author: "Priya Patel", avatar: "PP", text: "Very informative. Shared with my siblings.", date: "4 days ago", likes: 7 }
+      ],
+      image: "👴"
+    },
+    {
+      id: 4,
+      title: "Understanding Blood Pressure Medications: A Complete Guide",
+      excerpt: "Comprehensive overview of common blood pressure medications, how they work, and what to expect from treatment.",
+      category: "heart",
+      author: "Dr. James Davidson",
+      authorAvatar: "JD",
+      date: "Dec 8, 2024",
+      readTime: "7 min read",
+      views: 1560,
+      likes: 112,
+      saved: false,
+      liked: false,
+      tags: ["Blood Pressure", "Heart Health", "Medications"],
+      featured: false,
+      comments: [
+        { id: 6, author: "Rajesh Kumar", avatar: "RK", text: "This explained everything my doctor didn't have time to.", date: "5 days ago", likes: 10 }
+      ],
+      image: "❤️"
+    },
+    {
+      id: 5,
+      title: "The Role of Allopathic Medicines in Modern Healthcare",
+      excerpt: "How allopathic medicines have revolutionized healthcare and what to expect from modern pharmaceutical treatments.",
+      category: "medicines",
+      author: "Sarah Mitchell",
+      authorAvatar: "SM",
+      date: "Dec 5, 2024",
+      readTime: "8 min read",
+      views: 980,
+      likes: 67,
+      saved: false,
+      liked: false,
+      tags: ["Allopathic", "Modern Medicine", "Healthcare"],
+      featured: false,
+      comments: [
+        { id: 7, author: "Ananya Reddy", avatar: "AR", text: "Interesting read about the evolution of medicines.", date: "6 days ago", likes: 4 }
+      ],
+      image: "💊"
+    },
+    {
+      id: 6,
+      title: "Diabetes Management: Latest Allopathic Treatment Options",
+      excerpt: "Explore the newest allopathic medications available for diabetes management and how they compare to traditional options.",
+      category: "diabetes",
+      author: "Dr. Anita Kumar",
+      authorAvatar: "AK",
+      date: "Dec 3, 2024",
+      readTime: "6 min read",
+      views: 1340,
+      likes: 95,
+      saved: false,
+      liked: false,
+      tags: ["Diabetes", "Treatment", "Innovation"],
+      featured: false,
+      comments: [
+        { id: 8, author: "Meera Nair", avatar: "MN", text: "Helpful information about new treatment options.", date: "1 week ago", likes: 6 }
+      ],
+      image: "💉"
+    }
+  ];
+
+  // ===================== STATE =====================
+  let currentCategory = 'all';
+  let searchQuery = '';
+  let visibleCount = 6;
+
+  // ===================== RENDER BLOGS =====================
+  function renderBlogs() {
+    const grid = document.getElementById('blog-grid');
+    const featuredContainer = document.getElementById('featured-blog');
+    
+    // Filter blogs
+    let filtered = blogData.filter(blog => {
+      const matchCategory = currentCategory === 'all' || blog.category === currentCategory;
+      const matchSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          blog.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      return matchCategory && matchSearch;
+    });
+    
+    // Separate featured
+    const featuredBlogs = filtered.filter(b => b.featured);
+    const regularBlogs = filtered.filter(b => !b.featured);
+    
+    // Render featured
+    if (featuredContainer && featuredBlogs.length > 0) {
+      const featured = featuredBlogs[0];
+      featuredContainer.innerHTML = `
+        <div class="relative">
+          <div class="text-8xl mb-4">${featured.image}</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            ${featured.tags.map(tag => `<span class="text-xs font-mono text-[#2E7D32] dark:text-[#66BB6A] bg-[#E8F5E9] dark:bg-[#1D2E21] px-2.5 py-1 rounded-full">#${tag}</span>`).join('')}
+          </div>
+          <h2 class="font-display font-bold text-2xl md:text-3xl text-[#12261A] dark:text-[#F2F8F0] mb-3">
+            ${featured.title}
+          </h2>
+          <p class="text-[#4B5C50] dark:text-[#8FA393] text-lg leading-relaxed">${featured.excerpt}</p>
+          <div class="flex items-center gap-4 mt-4 text-sm text-[#4B5C50] dark:text-[#8FA393]">
+            <span class="font-medium text-[#12261A] dark:text-[#E9F2E7]">${featured.author}</span>
+            <span>•</span>
+            <span>${featured.date}</span>
+            <span>•</span>
+            <span>${featured.readTime}</span>
+          </div>
+          <button class="mt-6 px-6 py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-full transition-all hover:shadow-lg read-more-btn" data-id="${featured.id}">
+            Read Article
+          </button>
+        </div>
+        <div class="bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A]">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="comment-avatar bg-[#2E7D32] text-white">${featured.authorAvatar}</div>
+            <div>
+              <p class="font-medium text-[#12261A] dark:text-[#F2F8F0]">${featured.author}</p>
+              <p class="text-xs text-[#4B5C50] dark:text-[#8FA393]">Featured Article</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-6 text-sm">
+            <span class="flex items-center gap-1 text-[#4B5C50] dark:text-[#8FA393]">
+              <i class="fa-regular fa-eye"></i> ${featured.views}
+            </span>
+            <span class="flex items-center gap-1 text-[#4B5C50] dark:text-[#8FA393]">
+              <i class="fa-regular fa-heart"></i> ${featured.likes}
+            </span>
+            <span class="flex items-center gap-1 text-[#4B5C50] dark:text-[#8FA393]">
+              <i class="fa-regular fa-comment"></i> ${featured.comments.length}
+            </span>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Render regular blogs
+    const visibleBlogs = regularBlogs.slice(0, visibleCount);
+    
+    if (visibleBlogs.length === 0 && regularBlogs.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <div class="text-6xl mb-4">📝</div>
+          <h3 class="font-display text-xl text-[#12261A] dark:text-[#F2F8F0]">No articles found</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-2">Try adjusting your search or filters</p>
+        </div>
+      `;
+      return;
+    }
+    
+    grid.innerHTML = visibleBlogs.map(blog => `
+      <article class="blog-card bg-white dark:bg-[#16211A] rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] overflow-hidden hover:shadow-lg transition-all">
+        <div class="h-48 flex items-center justify-center bg-gradient-to-br from-[#E8F5E9] to-[#D2E9D5] dark:from-[#1D2E21] dark:to-[#16241A] text-7xl">
+          ${blog.image}
+        </div>
+        
+        <div class="p-5">
+          <div class="flex items-center gap-2 text-xs text-[#4B5C50] dark:text-[#8FA393] mb-2">
+            <span class="font-mono uppercase text-[#2E7D32] dark:text-[#66BB6A]">${blog.category}</span>
+            <span>•</span>
+            <span>${blog.date}</span>
+            <span>•</span>
+            <span>${blog.readTime}</span>
+          </div>
+          
+          <h3 class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0] mb-2 leading-snug">
+            ${blog.title}
+          </h3>
+          
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed line-clamp-2">
+            ${blog.excerpt}
+          </p>
+          
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            ${blog.tags.map(tag => `<span class="text-xs text-[#4B5C50] dark:text-[#8FA393] bg-[#F0F4EE] dark:bg-[#0A120E] px-2 py-0.5 rounded-full">#${tag}</span>`).join('')}
+          </div>
+          
+          <div class="flex items-center justify-between mt-4 pt-4 border-t border-[#E3E8E1] dark:border-[#22302A]">
+            <div class="flex items-center gap-2">
+              <div class="comment-avatar bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] text-xs">
+                ${blog.authorAvatar}
+              </div>
+              <span class="text-xs text-[#4B5C50] dark:text-[#8FA393]">${blog.author}</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <button class="like-btn text-[#4B5C50] dark:text-[#8FA393] hover:text-red-500 transition-colors ${blog.liked ? 'liked' : ''}" data-id="${blog.id}">
+                <i class="fa-${blog.liked ? 'solid' : 'regular'} fa-heart"></i>
+                <span class="text-xs ml-0.5">${blog.likes}</span>
+              </button>
+              
+              <button class="save-btn text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors ${blog.saved ? 'saved' : ''}" data-id="${blog.id}">
+                <i class="fa-${blog.saved ? 'solid' : 'regular'} fa-bookmark"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Quick Actions -->
+          <div class="flex items-center gap-3 mt-3">
+            <button class="read-more-btn flex-1 text-xs font-medium py-2 rounded-lg bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white transition-colors" data-id="${blog.id}">
+              Read Article
+            </button>
+            <button class="comment-toggle text-xs font-medium py-2 px-3 rounded-lg border border-[#E3E8E1] dark:border-[#22302A] text-[#4B5C50] dark:text-[#8FA393] hover:border-[#2E7D32] dark:hover:border-[#66BB6A] transition-colors" data-id="${blog.id}">
+              <i class="fa-regular fa-comment"></i>
+              <span class="ml-1">${blog.comments.length}</span>
+            </button>
+          </div>
+          
+          <!-- Comments Section (Hidden by default) -->
+          <div class="comments-section hidden mt-4 pt-4 border-t border-[#E3E8E1] dark:border-[#22302A]" data-id="${blog.id}">
+            <div class="space-y-3">
+              ${blog.comments.map(comment => `
+                <div class="flex gap-2">
+                  <div class="comment-avatar bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] text-xs w-7 h-7 text-[10px]">
+                    ${comment.avatar}
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-medium text-[#12261A] dark:text-[#E9F2E7]">${comment.author}</span>
+                      <span class="text-[10px] text-[#4B5C50] dark:text-[#8FA393]">${comment.date}</span>
+                    </div>
+                    <p class="text-sm text-[#4B5C50] dark:text-[#8FA393]">${comment.text}</p>
+                    <button class="text-[10px] text-[#2E7D32] dark:text-[#66BB6A] hover:underline comment-like" data-comment="${comment.id}">
+                      <i class="fa-regular fa-heart"></i> ${comment.likes}
+                    </button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="flex gap-2 mt-3">
+              <input type="text" placeholder="Add a comment..." class="comment-input flex-1 px-3 py-2 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40">
+              <button class="add-comment px-4 py-2 rounded-lg bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white text-sm font-medium transition-colors" data-id="${blog.id}">
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    `).join('');
+    
+    // Update load more button
+    const loadMoreBtn = document.getElementById('load-more');
+    if (visibleCount >= regularBlogs.length) {
+      loadMoreBtn.style.display = 'none';
+    } else {
+      loadMoreBtn.style.display = 'inline-flex';
+    }
+    
+    // Attach event listeners
+    attachEventListeners();
+  }
+
+  // ===================== EVENT LISTENERS =====================
+  function attachEventListeners() {
+    // Read More buttons
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const id = parseInt(this.dataset.id);
+        const blog = blogData.find(b => b.id === id);
+        if (blog) {
+          alert(`📖 ${blog.title}\n\n${blog.excerpt}\n\nAuthor: ${blog.author}\nDate: ${blog.date}\nViews: ${blog.views}\nLikes: ${blog.likes}`);
+          // In real app, navigate to blog detail page
+        }
+      });
+    });
+    
+    // Like buttons
+    document.querySelectorAll('.like-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const id = parseInt(this.dataset.id);
+        const blog = blogData.find(b => b.id === id);
+        if (blog) {
+          blog.liked = !blog.liked;
+          blog.likes += blog.liked ? 1 : -1;
+          renderBlogs();
+        }
+      });
+    });
+    
+    // Save buttons
+    document.querySelectorAll('.save-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const id = parseInt(this.dataset.id);
+        const blog = blogData.find(b => b.id === id);
+        if (blog) {
+          blog.saved = !blog.saved;
+          renderBlogs();
+        }
+      });
+    });
+    
+    // Comment toggle
+    document.querySelectorAll('.comment-toggle').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const id = parseInt(this.dataset.id);
+        const commentsSection = document.querySelector(`.comments-section[data-id="${id}"]`);
+        if (commentsSection) {
+          commentsSection.classList.toggle('hidden');
+        }
+      });
+    });
+    
+    // Add comment
+    document.querySelectorAll('.add-comment').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const id = parseInt(this.dataset.id);
+        const input = this.parentElement.querySelector('.comment-input');
+        const text = input.value.trim();
+        if (text) {
+          const blog = blogData.find(b => b.id === id);
+          if (blog) {
+            blog.comments.push({
+              id: Date.now(),
+              author: "You",
+              avatar: "YO",
+              text: text,
+              date: "Just now",
+              likes: 0
+            });
+            input.value = '';
+            renderBlogs();
+            // Re-open comments section
+            const commentsSection = document.querySelector(`.comments-section[data-id="${id}"]`);
+            if (commentsSection) {
+              commentsSection.classList.remove('hidden');
+            }
+          }
+        }
+      });
+    });
+    
+    // Comment like
+    document.querySelectorAll('.comment-like').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Simple like increment for demo
+        const likeCount = this.textContent.trim();
+        const currentLikes = parseInt(likeCount) || 0;
+        this.innerHTML = `<i class="fa-regular fa-heart"></i> ${currentLikes + 1}`;
+        this.classList.add('text-red-500');
+      });
+    });
+  }
+
+  // ===================== CATEGORY FILTER =====================
+  document.querySelectorAll('.category-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      currentCategory = this.dataset.category;
+      visibleCount = 6;
+      renderBlogs();
+    });
+  });
+
+  // ===================== SEARCH =====================
+  document.getElementById('blog-search').addEventListener('input', function() {
+    searchQuery = this.value;
+    visibleCount = 6;
+    renderBlogs();
+  });
+
+  // ===================== LOAD MORE =====================
+  document.getElementById('load-more').addEventListener('click', function() {
+    visibleCount += 3;
+    renderBlogs();
+  });
+
+  // ===================== INIT =====================
+  document.addEventListener('DOMContentLoaded', () => {
+    renderBlogs();
+  });
+</script>

@@ -35,19 +35,19 @@ async function sendVerificationOTP(user) {
     ">
       <div style="text-align: center;">
         <img 
-          src="https://tl-hsxa.onrender.com/images/logo.png" 
-          alt="Logo"
+          src="https://brightlifepharmacy.com/images/logo2.png" 
+          alt="BrightLife Pharmacy Logo"
           style="height: 65px; margin-bottom: 10px;"
         >
         <h2 style="color: #0b7a3e;">Verify Your Email</h2>
-        <p style="color: #3b4d3b;">TinyLinks — Secure & Fast URL Shortening</p>
+        <p style="color: #3b4d3b;">BrightLife Pharmacy — Trusted Healthcare Partner</p>
       </div>
 
       <hr style="border: none; border-top: 1px solid #c8e6c9; margin: 20px 0;">
 
       <p style="font-size: 16px;">Hi <strong>${user.name}</strong>,</p>
       <p style="color:#2f4f2f; font-size: 15px;">
-        Thank you for joining TinyLinks!  
+        Thank you for joining BrightLife Pharmacy!  
         Use the OTP below to verify your email and activate your account.
       </p>
 
@@ -74,16 +74,16 @@ async function sendVerificationOTP(user) {
 
       <p style="text-align:center; font-size:12px; color:#6e866e;">
         This is an automated message. Do not reply.<br>
-        © ${new Date().getFullYear()} TinyLinks — All Rights Reserved.
+        © ${new Date().getFullYear()} BrightLife Pharmacy — All Rights Reserved.
       </p>
     </div>
   </div>
   `;
 
   await emailApi.sendTransacEmail({
-    sender: { email: "student001599@gmail.com", name: "TinyLinks" },
+    sender: { email: "info@brightlifepharmacy.com", name: "BrightLife Pharmacy" },
     to: [{ email: user.email }],
-    subject: "Verify Your Email - TinyLinks",
+    subject: "Verify Your Email - BrightLife Pharmacy",
     htmlContent,
   });
 
@@ -107,7 +107,7 @@ module.exports.signup = async (req, res, next) => {
     //   if (err) {
     //     return next(err);
     //   }
-    //   req.flash("success", "Thanks for joining TinyLinks");
+    //   req.flash("success", "Thanks for joining BrightLife Pharmacy");
     //   res.redirect("/");
     // });
   } catch (e) {

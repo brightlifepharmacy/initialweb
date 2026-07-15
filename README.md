@@ -1,2 +1,2 @@
 BrightLifePharmacy
- https://brightlifepharmacy.in
+https://brightlifepharmacy.com

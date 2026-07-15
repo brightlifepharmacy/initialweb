@@ -1,338 +1,165 @@
-<% layout("/layouts/boilerplate") %>
+<!-- error.ejs -->
+<% layout("/layouts/boilerplate") -%>
 
-<div class="min-h-screen flex flex-col items-center justify-center 
-            bg-gradient-to-br from-blue-50 via-white to-teal-50 
-            dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 
-            px-4 relative overflow-hidden">
-
-  <!-- Background Medical Pattern -->
-  <div class="absolute inset-0 opacity-10">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="error-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-          <path d="M0 0h100v100H0z" fill="none"/>
-          <path d="M50 25L75 50 50 75 25 50z" stroke="rgb(59 130 246)" stroke-width="1" fill="none"/>
-          <path d="M25 25h50v50H25z" stroke="rgb(45 212 191)" stroke-width="1" fill="none"/>
-          <circle cx="50" cy="50" r="15" stroke="rgb(59 130 246)" stroke-width="1" fill="none"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#error-pattern)"/>
-    </svg>
-  </div>
-
-  <!-- Floating Medical Icons -->
-  <div class="absolute top-1/4 left-10 w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center animate-float-slow">
-    <i class="fa-solid fa-pills text-blue-600 dark:text-blue-400 text-2xl"></i>
-  </div>
+<main class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-[#F7F8F5] dark:bg-[#0E1712] transition-colors duration-300">
   
-  <div class="absolute bottom-1/4 right-10 w-16 h-16 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center animate-float">
-    <i class="fa-solid fa-syringe text-teal-600 dark:text-teal-400 text-2xl"></i>
+  <!-- Decorative Background Elements -->
+  <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2E7D32] via-[#C99A2E] to-[#2E7D32] dark:from-[#4CAF50] dark:via-[#E3C069] dark:to-[#4CAF50] opacity-60"></div>
+  <div class="absolute top-0 right-0 w-1/2 h-full opacity-5 dark:opacity-5 pointer-events-none">
+    <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#2E7D32] blur-3xl"></div>
+    <div class="absolute bottom-20 right-40 w-96 h-96 rounded-full bg-[#C99A2E] blur-3xl"></div>
   </div>
-  
-  <div class="absolute top-1/3 right-1/4 w-12 h-12 bg-blue-50 dark:bg-blue-800/30 rounded-full flex items-center justify-center animate-float-fast">
-    <i class="fa-solid fa-prescription text-blue-500 dark:text-blue-300 text-xl"></i>
+  <div class="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-5 dark:opacity-5 pointer-events-none">
+    <div class="absolute bottom-20 left-20 w-72 h-72 rounded-full bg-[#2E7D32] blur-3xl"></div>
   </div>
 
-  <!-- Main Error Content -->
-  <div class="relative z-10 text-center max-w-2xl mx-auto">
+  <!-- Error Content -->
+  <div class="text-center max-w-2xl mx-auto relative z-10 animate-slide-up">
     
-    <!-- Error Icon -->
-    <!-- <div class="w-32 h-32 bg-gradient-to-r from-blue-600 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
-      <i class="fa-solid fa-triangle-exclamation text-white text-5xl"></i>
-    </div> -->
+    <!-- Logo -->
+    <div class="flex justify-center mb-8">
+      <a href="/" class="inline-flex items-center gap-2.5">
+        <div class="w-14 h-14 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center p-1.5">
+          <img src="/images/logo2.png" alt="Bright-Life Pharmacy logo" class="w-full h-full object-contain" />
+        </div>
+        <div class="leading-tight text-left">
+          <p class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0]">Bright-Life</p>
+          <p class="text-[11px] font-mono text-[#4B5C50] dark:text-[#8FA393] -mt-0.5">Pharmacy</p>
+        </div>
+      </a>
+    </div>
 
-    <!-- Error Code -->
-    <h1 class="text-6xl md:text-8xl font-extrabold mt-20 
-               bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent 
-               mb-4 drop-shadow-lg">
-      <%= statusCode %>
-    </h1>
+    <!-- Error Status Code -->
+    <div class="relative inline-block mb-6">
+      <div class="text-8xl md:text-9xl font-extrabold font-display 
+                  bg-gradient-to-r from-[#2E7D32] via-[#C99A2E] to-[#2E7D32] 
+                  dark:from-[#4CAF50] dark:via-[#E3C069] dark:to-[#4CAF50] 
+                  bg-clip-text text-transparent 
+                  animate-pulse">
+        <%= statusCode || 404 %>
+      </div>
+      <!-- Subtle Glow -->
+      <div class="absolute inset-0 blur-2xl opacity-20 bg-[#2E7D32] dark:bg-[#4CAF50] -z-10 rounded-full"></div>
+    </div>
 
     <!-- Error Message -->
-    <div class="mb-8">
-      <h2 class="text-2xl md:text-3xl font-bold 
-                 text-gray-800 dark:text-gray-200 
-                 mb-4">
-        <%= message %>
-      </h2>
-      <p class="text-gray-600 dark:text-gray-400 text-lg">
-        We apologize for the inconvenience. Our medical team has been notified about this issue.
-      </p>
-    </div>
+    <h2 class="text-2xl md:text-3xl font-bold text-[#12261A] dark:text-[#F2F8F0] mb-3">
+      <%= message || 'Something went wrong' %>
+    </h2>
+    
+    <p class="text-[#4B5C50] dark:text-[#8FA393] text-base md:text-lg max-w-md mx-auto leading-relaxed">
+      <%= 
+        statusCode === 404 ? 'The page you\'re looking for seems to have wandered off.' :
+        statusCode === 500 ? 'Our pharmacy team is working on fixing this issue.' :
+        statusCode === 403 ? 'You need special access to view this page.' :
+        'We apologize for the inconvenience.'
+      %>
+    </p>
 
     <!-- Action Buttons -->
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+    <div class="flex flex-col sm:flex-row gap-3 justify-center mt-8">
       <a href="/" 
-         class="px-8 py-3 bg-gradient-to-r from-blue-600 to-teal-500 
-                hover:from-blue-700 hover:to-teal-600 
-                text-white font-semibold rounded-xl shadow-lg 
-                transition-all duration-300 transform hover:scale-105 
-                flex items-center justify-center">
-        <i class="fa-solid fa-house-medical mr-2"></i>
-        Return to Home
+        class="inline-flex items-center justify-center gap-2 px-8 py-3.5 
+               bg-[#2E7D32] hover:bg-[#276b2b] 
+               dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] 
+               text-white font-medium rounded-xl 
+               transition-all duration-300 hover:scale-105 hover:shadow-lg">
+        <i class="fa-solid fa-house"></i>
+        Return Home
       </a>
-      
       <a href="/contact" 
-         class="px-8 py-3 border-2 border-blue-500 
-                text-blue-600 dark:text-blue-400 
-                hover:bg-blue-50 dark:hover:bg-blue-900/20 
-                font-semibold rounded-xl 
-                transition-all duration-300 
-                flex items-center justify-center">
-        <i class="fa-solid fa-phone mr-2"></i>
-        Contact Support
+        class="inline-flex items-center justify-center gap-2 px-8 py-3.5 
+               border-2 border-[#2E7D32] dark:border-[#4CAF50] 
+               text-[#2E7D32] dark:text-[#66BB6A] 
+               hover:bg-[#2E7D32] hover:text-white 
+               dark:hover:bg-[#3F9142] dark:hover:text-white 
+               font-medium rounded-xl 
+               transition-all duration-300 hover:scale-105 hover:shadow-lg">
+        <i class="fa-solid fa-headset"></i>
+        Get Help
       </a>
     </div>
 
-    <!-- Additional Help -->
-    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg max-w-xl mx-auto border border-gray-200 dark:border-gray-700">
-      <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-3 flex items-center">
-        <i class="fa-solid fa-circle-info text-blue-500 mr-2"></i>
-        Need Immediate Assistance?
-      </h3>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-          <div class="flex items-center mb-2">
-            <div class="w-10 h-10 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center mr-3">
-              <i class="fa-solid fa-prescription-bottle text-blue-600 dark:text-blue-400"></i>
-            </div>
-            <div>
-              <p class="font-medium text-gray-800 dark:text-white">Medicine Inquiry</p>
-              <p class="text-sm text-gray-600 dark:text-gray-400">For product availability</p>
-            </div>
-          </div>
-          <a href="tel:+911234567890" class="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
-            <i class="fa-solid fa-phone mr-1"></i> +91 12345 67890
-          </a>
-        </div>
-        
-        <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg">
-          <div class="flex items-center mb-2">
-            <div class="w-10 h-10 bg-teal-100 dark:bg-teal-800 rounded-full flex items-center justify-center mr-3">
-              <i class="fa-solid fa-user-doctor text-teal-600 dark:text-teal-400"></i>
-            </div>
-            <div>
-              <p class="font-medium text-gray-800 dark:text-white">Emergency Contact</p>
-              <p class="text-sm text-gray-600 dark:text-gray-400">24/7 Service Available</p>
-            </div>
-          </div>
-          <a href="tel:+919876543210" class="text-red-600 dark:text-red-400 font-medium hover:underline text-sm">
-            <i class="fa-solid fa-phone-emergency mr-1"></i> +91 98765 43210
-          </a>
-        </div>
-      </div>
+    <!-- Status Specific Badge -->
+    <div class="mt-6">
+      <span class="inline-flex items-center gap-2 px-4 py-2 
+                   bg-[#E8F5E9] dark:bg-[#1D2E21] 
+                   border border-[#A5D6A7] dark:border-[#2E7D32] 
+                   rounded-full text-xs font-medium 
+                   text-[#2E7D32] dark:text-[#66BB6A]">
+        <span class="w-2 h-2 rounded-full bg-[#2E7D32] dark:bg-[#66BB6A] animate-pulse"></span>
+        <% if(statusCode === 404) { %>
+          Page Not Found
+        <% } else if(statusCode === 500) { %>
+          Server Error
+        <% } else if(statusCode === 403) { %>
+          Access Denied
+        <% } else { %>
+          Error <%= statusCode || 'Unknown' %>
+        <% } %>
+      </span>
     </div>
 
-    <!-- Pharmacy Status -->
-    <div class="mt-8 p-4 bg-gradient-to-r from-blue-100 to-teal-100 dark:from-gray-800 dark:to-gray-800 rounded-xl max-w-md mx-auto">
-      <p class="text-sm text-gray-700 dark:text-gray-300">
-        <i class="fa-solid fa-clock text-blue-500 mr-2"></i>
-        BrightLife Pharmacy is normally open:
-        <span class="font-semibold">8:00 AM - 10:00 PM</span>
-      </p>
-    </div>
+    <!-- Error Code Reference (only visible in dev) -->
+    <p class="text-xs text-[#8A978C] dark:text-[#6E8175] mt-8 opacity-50">
+      Error Reference: BL-<%= statusCode || '000' %>-<%= Date.now().toString().slice(-6) %>
+    </p>
   </div>
-
-  <!-- Error Type Specific Messages -->
-  <% if(statusCode === 404) { %>
-    <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-200 dark:border-blue-800 max-w-lg mb-5">
-      <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2 flex items-center">
-        <i class="fa-solid fa-map-signs mr-2"></i>
-        Page Not Found
-      </h4>
-      <p class="text-blue-700 dark:text-blue-400 text-sm">
-        The requested page or medicine information could not be found. 
-        You can browse our available products or contact us for assistance.
-      </p>
-    </div>
-  <% } else if(statusCode === 500) { %>
-    <div class="mt-12 p-6 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-200 dark:border-red-800 max-w-lg mb-5">
-      <h4 class="font-bold text-red-800 dark:text-red-300 mb-2 flex items-center">
-        <i class="fa-solid fa-server mr-2"></i>
-        Server Error
-      </h4>
-      <p class="text-red-700 dark:text-red-400 text-sm">
-        Our pharmacy system is experiencing technical difficulties. 
-        Our team is working to resolve this issue. Thank you for your patience.
-      </p>
-    </div>
-  <% } else if(statusCode === 403) { %>
-    <div class="mt-12 p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border border-yellow-200 dark:border-yellow-800 max-w-lg mb-5">
-      <h4 class="font-bold text-yellow-800 dark:text-yellow-300 mb-2 flex items-center">
-        <i class="fa-solid fa-lock mr-2"></i>
-        Access Restricted
-      </h4>
-      <p class="text-yellow-700 dark:text-yellow-400 text-sm">
-        This area contains prescription-only information. 
-        Please consult with our pharmacists for access to prescription medicines.
-      </p>
-    </div>
-  <% } %>
-</div>
+</main>
 
 <style>
-  /* Floating Animations */
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0) rotate(0deg);
+  /* Animations */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
-    50% {
-      transform: translateY(-20px) rotate(5deg);
-    }
-  }
-
-  @keyframes float-slow {
-    0%, 100% {
-      transform: translateY(0) rotate(0deg);
-    }
-    50% {
-      transform: translateY(-15px) rotate(-5deg);
-    }
-  }
-
-  @keyframes float-fast {
-    0%, 100% {
+    to {
+      opacity: 1;
       transform: translateY(0);
     }
-    50% {
-      transform: translateY(-10px);
-    }
   }
-
-  .animate-float {
-    animation: float 5s ease-in-out infinite;
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
   }
-
-  .animate-float-slow {
-    animation: float-slow 7s ease-in-out infinite;
+  
+  /* Pulse Animation for Status Code */
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-
-  .animate-float-fast {
-    animation: float-fast 3s ease-in-out infinite;
-  }
-
-  /* Pulse animation for emergency contact */
+  
   @keyframes pulse {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      opacity: 1;
     }
     50% {
-      box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+      opacity: 0.8;
     }
   }
-
-  .emergency-pulse {
-    animation: pulse 2s infinite;
-  }
-
-  /* Gradient background animation */
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .gradient-bg {
-    background: linear-gradient(-45deg, #3b82f6, #0ea5e9, #06b6d4, #3b82f6);
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
-  }
-
-  /* Error code glow effect */
-  .error-glow {
-    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
-                 0 0 40px rgba(59, 130, 246, 0.3),
-                 0 0 60px rgba(59, 130, 246, 0.1);
-  }
-
-  .dark .error-glow {
-    text-shadow: 0 0 20px rgba(45, 212, 191, 0.5),
-                 0 0 40px rgba(45, 212, 191, 0.3),
-                 0 0 60px rgba(45, 212, 191, 0.1);
-  }
-
+  
   /* Responsive adjustments */
   @media (max-width: 640px) {
-    .floating-icons {
-      display: none;
+    .text-8xl {
+      font-size: 5rem;
     }
-  }
-
-  /* Smooth transitions */
-  * {
-    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 </style>
 
+<!-- Additional Script for Error Logging -->
 <script>
-  // Add some interactive effects
-  document.addEventListener('DOMContentLoaded', function() {
-    // Add glow effect to error code
-    const errorCode = document.querySelector('h1');
-    if (errorCode) {
-      errorCode.classList.add('error-glow');
-    }
-
-    // Add emergency pulse to emergency contact
-    const emergencyLink = document.querySelector('a[href*="tel:+919876543210"]');
-    if (emergencyLink) {
-      emergencyLink.classList.add('emergency-pulse');
-    }
-
-    // Add click animation to buttons
-    const buttons = document.querySelectorAll('a[href]');
-    buttons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        // Add ripple effect
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.cssText = `
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.7);
-          transform: scale(0);
-          animation: ripple 0.6s linear;
-          width: ${size}px;
-          height: ${size}px;
-          top: ${y}px;
-          left: ${x}px;
-          pointer-events: none;
-        `;
-        
-        this.style.position = 'relative';
-        this.style.overflow = 'hidden';
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
-      });
-    });
-
-    // Add CSS for ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Console message for developers
+  // Log error for debugging
+  (function() {
+    const statusCode = `<%= statusCode || '404' %>`;
+    const message = '<%= message || "Unknown error" %>';
+    const url = window.location.href;
     
-  });
+    console.log('🔴 Error Page Loaded:');
+    console.log('📄 Status:', statusCode);
+    console.log('💬 Message:', message);
+    console.log('🔗 URL:', url);
+    
+    // You can send this to your error tracking service
+    // Example: sendToErrorTracking({ statusCode, message, url });
+  })();
 </script>

@@ -1,20 +1,305 @@
-<% layout('layouts/boilerplate') %> 
+<!-- contact.ejs -->
+<% layout("/layouts/boilerplate") %>
 
-<div class="container mt-5">
-    <h2>Contact Us</h2>
-    <form action="/contact" method="POST">
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="contact[name]" required>
+<main class="min-h-screen font-body">
+  
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#E8F5E9] via-white to-[#F7F8F5] dark:from-[#0E1712] dark:via-[#111B15] dark:to-[#0A120E] pt-16 pb-12 lg:pt-20 lg:pb-16 transition-colors duration-300">
+    <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2E7D32] via-[#C99A2E] to-[#2E7D32] dark:from-[#4CAF50] dark:via-[#E3C069] dark:to-[#4CAF50] opacity-60"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32] mb-6 animate-fade-in">
+          <i class="fa-solid fa-phone text-[#2E7D32] dark:text-[#66BB6A] text-sm"></i>
+          <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">Contact Us</span>
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="email" name="contact[email]" required>
+        
+        <h1 class="font-display font-bold text-4xl md:text-5xl text-[#12261A] dark:text-[#F2F8F0] mb-4 animate-slide-up">
+          Get in <span class="text-[#2E7D32] dark:text-[#66BB6A]">Touch</span>
+        </h1>
+        
+        <p class="text-lg text-[#4B5C50] dark:text-[#8FA393] max-w-2xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
+          Have questions about our medicines or services? We're here to help.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-12 lg:py-16 bg-white dark:bg-[#111B15] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-5 gap-8">
+        
+        <!-- Contact Form -->
+        <div class="lg:col-span-3 animate-slide-right">
+          <div class="bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-6 md:p-8 border border-[#E3E8E1] dark:border-[#22302A]">
+            <h2 class="font-display font-semibold text-2xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Send us a Message</h2>
+            <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mb-6">We'll get back to you within 24 hours</p>
+            
+            <form id="contact-form" class="space-y-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] mb-1.5">Full Name *</label>
+                  <input type="text" required
+                    class="w-full px-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-white dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all"
+                    placeholder="John Doe">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] mb-1.5">Email Address *</label>
+                  <input type="email" required
+                    class="w-full px-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-white dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all"
+                    placeholder="john@example.com">
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] mb-1.5">Phone Number</label>
+                <input type="tel"
+                  class="w-full px-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-white dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all"
+                  placeholder="+1 (234) 567-890">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] mb-1.5">Subject *</label>
+                <select required
+                  class="w-full px-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-white dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all">
+                  <option value="">Select a subject</option>
+                  <option value="medicine-inquiry">Medicine Inquiry</option>
+                  <option value="order-status">Order Status</option>
+                  <option value="delivery">Delivery Questions</option>
+                  <option value="prescription">Prescription Help</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] mb-1.5">Message *</label>
+                <textarea required rows="4"
+                  class="w-full px-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-white dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all resize-none"
+                  placeholder="How can we help you?"></textarea>
+              </div>
+              
+              <button type="submit" 
+                class="w-full py-3.5 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+                <i class="fa-regular fa-paper-plane mr-2"></i>
+                Send Message
+              </button>
+            </form>
+            
+            <div id="contact-response" class="mt-4 hidden text-center text-sm"></div>
+          </div>
         </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Your Query/Message</label>
-            <textarea class="form-control" id="message" name="contact[message]" rows="4" required></textarea>
+        
+        <!-- Contact Info -->
+        <div class="lg:col-span-2 space-y-6 animate-slide-left">
+          <!-- Quick Contact -->
+          <div class="bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A]">
+            <h3 class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0] mb-4">Quick Contact</h3>
+            
+            <div class="space-y-4">
+              <div class="flex items-start gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <i class="fa-solid fa-phone text-[#2E7D32] dark:text-[#66BB6A]"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-[#4B5C50] dark:text-[#8FA393]">Call Us</p>
+                  <a href="tel:+1234567890" class="text-sm text-[#12261A] dark:text-[#E9F2E7] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors">
+                    +1 (234) 567-890
+                  </a>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <i class="fa-regular fa-envelope text-[#2E7D32] dark:text-[#66BB6A]"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-[#4B5C50] dark:text-[#8FA393]">Email Us</p>
+                  <a href="mailto:info@brightlife.com" class="text-sm text-[#12261A] dark:text-[#E9F2E7] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors">
+                    info@brightlife.com
+                  </a>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <i class="fa-regular fa-clock text-[#2E7D32] dark:text-[#66BB6A]"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-[#4B5C50] dark:text-[#8FA393]">Working Hours</p>
+                  <p class="text-sm text-[#12261A] dark:text-[#E9F2E7]">Mon-Sat: 8:00 AM - 10:00 PM</p>
+                  <p class="text-sm text-[#12261A] dark:text-[#E9F2E7]">Sunday: Closed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Location -->
+          <div class="bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A]">
+            <h3 class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0] mb-4">Visit Us</h3>
+            
+            <div class="flex items-start gap-3 group">
+              <div class="w-10 h-10 rounded-xl bg-[#FFF8E1] dark:bg-[#2D2410] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-location-dot text-[#C99A2E] dark:text-[#E3C069]"></i>
+              </div>
+              <div>
+                <p class="text-xs text-[#4B5C50] dark:text-[#8FA393]">Our Location</p>
+                <p class="text-sm text-[#12261A] dark:text-[#E9F2E7] leading-relaxed">
+                  123 Health Street,<br>
+                  Medical District,<br>
+                  NY 10001, USA
+                </p>
+                <a href="#" class="inline-flex items-center gap-1 text-sm text-[#2E7D32] dark:text-[#66BB6A] hover:underline mt-1">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                  Get Directions
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Social Links -->
+          <div class="bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A]">
+            <h3 class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0] mb-4">Connect With Us</h3>
+            
+            <div class="flex gap-3">
+              <a href="#" class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center text-[#2E7D32] dark:text-[#66BB6A] hover:bg-[#2E7D32] hover:text-white dark:hover:bg-[#4CAF50] dark:hover:text-white transition-all duration-300 hover:scale-110">
+                <i class="fa-brands fa-facebook-f text-sm"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center text-[#2E7D32] dark:text-[#66BB6A] hover:bg-[#2E7D32] hover:text-white dark:hover:bg-[#4CAF50] dark:hover:text-white transition-all duration-300 hover:scale-110">
+                <i class="fa-brands fa-x-twitter text-sm"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center text-[#2E7D32] dark:text-[#66BB6A] hover:bg-[#2E7D32] hover:text-white dark:hover:bg-[#4CAF50] dark:hover:text-white transition-all duration-300 hover:scale-110">
+                <i class="fa-brands fa-instagram text-sm"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center text-[#2E7D32] dark:text-[#66BB6A] hover:bg-[#2E7D32] hover:text-white dark:hover:bg-[#4CAF50] dark:hover:text-white transition-all duration-300 hover:scale-110">
+                <i class="fa-brands fa-youtube text-sm"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="bg-[#F7F8F5] dark:bg-[#0A120E] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 lg:pb-16">
+      <div class="rounded-2xl overflow-hidden border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#111B15] p-2">
+        <div class="w-full h-64 md:h-80 bg-[#E8F5E9] dark:bg-[#1D2E21] rounded-xl flex items-center justify-center">
+          <div class="text-center">
+            <i class="fa-solid fa-map-location-dot text-4xl text-[#2E7D32] dark:text-[#66BB6A] mb-3"></i>
+            <p class="text-sm text-[#4B5C50] dark:text-[#8FA393]">Google Maps Location</p>
+            <p class="text-xs text-[#8A978C] dark:text-[#6E8175] mt-1">Interactive map will be displayed here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-slide-right {
+    animation: slideRight 0.8s ease-out;
+  }
+  
+  .animate-slide-left {
+    animation: slideLeft 0.8s ease-out;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+</style>
+
+<script>
+  // Contact Form Handler
+  const contactForm = document.getElementById('contact-form');
+  const contactResponse = document.getElementById('contact-response');
+  
+  contactForm?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Get form data
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    
+    // Validate
+    if (!data.name || !data.email || !data.subject || !data.message) {
+      contactResponse.className = 'mt-4 text-center text-sm text-[#C62828] dark:text-[#E28880] animate-slide-up';
+      contactResponse.textContent = '⚠️ Please fill in all required fields.';
+      contactResponse.classList.remove('hidden');
+      setTimeout(() => contactResponse.classList.add('hidden'), 3000);
+      return;
+    }
+    
+    // Simulate sending
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Sending...';
+    
+    setTimeout(() => {
+      contactResponse.className = 'mt-4 text-center text-sm text-[#2E7D32] dark:text-[#66BB6A] animate-slide-up';
+      contactResponse.innerHTML = '✅ Thank you! We\'ll get back to you within 24 hours.';
+      contactResponse.classList.remove('hidden');
+      
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+      
+      this.reset();
+      
+      setTimeout(() => {
+        contactResponse.classList.add('hidden');
+      }, 5000);
+    }, 1500);
+  });
+</script>

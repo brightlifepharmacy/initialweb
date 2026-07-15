@@ -53,7 +53,7 @@ module.exports.forgotPassword = async (req, res) => {
     const domain =
       process.env.DOMAIN ||
       (process.env.NODE_ENV === "production"
-        ? "https://tl-hsxa.onrender.com"
+        ? "https://brightlifepharmacy.com"
         : "http://localhost:3000");
 
     const resetLink = `${domain}/reset-password/${token}`;
@@ -81,15 +81,15 @@ module.exports.forgotPassword = async (req, res) => {
       <!-- Header -->
       <div style="text-align: center;">
         <img 
-          src="https://tl-hsxa.onrender.com/images/logo.png" 
-          alt="Logo"
+          src="https://brightlifepharmacy.com/images/logo2.png" 
+          alt="BrightLife Pharmacy Logo"
           style="height: 65px; margin-bottom: 10px;"
         >
         <h2 style="color: #0b7a3e; font-size: 24px; margin: 0;">
           Reset Your Password
         </h2>
         <p style="color: #3b4d3b; font-size: 14px; margin-top: 4px;">
-          TinyLinks — Secure & Fast URL Shortening
+          BrightLife Pharmacy — Trusted Healthcare Partner
         </p>
       </div>
 
@@ -101,7 +101,7 @@ module.exports.forgotPassword = async (req, res) => {
       </p>
 
       <p style="color: #2f4f2f; font-size: 15px; line-height: 1.6;">
-        We received a request to reset your TinyLinks password.  
+        We received a request to reset your BrightLife Pharmacy password.  
         Click the button below to create a new password.
       </p>
 
@@ -141,7 +141,7 @@ module.exports.forgotPassword = async (req, res) => {
 
       <p style="text-align: center; color: #6e866e; font-size: 12px;">
         This is an automated message. Do not reply.<br>
-        © ${new Date().getFullYear()} TinyLinks — All Rights Reserved.
+        © ${new Date().getFullYear()} BrightLife Pharmacy — All Rights Reserved.
       </p>
 
     </div>
@@ -150,9 +150,9 @@ module.exports.forgotPassword = async (req, res) => {
 
     // Send Email
     await emailApi.sendTransacEmail({
-      sender: { email: "student001599@gmail.com", name: "TinyLinks" },
+      sender: { email: "info@brightlifepharmacy.com", name: "BrightLife Pharmacy" },
       to: [{ email }],
-      subject: "Reset Your Password | TinyLinks",
+      subject: "Reset Your Password | BrightLife Pharmacy",
       htmlContent,
     });
 

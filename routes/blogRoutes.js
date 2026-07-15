@@ -8,7 +8,7 @@ const { isLoggedIn } = require("../middleware.js");
 router.get("/", async (req, res, next) => {
     try {
         const blogs = await Blog.find({});
-        res.render("brightlife/blogs/index.ejs", { blogs });
+        res.render("blogs/index.ejs", { blogs });
     } catch (err) {
         next(err);
     }

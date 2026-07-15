@@ -1,895 +1,787 @@
+<!-- products.ejs -->
 <% layout("/layouts/boilerplate") %>
 
-<!-- Products Page -->
-<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-  
-  <!-- Page Header -->
-  <div class="bg-gradient-to-r from-green-600 to-teal-500">
-    <div class="container px-4 py-8 mx-auto sm:px-6 lg:px-8">
-      <div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-        <div>
-          <h1 class="mb-2 text-3xl font-bold text-white md:text-4xl">Available Products</h1>
-          <p class="max-w-3xl text-green-100">
-            Browse our comprehensive collection of genuine allopathic medicines and surgical supplies. 
-            All products are sourced from certified manufacturers and stored under proper conditions.
-          </p>
-        </div>
-        <div class="p-4 border rounded-lg bg-white/10 backdrop-blur-sm border-white/20">
-          <p class="mb-1 text-sm text-white">Need assistance?</p>
-          <a href="tel:+911234567890" class="font-bold text-white hover:text-green-100">
-            <i class="mr-2 fa-solid fa-phone"></i>Call Pharmacist
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="container px-4 py-8 mx-auto sm:px-6 lg:px-8">
-    
-    <% const activeCategory = typeof selectedCategory !== 'undefined' ? selectedCategory : 'all'; %>
-    <% const activeSearch = typeof searchQuery !== 'undefined' ? searchQuery : ''; %>
-    <% const currentPageNumber = typeof currentPage !== 'undefined' ? currentPage : 1; %>
-    <% const totalPageCount = typeof totalPages !== 'undefined' ? totalPages : 1; %>
-    <% const totalProductCount = typeof totalProducts !== 'undefined' ? totalProducts : 0; %>
-    <% const searchSuffix = activeSearch ? '&search=' + encodeURIComponent(activeSearch) : ''; %>
-    <% const categoryLinks = {
-      all: '/products?category=all' + searchSuffix,
-      allopathic: '/products?category=allopathic' + searchSuffix,
-      surgical: '/products?category=surgical' + searchSuffix,
-      devices: '/products?category=devices' + searchSuffix,
-    }; %>
-
-    <!-- Search and Filter Bar -->
-    <div class="p-4 mb-6 bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
-      <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
-        <form id="product-search-form" method="GET" action="/products" class="w-full lg:max-w-xl">
-          <input type="hidden" name="category" value="<%= activeCategory %>">
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <i class="text-gray-400 fa-solid fa-search"></i>
-            </div>
-            <input
-              name="search"
-              type="text"
-              id="product-search"
-              value="<%= activeSearch %>"
-              placeholder="Search medicines, surgical items, brands..."
-              class="w-full py-3 pl-10 pr-12 border border-gray-300 rounded-lg dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            >
-            <button type="submit" class="absolute text-green-600 transform -translate-y-1/2 right-2 top-1/2 dark:text-green-400 hover:text-green-800">
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </form>
-
-        <div class="flex flex-wrap justify-start gap-2 lg:justify-end">
-          <a href="<%= categoryLinks.all %>" data-category-link data-category="all" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'all' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">All Products</a>
-          <a href="<%= categoryLinks.allopathic %>" data-category-link data-category="allopathic" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'allopathic' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">Allopathic Medicines</a>
-          <a href="<%= categoryLinks.surgical %>" data-category-link data-category="surgical" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'surgical' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">Surgical Items</a>
-          <a href="<%= categoryLinks.devices %>" data-category-link data-category="devices" class="px-4 py-2 text-sm font-medium rounded-lg <%= activeCategory === 'devices' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600' %>">Medical Devices</a>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-2 mt-4 text-sm text-gray-600 md:flex-row md:items-center md:justify-between dark:text-gray-400">
-        <p id="products-summary"><%= totalProductCount %> products found</p>
-        <p id="products-page-indicator">Page <%= currentPageNumber %> of <%= totalPageCount %></p>
-      </div>
-    </div>
-
-    <!-- Products Grid -->
-    <div id="products-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      
-      <% const displayProducts = typeof products !== "undefined" ? products : [
-        // Allopathic Medicines
-        {
-          id: 1,
-          name: 'Paracetamol 500mg',
-          type: 'medicine',
-          category: 'Pain & Fever',
-          manufacturer: 'Cipla Ltd',
-          dosage: 'Tablet',
-          pack: 'Strip of 10',
-          description: 'For relief from fever, headaches, and mild to moderate pain.',
-          price: '₹25',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-green-400 to-green-600'
-        },
-        {
-          id: 2,
-          name: 'Amoxicillin 500mg',
-          type: 'medicine',
-          category: 'Antibiotic',
-          manufacturer: 'GSK Pharmaceuticals',
-          dosage: 'Capsule',
-          pack: 'Strip of 10',
-          description: 'Broad-spectrum antibiotic for bacterial infections.',
-          price: '₹120',
-          availability: 'In Stock',
-          requires_prescription: true,
-          imageColor: 'from-purple-400 to-purple-600'
-        },
-        {
-          id: 3,
-          name: 'Cetirizine 10mg',
-          type: 'medicine',
-          category: 'Antihistamine',
-          manufacturer: 'Sun Pharma',
-          dosage: 'Tablet',
-          pack: 'Strip of 10',
-          description: 'For allergy relief, hay fever, and skin allergies.',
-          price: '₹35',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-green-400 to-green-600'
-        },
-        {
-          id: 4,
-          name: 'Omeprazole 20mg',
-          type: 'medicine',
-          category: 'Acidity',
-          manufacturer: 'Dr. Reddy\'s',
-          dosage: 'Capsule',
-          pack: 'Strip of 10',
-          description: 'Proton pump inhibitor for acid reflux and ulcers.',
-          price: '₹85',
-          availability: 'Limited Stock',
-          requires_prescription: false,
-          imageColor: 'from-orange-400 to-orange-600'
-        },
-        
-        // Surgical Items
-        {
-          id: 5,
-          name: 'Surgical Gloves',
-          type: 'surgical',
-          category: 'Disposables',
-          manufacturer: 'HLL Lifecare',
-          size: 'Medium',
-          pack: 'Box of 100',
-          description: 'Sterile latex examination gloves, powder-free.',
-          price: '₹450',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-teal-400 to-teal-600'
-        },
-        {
-          id: 6,
-          name: 'Surgical Mask',
-          type: 'surgical',
-          category: 'PPE',
-          manufacturer: '3M',
-          size: 'Standard',
-          pack: 'Box of 50',
-          description: '3-ply surgical mask with nose clip and ear loops.',
-          price: '₹250',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-gray-400 to-gray-600'
-        },
-        {
-          id: 7,
-          name: 'Insulin Syringes',
-          type: 'surgical',
-          category: 'Injectables',
-          manufacturer: 'BD Medical',
-          size: '1ml',
-          pack: 'Box of 100',
-          description: 'Disposable insulin syringes with ultra-fine needles.',
-          price: '₹180',
-          availability: 'In Stock',
-          requires_prescription: true,
-          imageColor: 'from-pink-400 to-pink-600'
-        },
-        {
-          id: 8,
-          name: 'Surgical Gauze',
-          type: 'surgical',
-          category: 'Dressings',
-          manufacturer: 'Johnson & Johnson',
-          size: '10cm x 10cm',
-          pack: 'Pack of 10',
-          description: 'Sterile surgical gauze for wound dressing.',
-          price: '₹120',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-yellow-400 to-yellow-600'
-        },
-        
-        // Medical Devices
-        {
-          id: 9,
-          name: 'Digital Thermometer',
-          type: 'device',
-          category: 'Monitoring',
-          manufacturer: 'Dr. Morepen',
-          features: 'Fever alert, memory function',
-          pack: '1 Piece',
-          description: 'Accurate digital thermometer with quick reading.',
-          price: '₹299',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-red-400 to-red-600'
-        },
-        {
-          id: 10,
-          name: 'BP Monitor',
-          type: 'device',
-          category: 'Monitoring',
-          manufacturer: 'Omron',
-          features: 'Automatic, memory for 2 users',
-          pack: '1 Piece',
-          description: 'Automatic blood pressure monitor with cuff.',
-          price: '₹1,299',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-indigo-400 to-indigo-600'
-        },
-        {
-          id: 11,
-          name: 'Nebulizer Machine',
-          type: 'device',
-          category: 'Respiratory',
-          manufacturer: 'Rossmax',
-          features: 'Portable, mask included',
-          pack: '1 Piece',
-          description: 'Compressor nebulizer for asthma and respiratory conditions.',
-          price: '₹2,499',
-          availability: 'Available on Order',
-          requires_prescription: true,
-          imageColor: 'from-cyan-400 to-cyan-600'
-        },
-        {
-          id: 12,
-          name: 'Oximeter',
-          type: 'device',
-          category: 'Monitoring',
-          manufacturer: 'BeatLife',
-          features: 'SpO2 & Pulse rate',
-          pack: '1 Piece',
-          description: 'Fingertip pulse oximeter with LED display.',
-          price: '₹899',
-          availability: 'In Stock',
-          requires_prescription: false,
-          imageColor: 'from-violet-400 to-violet-600'
-        }
-      ]; %>
-      
-      <% displayProducts.forEach(product => { %>
-        <div class="overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-sm product-card dark:bg-gray-800 rounded-xl hover:shadow-xl dark:border-gray-700 group" data-type="<%= product.type %>">
-          
-          <!-- Product Header -->
-          <div class="relative">
-            <!-- Image/Icon -->
-            <div class="h-48 bg-gradient-to-r <%= product.imageColor %> flex items-center justify-center relative overflow-hidden">
-              <div class="absolute inset-0 bg-black/10"></div>
-              <% if (product.image) { %>
-                <img src="<%= product.image %>" alt="<%= product.name %>" class="z-10 object-contain w-full h-full">
-              <% } else { %>
-                <img src="/images/logo.png" alt="placeholder" class="z-10 object-contain w-full h-full opacity-90">
-              <% } %>
-              
-              <!-- Prescription Badge -->
-              <% if(product.requires_prescription) { %>
-                <div class="absolute z-20 top-3 left-3">
-                  <span class="px-3 py-1 text-xs font-bold text-white bg-red-500 rounded-full">
-                    <i class="mr-1 fa-solid fa-prescription"></i> Rx Required
-                  </span>
-                </div>
-              <% } %>
-              
-              <!-- Availability Badge -->
-              <div class="absolute z-20 top-3 right-3">
-                <span class="<%= product.availability === 'In Stock' ? 'bg-green-500' : product.availability === 'Limited Stock' ? 'bg-yellow-500' : 'bg-green-500' %> text-white px-3 py-1 rounded-full text-xs font-bold">
-                  <%= product.availability %>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product Details -->
-          <div class="p-5">
-            <!-- Category & Manufacturer -->
-            <div class="flex items-start justify-between mb-2">
-              <div>
-                <span class="text-xs font-medium tracking-wider text-green-600 uppercase dark:text-green-400">
-                  <%= product.displayCategory || product.category %>
-                </span>
-                <h3 class="mt-1 text-lg font-bold text-gray-900 dark:text-white">
-                  <%= product.name %>
-                </h3>
-              </div>
-              <span class="text-2xl font-bold text-gray-900 dark:text-white">
-                <%= typeof product.price === "number" ? "₹" + product.price.toLocaleString("en-IN") : product.price %>
-              </span>
-            </div>
-
-            <!-- Manufacturer -->
-            <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
-              <i class="mr-1 fa-solid fa-industry"></i>
-              <%= product.manufacturer %>
-            </p>
-
-            <!-- Specifications -->
-            <div class="mb-3">
-              <% if(product.type === 'medicine') { %>
-                <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
-                  <i class="w-4 mr-2 fa-solid fa-capsules"></i>
-                  <span><%= product.dosage %> • <%= product.pack %></span>
-                </div>
-              <% } else if(product.type === 'surgical') { %>
-                <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
-                  <i class="w-4 mr-2 fa-solid fa-ruler-combined"></i>
-                  <span><%= product.size %> • <%= product.pack %></span>
-                </div>
-              <% } else { %>
-                <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
-                  <i class="w-4 mr-2 fa-solid fa-list-check"></i>
-                  <span><%= product.features %></span>
-                </div>
-              <% } %>
-            </div>
-
-            <!-- Description -->
-            <p class="mb-4 text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
-              <%= product.description %>
-            </p>
-
-            <!-- Action Buttons -->
-            <div class="flex gap-2">
-              <a href="/products/<%= encodeURIComponent(product.slug || product._id || product.id) %>" 
-                 class="flex items-center justify-center flex-1 px-4 py-2 text-sm font-medium text-center text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700 group-hover:scale-105">
-                <i class="mr-2 fa-solid fa-eye"></i>
-                View Details
-              </a>
-              <button type="button" aria-label="Leave a comment for <%= product.name %>" class="flex items-center justify-center w-12 px-4 py-2 text-lg font-bold text-green-600 transition-all duration-300 border border-green-500 rounded-lg inquiry-btn shrink-0 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20" data-product="<%= product.name %>">
-                ?
-              </button>
-            </div>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-
-    <% if (totalPageCount > 1) { %>
-    <div id="products-pagination" class="flex flex-wrap items-center justify-center gap-2 mt-10">
-      <% const startPage = Math.max(1, currentPageNumber - 2); %>
-      <% const endPage = Math.min(totalPageCount, currentPageNumber + 2); %>
-      <% if (currentPageNumber > 1) { %>
-        <a href="/products?page=<%= currentPageNumber - 1 %>&category=<%= activeCategory %><%= activeSearch ? '&search=' + encodeURIComponent(activeSearch) : '' %>" data-page-link data-page="<%= currentPageNumber - 1 %>" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Previous</a>
-      <% } %>
-      <% for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) { %>
-        <a href="/products?page=<%= pageNumber %>&category=<%= activeCategory %><%= activeSearch ? '&search=' + encodeURIComponent(activeSearch) : '' %>" data-page-link data-page="<%= pageNumber %>" class="px-4 py-2 text-sm font-medium rounded-lg <%= pageNumber === currentPageNumber ? 'bg-green-600 text-white' : 'bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' %>"><%= pageNumber %></a>
-      <% } %>
-      <% if (currentPageNumber < totalPageCount) { %>
-        <a href="/products?page=<%= currentPageNumber + 1 %>&category=<%= activeCategory %><%= activeSearch ? '&search=' + encodeURIComponent(activeSearch) : '' %>" data-page-link data-page="<%= currentPageNumber + 1 %>" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Next</a>
-      <% } %>
-    </div>
-    <% } %>
-
-    <% if (displayProducts.length === 0) { %>
-    <div id="no-products" class="py-12 text-center">
-      <div class="flex items-center justify-center w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full dark:bg-gray-700">
-        <i class="text-3xl text-gray-400 fa-solid fa-search"></i>
-      </div>
-      <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">No products found</h3>
-      <p class="text-gray-600 dark:text-gray-400">Try adjusting your search or filter criteria</p>
-      <a href="/products" class="inline-flex px-6 py-2 mt-4 text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">
-        Reset Filters
-      </a>
-    </div>
-    <% } %>
-
-    <!-- Information Banner -->
-    <div class="p-6 mt-12 border border-green-100 bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 rounded-xl dark:border-gray-600">
-      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-        <div class="flex items-center space-x-4">
-          <div class="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full dark:bg-green-900/30">
-            <i class="text-green-600 fa-solid fa-triangle-exclamation dark:text-green-400"></i>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-900 dark:text-white">Important Information</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              Prescription drugs (marked with Rx) require valid doctor's prescription. 
-              Consult our pharmacists for proper usage guidelines.
-            </p>
-          </div>
-        </div>
-        <a href="/contact" class="px-6 py-2 font-medium text-green-600 transition-all duration-300 bg-white border border-green-200 rounded-lg dark:bg-gray-700 dark:text-green-400 dark:border-gray-600 hover:bg-green-50 dark:hover:bg-gray-600 whitespace-nowrap">
-          <i class="mr-2 fa-solid fa-user-doctor"></i>
-          Consult Pharmacist
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Products Page JavaScript -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const apiEndpoint = '/products';
-    const searchForm = document.getElementById('product-search-form');
-    const searchInput = document.getElementById('product-search');
-    const productsGrid = document.getElementById('products-grid');
-    const summaryEl = document.getElementById('products-summary');
-    const pageIndicatorEl = document.getElementById('products-page-indicator');
-    const initialGridClass = productsGrid ? productsGrid.className : '';
-    const categoryLinks = document.querySelectorAll('[data-category-link]');
-    const filterLinks = document.querySelectorAll('[data-category-link]');
-
-    function escapeHtml(value) {
-      return String(value ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    function escapeAttr(value) {
-      return escapeHtml(value).replace(/`/g, '&#96;');
-    }
-
-    function formatPrice(product) {
-      if (typeof product.price === 'number') {
-        return `₹${new Intl.NumberFormat('en-IN').format(product.price)}`;
-      }
-
-      if (product.priceText) {
-        return escapeHtml(product.priceText);
-      }
-
-      return escapeHtml(product.price || 'Contact for price');
-    }
-
-    function renderNoProducts() {
-      return `
-        <div class="py-12 text-center">
-          <div class="flex items-center justify-center w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full dark:bg-gray-700">
-            <i class="text-3xl text-gray-400 fa-solid fa-search"></i>
-          </div>
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">No products found</h3>
-          <p class="text-gray-600 dark:text-gray-400">Try adjusting your search or filter criteria</p>
-          <a href="/products" class="inline-flex px-6 py-2 mt-4 text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">Reset Filters</a>
-        </div>
-      `;
-    }
-
-    function renderProductCard(product) {
-      const type = product.type || 'medicine';
-      const iconClass = type === 'surgical' ? 'fa-syringe' : type === 'device' ? 'fa-stethoscope' : 'fa-pills';
-      const categoryLabel = escapeHtml(product.displayCategory || product.category || 'Product');
-      const name = escapeHtml(product.name || 'Unnamed Product');
-      const manufacturer = escapeHtml(product.manufacturer || '');
-      const description = escapeHtml(product.description || '');
-      const availability = escapeHtml(product.availability || 'In Stock');
-      const availabilityClass = availability === 'In Stock' ? 'bg-green-500' : availability === 'Limited Stock' ? 'bg-yellow-500' : 'bg-green-500';
-      const requiresPrescription = Boolean(product.requires_prescription);
-      const detailTarget = encodeURIComponent(product.slug || product.id || name.toLowerCase().replace(/\s+/g, '-'));
-      const detailUrl = `/products/${detailTarget}`;
-      const specText = type === 'medicine'
-        ? escapeHtml(`${product.dosage || ''}${product.dosage && product.pack ? ' • ' : ''}${product.pack || ''}`)
-        : type === 'surgical'
-          ? escapeHtml(`${product.size || ''}${product.size && product.pack ? ' • ' : ''}${product.pack || ''}`)
-          : escapeHtml(product.features || product.pack || '');
-
-      return `
-        <div class="overflow-hidden transition-all duration-300 bg-white border border-gray-200 shadow-sm product-card dark:bg-gray-800 rounded-xl hover:shadow-xl dark:border-gray-700 group" data-type="${escapeAttr(type)}">
-          <div class="relative">
-            <div class="flex items-center justify-center h-48 overflow-hidden relative bg-gradient-to-r ${escapeAttr(product.imageColor || 'from-green-500 to-teal-500')}">
-              <div class="absolute inset-0 bg-black/10"></div>
-              ${product.image ? `
-                <img src="${escapeAttr(product.image)}" alt="${escapeAttr(product.name || '')}" class="z-10 object-contain w-full h-full" />
-              ` : `
-                <img src="/images/logo.png" alt="placeholder" class="z-10 object-contain w-full h-full opacity-90" />
-              `}
-              ${requiresPrescription ? `
-                <div class="absolute z-20 top-3 left-3">
-                  <span class="px-3 py-1 text-xs font-bold text-white bg-red-500 rounded-full"><i class="mr-1 fa-solid fa-prescription"></i> Rx Required</span>
-                </div>
-              ` : ''}
-              <div class="absolute z-20 top-3 right-3">
-                <span class="${availabilityClass} text-white px-3 py-1 rounded-full text-xs font-bold">${availability}</span>
-              </div>
-            </div>
-          </div>
-          <div class="p-5">
-            <div class="flex items-start justify-between mb-2">
-              <div>
-                <span class="text-xs font-medium tracking-wider text-green-600 uppercase dark:text-green-400">${categoryLabel}</span>
-                <h3 class="mt-1 text-lg font-bold text-gray-900 dark:text-white">${name}</h3>
-              </div>
-              <span class="text-2xl font-bold text-gray-900 dark:text-white">${formatPrice(product)}</span>
-            </div>
-            <p class="mb-2 text-sm text-gray-600 dark:text-gray-400"><i class="mr-1 fa-solid fa-industry"></i>${manufacturer}</p>
-            <div class="mb-3">
-              <div class="flex items-center mb-1 text-sm text-gray-600 dark:text-gray-400">
-                <i class="w-4 mr-2 fa-solid ${type === 'medicine' ? 'fa-capsules' : type === 'surgical' ? 'fa-ruler-combined' : 'fa-list-check'}"></i>
-                <span>${specText}</span>
-              </div>
-            </div>
-            <p class="mb-4 text-sm text-gray-700 dark:text-gray-300 line-clamp-2">${description}</p>
-            <div class="flex gap-2">
-              <a href="${detailUrl}" class="flex items-center justify-center flex-1 px-4 py-2 text-sm font-medium text-center text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700 group-hover:scale-105"><i class="mr-2 fa-solid fa-eye"></i>View Details</a>
-              <button type="button" aria-label="Leave a comment for ${name}" class="flex items-center justify-center w-12 px-4 py-2 text-lg font-bold text-green-600 transition-all duration-300 border border-green-500 rounded-lg inquiry-btn shrink-0 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20" data-product="${escapeAttr(product.name || '')}">?</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderPagination(currentPage, totalPages, category, search) {
-      if (!totalPages || totalPages <= 1) {
-        return '';
-      }
-
-      const safeCategory = category || 'all';
-      const searchPart = search ? `&search=${encodeURIComponent(search)}` : '';
-      const startPage = Math.max(1, currentPage - 2);
-      const endPage = Math.min(totalPages, currentPage + 2);
-      const pages = [];
-
-      if (currentPage > 1) {
-        pages.push(`<a href="/products?page=${currentPage - 1}&category=${encodeURIComponent(safeCategory)}${searchPart}" data-page-link data-page="${currentPage - 1}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Previous</a>`);
-      }
-
-      for (let pageNumber = startPage; pageNumber <= endPage; pageNumber += 1) {
-        pages.push(`<a href="/products?page=${pageNumber}&category=${encodeURIComponent(safeCategory)}${searchPart}" data-page-link data-page="${pageNumber}" class="px-4 py-2 text-sm font-medium rounded-lg ${pageNumber === currentPage ? 'bg-green-600 text-white' : 'bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'}">${pageNumber}</a>`);
-      }
-
-      if (currentPage < totalPages) {
-        pages.push(`<a href="/products?page=${currentPage + 1}&category=${encodeURIComponent(safeCategory)}${searchPart}" data-page-link data-page="${currentPage + 1}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">Next</a>`);
-      }
-
-      return `<div class="flex flex-wrap items-center justify-center gap-2 mt-10">${pages.join('')}</div>`;
-    }
-
-    function ensurePaginationContainer() {
-      let pagination = document.getElementById('products-pagination');
-      if (!pagination) {
-        pagination = document.createElement('div');
-        pagination.id = 'products-pagination';
-        productsGrid.insertAdjacentElement('afterend', pagination);
-      }
-
-      return pagination;
-    }
-
-    function updateCategoryLinks(activeCategory) {
-      filterLinks.forEach(link => {
-        const linkCategory = link.dataset.category || 'all';
-        const isActive = linkCategory === activeCategory;
-        link.classList.toggle('bg-green-600', isActive);
-        link.classList.toggle('text-white', isActive);
-        link.classList.toggle('bg-gray-100', !isActive);
-        link.classList.toggle('dark:bg-gray-700', !isActive);
-        link.classList.toggle('text-gray-700', !isActive);
-        link.classList.toggle('dark:text-gray-300', !isActive);
-      });
-    }
-
-    function updateLocation(targetUrl) {
-      window.history.pushState({}, '', targetUrl.pathname + targetUrl.search);
-    }
-
-    function updateViewFromResponse(data) {
-      const products = Array.isArray(data.products) ? data.products : [];
-      const pagination = ensurePaginationContainer();
-
-      if (products.length > 0) {
-        productsGrid.className = initialGridClass;
-        productsGrid.innerHTML = products.map(renderProductCard).join('');
-      } else {
-        productsGrid.className = 'py-12 text-center';
-        productsGrid.innerHTML = renderNoProducts();
-      }
-
-      pagination.innerHTML = renderPagination(data.currentPage || 1, data.totalPages || 1, data.category || 'all', data.search || '');
-      pagination.classList.toggle('hidden', !data.totalPages || data.totalPages <= 1);
-
-      if (summaryEl) {
-        summaryEl.textContent = `${data.totalProducts || 0} products found`;
-      }
-
-      if (pageIndicatorEl) {
-        pageIndicatorEl.textContent = `Page ${data.currentPage || 1} of ${data.totalPages || 1}`;
-      }
-
-      updateCategoryLinks(data.category || 'all');
-    }
-
-    async function loadProducts(targetUrl, shouldPushState = true) {
-      const apiUrl = new URL(apiEndpoint, window.location.origin);
-      const params = targetUrl.searchParams;
-      apiUrl.searchParams.set('format', 'json');
-      ['category', 'search', 'page', 'limit'].forEach(key => {
-        const value = params.get(key);
-        if (value) {
-          apiUrl.searchParams.set(key, value);
-        }
-      });
-
-      const response = await fetch(apiUrl.toString(), {
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        const payload = await response.json().catch(() => ({}));
-        throw new Error(payload.message || 'Unable to load products.');
-      }
-
-      const data = await response.json();
-      updateViewFromResponse(data);
-
-      if (shouldPushState) {
-        updateLocation(targetUrl);
-      }
-    }
-
-    function buildTargetUrl(sourceUrl, overrides = {}) {
-      const targetUrl = new URL(sourceUrl, window.location.origin);
-      Object.entries(overrides).forEach(([key, value]) => {
-        if (value === null || value === undefined || value === '') {
-          targetUrl.searchParams.delete(key);
-        } else {
-          targetUrl.searchParams.set(key, value);
-        }
-      });
-
-      return targetUrl;
-    }
-
-    document.addEventListener('click', async function(event) {
-      const inquiryButton = event.target.closest('.inquiry-btn');
-      if (inquiryButton) {
-        showCommentModal(inquiryButton.dataset.product || 'this product');
-        return;
-      }
-
-      const categoryLink = event.target.closest('[data-category-link]');
-      if (categoryLink) {
-        event.preventDefault();
-        const targetUrl = new URL(categoryLink.href, window.location.origin);
-        targetUrl.searchParams.delete('page');
-
-        try {
-          await loadProducts(targetUrl);
-        } catch (error) {
-          showNotification(error.message, 'error');
-        }
-        return;
-      }
-
-      const pageLink = event.target.closest('[data-page-link]');
-      if (pageLink) {
-        event.preventDefault();
-        const targetUrl = new URL(pageLink.href, window.location.origin);
-
-        try {
-          await loadProducts(targetUrl);
-        } catch (error) {
-          showNotification(error.message, 'error');
-        }
-      }
-    });
-
-    if (searchForm) {
-      searchForm.addEventListener('submit', async function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(searchForm);
-        const targetUrl = buildTargetUrl(searchForm.action, {
-          category: formData.get('category') || 'all',
-          search: formData.get('search') || '',
-          page: '1',
-        });
-
-        try {
-          await loadProducts(targetUrl);
-        } catch (error) {
-          showNotification(error.message, 'error');
-        }
-      });
-    }
-
-    window.addEventListener('popstate', async function() {
-      try {
-        await loadProducts(window.location.href, false);
-      } catch (error) {
-        showNotification(error.message, 'error');
-      }
-    });
-
-    function showCommentModal(productName) {
-      const existingModal = document.getElementById('comment-modal');
-      if (existingModal) {
-        existingModal.remove();
-      }
-
-      const modal = document.createElement('div');
-      modal.id = 'comment-modal';
-      modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
-      modal.innerHTML = `
-        <div class="w-full max-w-md p-6 bg-white dark:bg-gray-800 rounded-xl animate-slide-up">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Comment on ${escapeHtml(productName)}</h3>
-            <button type="button" class="text-gray-400 close-modal hover:text-gray-600 dark:hover:text-gray-300">
-              <i class="text-xl fa-solid fa-xmark"></i>
-            </button>
-          </div>
-
-          <form id="comment-form" class="space-y-4">
-            <div>
-              <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Your Comment</label>
-              <textarea rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-lg dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Write your comment about ${escapeAttr(productName)}..."></textarea>
-            </div>
-
-            <div class="flex gap-3 pt-4">
-              <button type="submit" class="flex-1 px-4 py-2 font-medium text-white transition-all duration-300 bg-green-600 rounded-lg hover:bg-green-700">
-                Submit Comment
-              </button>
-            </div>
-          </form>
-        </div>
-      `;
-
-      document.body.appendChild(modal);
-
-      modal.querySelectorAll('.close-modal').forEach(btn => {
-        btn.addEventListener('click', () => modal.remove());
-      });
-
-      const form = modal.querySelector('#comment-form');
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        showNotification('Comment submitted successfully!', 'success');
-        modal.remove();
-        this.reset();
-      });
-
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          modal.remove();
-        }
-      });
-    }
-
-    function showNotification(message, type = 'info') {
-      const notification = document.createElement('div');
-      notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 animate-fade-in ${type === 'success' ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300' : 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300'}`;
-      notification.innerHTML = `
-        <div class="flex items-center space-x-2">
-          <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i>
-          <span class="font-medium">${escapeHtml(message)}</span>
-        </div>
-      `;
-
-      document.body.appendChild(notification);
-
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateY(-20px)';
-        setTimeout(() => {
-          if (notification.parentNode) {
-            document.body.removeChild(notification);
-          }
-        }, 300);
-      }, 3000);
-    }
-
-    updateCategoryLinks('<%= activeCategory %>');
-  });
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 
 <style>
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .font-display { font-family: 'Fraunces', serif; }
+  .font-body { font-family: 'Inter', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .rx-label {
+    transform: rotate(-2deg);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .rx-label::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: inherit;
   }
 
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Filter Sidebar Styles */
+  .filter-section {
+    transition: all 0.3s ease;
   }
-
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+  
+  .filter-section summary {
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #E3E8E1;
   }
-
-  .animate-slide-up {
-    animation: slideUp 0.3s ease-out forwards;
+  
+  .dark .filter-section summary {
+    border-bottom-color: #22302A;
   }
-
-  /* Product card hover effects */
+  
+  .filter-section summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  .filter-section summary::after {
+    content: "▼";
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+  
+  .filter-section[open] summary::after {
+    transform: rotate(180deg);
+  }
+  
+  .filter-section .filter-content {
+    padding: 12px 0;
+  }
+  
+  /* Custom Checkbox */
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 0;
+    transition: color 0.2s;
+  }
+  
+  .custom-checkbox:hover {
+    color: #2E7D32;
+  }
+  
+  .dark .custom-checkbox:hover {
+    color: #66BB6A;
+  }
+  
+  .custom-checkbox input[type="checkbox"] {
+    display: none;
+  }
+  
+  .custom-checkbox .checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #C5D0C0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  
+  .dark .custom-checkbox .checkmark {
+    border-color: #2A3A31;
+  }
+  
+  .custom-checkbox input:checked + .checkmark {
+    background: #2E7D32;
+    border-color: #2E7D32;
+  }
+  
+  .dark .custom-checkbox input:checked + .checkmark {
+    background: #3F9142;
+    border-color: #3F9142;
+  }
+  
+  .custom-checkbox input:checked + .checkmark::after {
+    content: "✓";
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* Price Range Slider */
+  .price-slider {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #C5D0C0;
+    border-radius: 2px;
+    outline: none;
+  }
+  
+  .dark .price-slider {
+    background: #2A3A31;
+  }
+  
+  .price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #2E7D32;
+    cursor: pointer;
+  }
+  
+  .dark .price-slider::-webkit-slider-thumb {
+    background: #3F9142;
+  }
+  
+  /* Pagination */
+  .pagination-btn {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid #E3E8E1;
+    background: white;
+    color: #4B5C50;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .dark .pagination-btn {
+    border-color: #22302A;
+    background: #16211A;
+    color: #A9BDAE;
+  }
+  
+  .pagination-btn:hover {
+    border-color: #2E7D32;
+    color: #2E7D32;
+  }
+  
+  .dark .pagination-btn:hover {
+    border-color: #66BB6A;
+    color: #66BB6A;
+  }
+  
+  .pagination-btn.active {
+    background: #2E7D32;
+    border-color: #2E7D32;
+    color: white;
+  }
+  
+  .dark .pagination-btn.active {
+    background: #3F9142;
+    border-color: #3F9142;
+    color: white;
+  }
+  
+  .pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  /* Product Card Hover Effects */
   .product-card {
-    animation: fadeIn 0.5s ease-out;
-    animation-fill-mode: both;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
-
+  
   .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   }
-
-  /* Line clamp for description */
-  .line-clamp-2 {
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  
+  .dark .product-card:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
   }
-
-  /* Custom scrollbar for modal */
-  .modal-content {
-    max-height: 80vh;
-    overflow-y: auto;
+  
+  /* Mobile Filter Drawer */
+  .filter-drawer {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
-
-  .modal-content::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .modal-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-  }
-
-  .modal-content::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 3px;
-  }
-
-  .modal-content::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 640px) {
-    .product-card {
-      animation-delay: 0s !important;
-    }
-    
-    .filter-btn {
-      font-size: 0.75rem;
-      padding: 0.5rem 0.75rem;
-    }
-  }
-
-  /* Loading skeleton (optional) */
-  .skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-  }
-
-  .dark .skeleton {
-    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-  }
-
-  @keyframes loading {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
+  
+  .filter-drawer.open {
+    transform: translateX(0);
   }
 </style>
+
+<main class="font-body bg-[#F7F8F5] dark:bg-[#0E1712] text-[#12261A] dark:text-[#E9F2E7] transition-colors duration-300 min-h-screen">
+  
+  <!-- Page Header -->
+  <section class="bg-white dark:bg-[#111B15] border-b border-[#E3E8E1] dark:border-[#22302A] py-8 md:py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="font-display text-3xl md:text-4xl font-semibold text-[#12261A] dark:text-[#F2F8F0]">
+            Allopathic Medicines
+          </h1>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">
+            Browse our complete range of genuine allopathic medicines
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">
+            <span id="product-count">248</span> products
+          </span>
+          <button id="filter-toggle-mobile" class="md:hidden inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] text-sm font-medium hover:border-[#2E7D32] dark:hover:border-[#66BB6A] transition-colors">
+            <i class="fa-solid fa-sliders"></i>
+            Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex gap-8">
+      
+      <!-- Filter Sidebar -->
+      <aside class="hidden md:block w-64 lg:w-72 flex-shrink-0">
+        <div class="sticky top-24 bg-white dark:bg-[#111B15] rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] p-5">
+          
+          <!-- Clear Filters -->
+          <div class="flex items-center justify-between mb-4 pb-4 border-b border-[#E3E8E1] dark:border-[#22302A]">
+            <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">Filters</h3>
+            <button id="clear-filters" class="text-xs text-[#2E7D32] dark:text-[#66BB6A] hover:underline">
+              Clear all
+            </button>
+          </div>
+          
+          <!-- Category Filter -->
+          <details class="filter-section" open>
+            <summary class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7]">Category</summary>
+            <div class="filter-content space-y-1">
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="tablets" checked>
+                <span class="checkmark"></span>
+                Tablets
+                <span class="ml-auto text-xs opacity-60">(89)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="syrups">
+                <span class="checkmark"></span>
+                Syrups & Liquids
+                <span class="ml-auto text-xs opacity-60">(42)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="injectables">
+                <span class="checkmark"></span>
+                Injectables
+                <span class="ml-auto text-xs opacity-60">(28)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="topical">
+                <span class="checkmark"></span>
+                Topical (Creams/Ointments)
+                <span class="ml-auto text-xs opacity-60">(35)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="diabetic">
+                <span class="checkmark"></span>
+                Diabetic Care
+                <span class="ml-auto text-xs opacity-60">(24)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="supplements">
+                <span class="checkmark"></span>
+                Supplements
+                <span class="ml-auto text-xs opacity-60">(30)</span>
+              </label>
+            </div>
+          </details>
+          
+          <!-- Price Range -->
+          <details class="filter-section" open>
+            <summary class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7]">Price Range</summary>
+            <div class="filter-content">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">₹<span id="price-min">0</span></span>
+                <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">₹<span id="price-max">5000</span></span>
+              </div>
+              <input type="range" min="0" max="5000" value="5000" step="100" class="price-slider" id="price-slider">
+              <div class="flex gap-2 mt-3">
+                <input type="number" id="price-input-min" value="0" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40">
+                <input type="number" id="price-input-max" value="5000" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40">
+              </div>
+            </div>
+          </details>
+          
+          <!-- Prescription Required -->
+          <details class="filter-section" open>
+            <summary class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7]">Prescription</summary>
+            <div class="filter-content space-y-1">
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="rx">
+                <span class="checkmark"></span>
+                Prescription Required
+                <span class="ml-auto text-xs opacity-60">(56)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="otc">
+                <span class="checkmark"></span>
+                OTC (No Prescription)
+                <span class="ml-auto text-xs opacity-60">(192)</span>
+              </label>
+            </div>
+          </details>
+          
+          <!-- Brand Filter -->
+          <details class="filter-section" open>
+            <summary class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7]">Brand</summary>
+            <div class="filter-content space-y-1 max-h-40 overflow-y-auto">
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="cipla">
+                <span class="checkmark"></span>
+                Cipla
+                <span class="ml-auto text-xs opacity-60">(34)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="sun-pharma">
+                <span class="checkmark"></span>
+                Sun Pharma
+                <span class="ml-auto text-xs opacity-60">(28)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="dr-reddy">
+                <span class="checkmark"></span>
+                Dr. Reddy's
+                <span class="ml-auto text-xs opacity-60">(22)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="gsk">
+                <span class="checkmark"></span>
+                GSK
+                <span class="ml-auto text-xs opacity-60">(18)</span>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" value="pfizer">
+                <span class="checkmark"></span>
+                Pfizer
+                <span class="ml-auto text-xs opacity-60">(15)</span>
+              </label>
+            </div>
+          </details>
+          
+          <!-- Rating Filter -->
+          <details class="filter-section" open>
+            <summary class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7]">Rating</summary>
+            <div class="filter-content space-y-1">
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="radio" name="rating" value="4">
+                <span class="checkmark"></span>
+                <div class="flex items-center gap-1">
+                  <span class="text-[#C99A2E]">★★★★★</span>
+                  <span class="text-xs opacity-60">(4.5+)</span>
+                </div>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="radio" name="rating" value="3">
+                <span class="checkmark"></span>
+                <div class="flex items-center gap-1">
+                  <span class="text-[#C99A2E]">★★★★☆</span>
+                  <span class="text-xs opacity-60">(3.5+)</span>
+                </div>
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="radio" name="rating" value="2">
+                <span class="checkmark"></span>
+                <div class="flex items-center gap-1">
+                  <span class="text-[#C99A2E]">★★★☆☆</span>
+                  <span class="text-xs opacity-60">(2.5+)</span>
+                </div>
+              </label>
+            </div>
+          </details>
+          
+          <!-- Apply Filters Button -->
+          <button id="apply-filters" class="w-full mt-4 py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-xl transition-all duration-300 hover:shadow-lg">
+            Apply Filters
+          </button>
+        </div>
+      </aside>
+      
+      <!-- Product Grid -->
+      <div class="flex-1">
+        
+        <!-- Sort & View Options -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6 bg-white dark:bg-[#111B15] rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] p-4">
+          <div class="flex items-center gap-3">
+            <label class="text-sm text-[#4B5C50] dark:text-[#8FA393]">Sort by:</label>
+            <select class="px-3 py-2 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40">
+              <option value="popular">Popular</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Rating</option>
+              <option value="newest">Newest First</option>
+            </select>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <button class="p-2 rounded-lg bg-[#2E7D32] dark:bg-[#3F9142] text-white">
+              <i class="fa-solid fa-grid-2"></i>
+            </button>
+            <button class="p-2 rounded-lg border border-[#E3E8E1] dark:border-[#22302A] text-[#4B5C50] dark:text-[#8FA393] hover:border-[#2E7D32] dark:hover:border-[#66BB6A] transition-colors">
+              <i class="fa-solid fa-list"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" id="product-grid">
+          <!-- Products will be rendered here -->
+        </div>
+        
+        <!-- Pagination -->
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-[#111B15] rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] p-4">
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393]">
+            Showing <span id="page-start">1</span> - <span id="page-end">12</span> of <span id="total-items">248</span>
+          </p>
+          <div class="flex items-center gap-2">
+            <button class="pagination-btn" id="prev-page" disabled>
+              <i class="fa-solid fa-chevron-left text-sm"></i>
+            </button>
+            <button class="pagination-btn active" data-page="1">1</button>
+            <button class="pagination-btn" data-page="2">2</button>
+            <button class="pagination-btn" data-page="3">3</button>
+            <button class="pagination-btn" data-page="4">4</button>
+            <span class="text-[#4B5C50] dark:text-[#8FA393]">...</span>
+            <button class="pagination-btn" data-page="21">21</button>
+            <button class="pagination-btn" id="next-page">
+              <i class="fa-solid fa-chevron-right text-sm"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Filter Drawer -->
+  <div id="filter-drawer" class="fixed inset-0 z-50 md:hidden pointer-events-none">
+    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300" id="filter-overlay"></div>
+    <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-[#111B15] transform translate-x-full transition-transform duration-300 filter-drawer shadow-2xl pointer-events-auto">
+      <div class="p-4 border-b border-[#E3E8E1] dark:border-[#22302A] flex justify-between items-center">
+        <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">Filters</h3>
+        <button id="filter-close" class="w-9 h-9 flex items-center justify-center text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A] rounded-full transition-colors">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div class="p-4 overflow-y-auto h-[calc(100%-140px)]">
+        <!-- Mobile filter content - same as sidebar but simplified -->
+        <div class="space-y-4">
+          <!-- Category -->
+          <div>
+            <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Category</h4>
+            <div class="space-y-1">
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox" checked><span class="checkmark"></span>Tablets
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox"><span class="checkmark"></span>Syrups
+              </label>
+              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+                <input type="checkbox"><span class="checkmark"></span>Injectables
+              </label>
+            </div>
+          </div>
+          
+          <!-- Price -->
+          <div>
+            <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Price Range</h4>
+            <input type="range" min="0" max="5000" value="5000" class="price-slider">
+            <div class="flex gap-2 mt-2">
+              <input type="number" value="0" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm">
+              <input type="number" value="5000" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#111B15]">
+        <button class="w-full py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-xl transition-colors">
+          Apply Filters
+        </button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+<script>
+  // ===================== PRODUCT DATA =====================
+  const allProducts = [
+    // Tablets
+    { id: 1, name: "Paracip 650", category: "tablets", price: 32, mrp: 40, rating: 4.6, reviews: 128, rx: false, brand: "cipla", image: "💊" },
+    { id: 2, name: "Azithral 500", category: "tablets", price: 118, mrp: 140, rating: 4.5, reviews: 76, rx: true, brand: "cipla", image: "💊" },
+    { id: 3, name: "Cetzine", category: "tablets", price: 24, mrp: 30, rating: 4.4, reviews: 95, rx: false, brand: "sun-pharma", image: "💊" },
+    { id: 4, name: "Glycomet 500 SR", category: "diabetic", price: 88, mrp: 102, rating: 4.7, reviews: 210, rx: true, brand: "sun-pharma", image: "💊" },
+    { id: 5, name: "Pantocid 40", category: "tablets", price: 96, mrp: 115, rating: 4.6, reviews: 154, rx: true, brand: "dr-reddy", image: "💊" },
+    { id: 6, name: "Shelcal 500", category: "supplements", price: 132, mrp: 150, rating: 4.8, reviews: 302, rx: false, brand: "gsk", image: "💊" },
+    { id: 7, name: "Dolo 650", category: "tablets", price: 28, mrp: 35, rating: 4.5, reviews: 189, rx: false, brand: "cipla", image: "💊" },
+    { id: 8, name: "Amoxicillin 500", category: "tablets", price: 85, mrp: 100, rating: 4.3, reviews: 67, rx: true, brand: "gsk", image: "💊" },
+    { id: 9, name: "Metformin 1000", category: "diabetic", price: 72, mrp: 90, rating: 4.4, reviews: 143, rx: true, brand: "sun-pharma", image: "💊" },
+    { id: 10, name: "Atorlip 10", category: "tablets", price: 156, mrp: 185, rating: 4.7, reviews: 98, rx: true, brand: "cipla", image: "💊" },
+    
+    // Syrups
+    { id: 11, name: "Cough Syrup DC", category: "syrups", price: 65, mrp: 80, rating: 4.2, reviews: 54, rx: false, brand: "sun-pharma", image: "🧪" },
+    { id: 12, name: "Zincovit Syrup", category: "syrups", price: 110, mrp: 130, rating: 4.5, reviews: 112, rx: false, brand: "cipla", image: "🧪" },
+    { id: 13, name: "Maalox Plus", category: "syrups", price: 75, mrp: 95, rating: 4.3, reviews: 78, rx: false, brand: "dr-reddy", image: "🧪" },
+    { id: 14, name: "Cough Syrup", category: "syrups", price: 45, mrp: 55, rating: 4.0, reviews: 43, rx: false, brand: "gsk", image: "🧪" },
+    
+    // Injectables
+    { id: 15, name: "Insulin Injection", category: "injectables", price: 450, mrp: 550, rating: 4.8, reviews: 89, rx: true, brand: "pfizer", image: "💉" },
+    { id: 16, name: "Vitamin B12 Injection", category: "injectables", price: 85, mrp: 100, rating: 4.4, reviews: 56, rx: true, brand: "cipla", image: "💉" },
+    { id: 17, name: "Dexona Injection", category: "injectables", price: 65, mrp: 80, rating: 4.2, reviews: 34, rx: true, brand: "sun-pharma", image: "💉" },
+    
+    // Topical
+    { id: 18, name: "Volini Gel", category: "topical", price: 145, mrp: 165, rating: 4.5, reviews: 88, rx: false, brand: "cipla", image: "🧴" },
+    { id: 19, name: "Betadine Ointment", category: "topical", price: 68, mrp: 80, rating: 4.3, reviews: 61, rx: false, brand: "gsk", image: "🧴" },
+    { id: 20, name: "Moisturex Cream", category: "topical", price: 120, mrp: 145, rating: 4.6, reviews: 73, rx: false, brand: "dr-reddy", image: "🧴" },
+    { id: 21, name: "Acne Gel", category: "topical", price: 95, mrp: 115, rating: 4.1, reviews: 42, rx: false, brand: "sun-pharma", image: "🧴" },
+    
+    // Diabetic Care
+    { id: 22, name: "Glucophage 500", category: "diabetic", price: 78, mrp: 95, rating: 4.5, reviews: 167, rx: true, brand: "pfizer", image: "💊" },
+    { id: 23, name: "Glycomet 250", category: "diabetic", price: 55, mrp: 70, rating: 4.3, reviews: 89, rx: true, brand: "sun-pharma", image: "💊" },
+    
+    // Supplements
+    { id: 24, name: "Ostocalcium", category: "supplements", price: 160, mrp: 185, rating: 4.7, reviews: 145, rx: false, brand: "gsk", image: "💊" },
+    { id: 25, name: "Vitamin D3", category: "supplements", price: 125, mrp: 150, rating: 4.6, reviews: 98, rx: false, brand: "cipla", image: "💊" },
+    { id: 26, name: "Omega 3", category: "supplements", price: 180, mrp: 210, rating: 4.8, reviews: 112, rx: false, brand: "pfizer", image: "💊" },
+  ];
+
+  // ===================== STATE =====================
+  let currentPage = 1;
+  const itemsPerPage = 12;
+  let filteredProducts = [...allProducts];
+  let currentProducts = [];
+
+  // ===================== RENDER PRODUCTS =====================
+  function renderProducts() {
+    const grid = document.getElementById('product-grid');
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = Math.min(start + itemsPerPage, filteredProducts.length);
+    currentProducts = filteredProducts.slice(start, end);
+    
+    if (currentProducts.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <div class="text-6xl mb-4">🔍</div>
+          <h3 class="font-display text-xl text-[#12261A] dark:text-[#F2F8F0]">No products found</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-2">Try adjusting your filters</p>
+        </div>
+      `;
+      return;
+    }
+    
+    grid.innerHTML = currentProducts.map(med => `
+      <div class="group relative rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#16211A] overflow-hidden hover:border-[#2E7D32] dark:hover:border-[#4CAF50] hover:shadow-md transition-all product-card">
+        
+        ${med.rx ? `
+          <span class="absolute top-3 left-3 z-10 bg-white dark:bg-[#16211A] border border-[#D4A63A]/50 text-[#8a6a1f] dark:text-[#E3C069] text-[10px] font-mono px-2.5 py-1 rounded-full rx-label shadow-sm">
+            Rx required
+          </span>
+        ` : ''}
+        
+        <a href="/product/${med.id}" class="block">
+          <div class="h-32 flex items-center justify-center bg-gradient-to-br from-[#E8F5E9] to-[#D2E9D5] dark:from-[#1D2E21] dark:to-[#16241A] text-5xl">
+            ${med.image}
+          </div>
+        </a>
+        
+        <div class="p-4">
+          <p class="text-[11px] text-[#4B5C50] dark:text-[#8FA393] font-mono capitalize">${med.category.replace('-', ' ')}</p>
+          <a href="/product/${med.id}" class="block">
+            <h3 class="font-semibold text-sm mt-1 text-[#12261A] dark:text-[#F2F8F0] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors">
+              ${med.name}
+            </h3>
+          </a>
+          
+          <div class="flex items-center gap-1 mt-2">
+            <svg class="w-3.5 h-3.5 text-[#C99A2E]" viewBox="0 0 20 20" fill="currentColor"><path d="M9.05 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.363 1.118l1.287 3.957c.3.922-.755 1.688-1.538 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.783.57-1.838-.196-1.539-1.118l1.287-3.957a1 1 0 00-.363-1.118L2.062 9.386c-.784-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.958z"/></svg>
+            <span class="text-xs font-medium text-[#12261A] dark:text-[#E9F2E7]">${med.rating}</span>
+            <span class="text-[11px] text-[#4B5C50] dark:text-[#8FA393]">(${med.reviews})</span>
+          </div>
+          
+          <div class="flex items-baseline gap-2 mt-3">
+            <span class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">₹${med.price}</span>
+            <span class="text-xs text-[#8A978C] dark:text-[#6E8175] line-through">₹${med.mrp}</span>
+            <span class="ml-auto text-xs text-[#2E7D32] dark:text-[#66BB6A] font-medium">${Math.round((1 - med.price/med.mrp) * 100)}% off</span>
+          </div>
+          
+          <button class="mt-3 w-full text-xs font-semibold py-2.5 rounded-lg bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white transition-colors request-btn" data-id="${med.id}">
+            Request purchase
+          </button>
+        </div>
+      </div>
+    `).join('');
+    
+    // Update pagination info
+    document.getElementById('page-start').textContent = start + 1;
+    document.getElementById('page-end').textContent = end;
+    document.getElementById('total-items').textContent = filteredProducts.length;
+    document.getElementById('product-count').textContent = filteredProducts.length;
+    
+    updatePagination();
+    updateRequestButtons();
+  }
+
+  // ===================== UPDATE PAGINATION =====================
+  function updatePagination() {
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    const pageBtns = document.querySelectorAll('.pagination-btn[data-page]');
+    
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+    
+    pageBtns.forEach(btn => {
+      const page = parseInt(btn.dataset.page);
+      btn.classList.toggle('active', page === currentPage);
+    });
+  }
+
+  // ===================== FILTER FUNCTIONS =====================
+  function applyFilters() {
+    const selectedCategories = [];
+    document.querySelectorAll('.filter-section:first-of-type input[type="checkbox"]:checked').forEach(cb => {
+      selectedCategories.push(cb.value);
+    });
+    
+    const rxChecked = document.querySelector('.filter-section:nth-of-type(3) input[value="rx"]')?.checked || false;
+    const otcChecked = document.querySelector('.filter-section:nth-of-type(3) input[value="otc"]')?.checked || false;
+    
+    const priceMax = parseInt(document.getElementById('price-slider')?.value || 5000);
+    
+    filteredProducts = allProducts.filter(product => {
+      // Category filter
+      if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
+        return false;
+      }
+      
+      // Prescription filter
+      if (rxChecked && !product.rx) return false;
+      if (otcChecked && product.rx) return false;
+      
+      // Price filter
+      if (product.price > priceMax) return false;
+      
+      return true;
+    });
+    
+    currentPage = 1;
+    renderProducts();
+  }
+
+  // ===================== REQUEST BUTTON =====================
+  function updateRequestButtons() {
+    document.querySelectorAll('.request-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const id = this.dataset.id;
+        const product = allProducts.find(p => p.id == id);
+        if (product) {
+          alert(`Request placed for ${product.name}\nPrice: ₹${product.price}\nA pharmacist will contact you shortly.`);
+        }
+      });
+    });
+  }
+
+  // ===================== INIT =====================
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    
+    // Price slider
+    const slider = document.getElementById('price-slider');
+    const priceMin = document.getElementById('price-min');
+    const priceMax = document.getElementById('price-max');
+    const priceInputMin = document.getElementById('price-input-min');
+    const priceInputMax = document.getElementById('price-input-max');
+    
+    if (slider) {
+      slider.addEventListener('input', function() {
+        const val = this.value;
+        priceMax.textContent = val;
+        priceInputMax.value = val;
+      });
+    }
+    
+    // Apply filters
+    document.getElementById('apply-filters')?.addEventListener('click', applyFilters);
+    
+    // Clear filters
+    document.getElementById('clear-filters')?.addEventListener('click', function() {
+      document.querySelectorAll('.filter-section input[type="checkbox"]').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.filter-section input[type="radio"]').forEach(rb => rb.checked = false);
+      document.getElementById('price-slider').value = 5000;
+      document.getElementById('price-max').textContent = '5000';
+      document.getElementById('price-input-max').value = 5000;
+      applyFilters();
+    });
+    
+    // Pagination
+    document.querySelectorAll('.pagination-btn[data-page]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const page = parseInt(this.dataset.page);
+        const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+        if (page >= 1 && page <= totalPages) {
+          currentPage = page;
+          renderProducts();
+        }
+      });
+    });
+    
+    document.getElementById('prev-page')?.addEventListener('click', function() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderProducts();
+      }
+    });
+    
+    document.getElementById('next-page')?.addEventListener('click', function() {
+      const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderProducts();
+      }
+    });
+    
+    // Mobile filter drawer
+    const filterToggle = document.getElementById('filter-toggle-mobile');
+    const filterDrawer = document.getElementById('filter-drawer');
+    const filterOverlay = document.getElementById('filter-overlay');
+    const filterClose = document.getElementById('filter-close');
+    
+    if (filterToggle && filterDrawer) {
+      filterToggle.addEventListener('click', function() {
+        filterDrawer.classList.add('open');
+        filterDrawer.style.pointerEvents = 'auto';
+        filterOverlay.style.opacity = '1';
+      });
+      
+      const closeFilter = () => {
+        filterDrawer.classList.remove('open');
+        setTimeout(() => {
+          filterDrawer.style.pointerEvents = 'none';
+        }, 300);
+        filterOverlay.style.opacity = '0';
+      };
+      
+      filterClose?.addEventListener('click', closeFilter);
+      filterOverlay?.addEventListener('click', closeFilter);
+    }
+  });
+</script>

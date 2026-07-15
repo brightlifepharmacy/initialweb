@@ -1,424 +1,434 @@
 <!-- footer.ejs -->
-<footer class="mt-16 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 dark:border-gray-800">
-  <div class="container px-4 mx-auto">
-    
-    <!-- Main Footer Content -->
-    <div class="py-12">
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+<footer class="bg-white dark:bg-[#111B15] border-t border-[#E3E8E1] dark:border-[#22302A] transition-colors duration-300 font-body relative">
+  <!-- Decorative Gradient Line at Top -->
+  <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2E7D32] via-[#C99A2E] to-[#2E7D32] dark:from-[#4CAF50] dark:via-[#E3C069] dark:to-[#4CAF50] opacity-60"></div>
+  
+  <!-- Main Footer -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      
+      <!-- Brand Column -->
+      <div class="space-y-4">
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-11 h-11 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+            <img src="/images/logo2.png" alt="Bright-Life Pharmacy logo" class="w-full h-full object-contain" />
+          </div>
+          <div class="leading-tight">
+            <p class="font-display font-semibold text-base text-[#12261A] dark:text-[#F2F8F0] group-hover:text-[#2E7D32] dark:group-hover:text-[#66BB6A] transition-colors duration-300">Bright-Life</p>
+            <p class="text-[11px] font-mono text-[#4B5C50] dark:text-[#8FA393] -mt-0.5">Pharmacy</p>
+          </div>
+        </a>
         
-        <!-- Brand & About -->
-        <div class="space-y-4">
-          <div class="flex items-center space-x-3">
-            <img src="images/logo2.png"
-           alt="BrightLife Pharmacy Logo"
-           class="object-contain w-20 h-26" />
-            <div>
-              <h2 class="text-xl font-bold text-transparent bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text">BrightLife Pharmacy</h2>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Trusted Healthcare Since 2010</p>
-            </div>
+        <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed animate-fade-in">
+          Your trusted partner for health and wellness. Quality medications, expert advice, and compassionate care since 2020.
+        </p>
+        
+        <!-- Social Links with Hover Effects -->
+        <div class="flex items-center gap-3 pt-2">
+          <a href="#" aria-label="Facebook" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F4EE] dark:bg-[#16211A] text-[#4B5C50] dark:text-[#8FA393] hover:bg-[#1877F2] hover:text-white dark:hover:bg-[#1877F2] dark:hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6">
+            <i class="fa-brands fa-facebook-f text-sm"></i>
+          </a>
+          <a href="#" aria-label="Twitter" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F4EE] dark:bg-[#16211A] text-[#4B5C50] dark:text-[#8FA393] hover:bg-[#000000] hover:text-white dark:hover:bg-[#000000] dark:hover:text-white transition-all duration-300 transform hover:scale-110 hover:-rotate-6">
+            <i class="fa-brands fa-x-twitter text-sm"></i>
+          </a>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F4EE] dark:bg-[#16211A] text-[#4B5C50] dark:text-[#8FA393] hover:bg-gradient-to-br hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#515BD4] hover:text-white dark:hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-12">
+            <i class="fa-brands fa-instagram text-sm"></i>
+          </a>
+          <a href="#" aria-label="YouTube" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F4EE] dark:bg-[#16211A] text-[#4B5C50] dark:text-[#8FA393] hover:bg-[#FF0000] hover:text-white dark:hover:bg-[#FF0000] dark:hover:text-white transition-all duration-300 transform hover:scale-110 hover:-rotate-6">
+            <i class="fa-brands fa-youtube text-sm"></i>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F4EE] dark:bg-[#16211A] text-[#4B5C50] dark:text-[#8FA393] hover:bg-[#0A66C2] hover:text-white dark:hover:bg-[#0A66C2] dark:hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6">
+            <i class="fa-brands fa-linkedin-in text-sm"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0] text-sm uppercase tracking-wider mb-4 relative inline-block">
+          Quick Links
+          <span class="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#2E7D32] dark:bg-[#66BB6A] rounded-full"></span>
+        </h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="/" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#2E7D32] dark:text-[#66BB6A] group-hover:translate-x-1 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/products" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#2E7D32] dark:text-[#66BB6A] group-hover:translate-x-1 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="/blogs" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#2E7D32] dark:text-[#66BB6A] group-hover:translate-x-1 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Health Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="/about" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#2E7D32] dark:text-[#66BB6A] group-hover:translate-x-1 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">About Us</span>
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#2E7D32] dark:text-[#66BB6A] group-hover:translate-x-1 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Contact</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Services -->
+      <div>
+        <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0] text-sm uppercase tracking-wider mb-4 relative inline-block">
+          Our Services
+          <span class="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#2E7D32] dark:bg-[#66BB6A] rounded-full"></span>
+        </h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="#" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-prescription-bottle text-xs text-[#2E7D32] dark:text-[#66BB6A] group-hover:scale-125 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Prescription Refills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-truck text-xs text-[#2E7D32] dark:text-[#66BB6A] group-hover:scale-125 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Home Delivery</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-flask text-xs text-[#2E7D32] dark:text-[#66BB6A] group-hover:scale-125 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Lab Testing</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-heart-pulse text-xs text-[#2E7D32] dark:text-[#66BB6A] group-hover:scale-125 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Health Checkups</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-all duration-300 flex items-center gap-2 group">
+              <i class="fa-solid fa-phone text-xs text-[#2E7D32] dark:text-[#66BB6A] group-hover:scale-125 transition-transform duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">24/7 Support</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Contact Info & Newsletter -->
+      <div>
+        <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0] text-sm uppercase tracking-wider mb-4 relative inline-block">
+          Get In Touch
+          <span class="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#2E7D32] dark:bg-[#66BB6A] rounded-full"></span>
+        </h3>
+        
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 group">
+            <i class="fa-solid fa-location-dot text-[#2E7D32] dark:text-[#66BB6A] text-sm mt-1 group-hover:scale-125 transition-transform duration-300"></i>
+            <span class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+              123 Health Street,<br>Medical District,<br>NY 10001, USA
+            </span>
           </div>
           
-          <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Your trusted partner in healthcare. We provide quality allopathic medicines, surgical supplies, and reliable medical consultations with care and compassion.
+          <div class="flex items-center gap-3 group">
+            <i class="fa-solid fa-phone text-[#2E7D32] dark:text-[#66BB6A] text-sm group-hover:scale-125 transition-transform duration-300"></i>
+            <a href="tel:+1234567890" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors duration-300 group-hover:translate-x-1 transition-transform">
+              +1 (234) 567-890
+            </a>
+          </div>
+          
+          <div class="flex items-center gap-3 group">
+            <i class="fa-solid fa-envelope text-[#2E7D32] dark:text-[#66BB6A] text-sm group-hover:scale-125 transition-transform duration-300"></i>
+            <a href="mailto:info@brightlife.com" class="text-sm text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors duration-300 group-hover:translate-x-1 transition-transform">
+              info@brightlife.com
+            </a>
+          </div>
+          
+          <div class="flex items-center gap-3 group">
+            <i class="fa-solid fa-clock text-[#2E7D32] dark:text-[#66BB6A] text-sm group-hover:scale-125 transition-transform duration-300"></i>
+            <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">
+              Mon-Sat: 8:00 AM - 10:00 PM
+            </span>
+          </div>
+        </div>
+        
+        <!-- Newsletter - Fixed Width -->
+        <div class="mt-6">
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mb-3 font-medium">
+            Subscribe to our newsletter
           </p>
-          
-          <!-- Social Media -->
-          <div class="flex pt-2 space-x-3">
-            <a href="#" class="flex items-center justify-center w-10 h-10 text-green-600 transition-all duration-200 bg-green-100 rounded-full dark:bg-gray-800 dark:text-green-400 hover:bg-green-600 hover:text-white">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="flex items-center justify-center w-10 h-10 text-green-600 transition-all duration-200 bg-green-100 rounded-full dark:bg-gray-800 dark:text-green-400 hover:bg-green-400 hover:text-white">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="flex items-center justify-center w-10 h-10 text-green-600 transition-all duration-200 bg-green-100 rounded-full dark:bg-gray-800 dark:text-green-400 hover:bg-pink-600 hover:text-white">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="flex items-center justify-center w-10 h-10 text-green-600 transition-all duration-200 bg-green-100 rounded-full dark:bg-gray-800 dark:text-green-400 hover:bg-green-700 hover:text-white">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="space-y-4">
-          <h3 class="flex items-center text-lg font-semibold text-gray-800 dark:text-white">
-            <i class="mr-2 text-green-500 fa-solid fa-link"></i>
-            Quick Links
-          </h3>
-          <ul class="space-y-2">
-            <li>
-              <a href="/" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-chevron-right"></i>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/products" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-chevron-right"></i>
-                Browse Products
-              </a>
-            </li>
-            <li>
-              <a href="/categories" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-chevron-right"></i>
-                Categories
-              </a>
-            </li>
-            <li>
-              <a href="/blogs" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-chevron-right"></i>
-                Health Blogs
-              </a>
-            </li>
-            <li>
-              <a href="/about" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-chevron-right"></i>
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="/contact" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-chevron-right"></i>
-                Contact Us
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Medical Services -->
-        <div class="space-y-4">
-          <h3 class="flex items-center text-lg font-semibold text-gray-800 dark:text-white">
-            <i class="mr-2 text-green-500 fa-solid fa-stethoscope"></i>
-            Our Services
-          </h3>
-          <ul class="space-y-2">
-            <li>
-              <a href="/prescription-medicine" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-prescription"></i>
-                Prescription Medicine
-              </a>
-            </li>
-            <li>
-              <a href="/surgical-supply" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-syringe"></i>
-                Surgical Supplies
-              </a>
-            </li>
-            <li>
-              <a href="/first-aid-kits" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-kit-medical"></i>
-                First Aid Kits
-              </a>
-            </li>
-            <li>
-              <a href="/health-checkups" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-heart-pulse"></i>
-                Health Checkups
-              </a>
-            </li>
-            <li>
-              <a href="/home-delivery" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-truck-medical"></i>
-                Home Delivery
-              </a>
-            </li>
-            <li>
-              <a href="/free-consultation" class="flex items-center text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                <i class="mr-2 text-xs fa-solid fa-user-doctor"></i>
-                Free Consultation
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="space-y-4">
-          <h3 class="flex items-center text-lg font-semibold text-gray-800 dark:text-white">
-            <i class="mr-2 text-green-500 fa-solid fa-location-dot"></i>
-            Contact Us
-          </h3>
-          <ul class="space-y-3">
-            <li class="flex items-start">
-              <i class="mt-1 mr-3 text-green-500 fa-solid fa-map-marker-alt"></i>
-              <span class="text-gray-600 dark:text-gray-400">
-                123 Medical Street, Health District<br>
-                Mumbai, Maharashtra 400001
-              </span>
-            </li>
-            <li class="flex items-center">
-              <i class="mr-3 text-green-500 fa-solid fa-phone"></i>
-              <div>
-                <a href="tel:+911234567890" class="text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                  +91 12345 67890
-                </a>
-                <p class="text-xs text-gray-500 dark:text-gray-500">Emergency: +91 98765 43210</p>
+          <div id="newsletter-wrapper" class="w-full">
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2 w-full">
+              <div class="relative flex-1 min-w-0">
+                <i class="fa-regular fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-[#8A978C] dark:text-[#6E8175] text-sm"></i>
+                <input 
+                  type="email" 
+                  id="newsletter-email"
+                  placeholder="Your email address" 
+                  required
+                  class="w-full px-10 py-2.5 text-sm rounded-full border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all"
+                >
               </div>
-            </li>
-            <li class="flex items-center">
-              <i class="mr-3 text-green-500 fa-solid fa-envelope"></i>
-              <a href="mailto:info@brightlifepharmacy.com" class="text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-                info@brightlifepharmacy.com
-              </a>
-            </li>
-            <li class="flex items-center">
-              <i class="mr-3 text-green-500 fa-solid fa-clock"></i>
-              <span class="text-gray-600 dark:text-gray-400">
-                Open 24/7<br>
-                Emergency Services Available
-              </span>
-            </li>
-          </ul>
-
-          <!-- Newsletter Subscription -->
-          <div class="pt-4">
-            <h4 class="mb-2 text-sm font-semibold text-gray-800 dark:text-white">Stay Updated</h4>
-            <form id="newsletter-form" class="space-y-2">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                class="w-full px-4 py-2 text-sm text-gray-800 bg-white border border-gray-300 rounded-full dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                required
-              >
-              <button 
-                type="submit" 
-                class="w-full px-4 py-2 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-full hover:shadow-lg transition-all duration-200 text-sm font-medium hover:scale-[1.02]">
-                Subscribe to Newsletter
+              <button type="submit" class="px-3 py-2.5 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white text-sm font-medium rounded-full transition-all duration-300 whitespace-nowrap hover:scale-105 hover:shadow-lg">
+                <i class="fa-regular fa-paper-plane mr-2"></i>
               </button>
             </form>
+            
+            <!-- Subscription Response Message -->
+            <div id="subscription-response" class="mt-3 hidden transition-all duration-500 ease-in-out">
+              <div id="subscription-message" class="flex items-center gap-2 text-sm px-4 py-2.5 rounded-lg"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Divider -->
-    <div class="border-t border-gray-300 dark:border-gray-700"></div>
-
-    <!-- Bottom Footer -->
-    <div class="py-6">
-      <div class="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-        <!-- Copyright -->
-        <div class="text-center md:text-left">
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            &copy; 2010-<span id="current-year"></span> BrightLife Pharmacy. All rights reserved.
-          </p>
-          <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
-            License No: MH/PHARM/12345/2010 | FDA Approved | ISO 9001:2015 Certified
-          </p>
-        </div>
-
-        <!-- Legal Links -->
-        <div class="flex flex-wrap justify-center gap-4 text-sm md:justify-end">
-          <a href="/privacy-policy" class="text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-            Privacy Policy
-          </a>
-          <span class="text-gray-400 dark:text-gray-600">•</span>
-          <a href="/terms" class="text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-            Terms of Service
-          </a>
-          <span class="text-gray-400 dark:text-gray-600">•</span>
-          <a href="/refund-policy" class="text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-            Refund Policy
-          </a>
-          <span class="text-gray-400 dark:text-gray-600">•</span>
-          <a href="/sitemap" class="text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-            Sitemap
-          </a>
-          <span class="text-gray-400 dark:text-gray-600">•</span>
-          <a href="/faq" class="text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-            FAQ
-          </a>
-        </div>
+    
+    <!-- Footer Bottom -->
+    <div class="mt-12 pt-8 border-t border-[#E3E8E1] dark:border-[#22302A] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] text-center sm:text-left">
+        &copy; <span id="current-year">2026</span> Bright-Life Pharmacy. All rights reserved.
+      </p>
+      
+      <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+        <a href="#" class="text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#2E7D32] dark:after:bg-[#66BB6A] after:transition-all after:duration-300 hover:after:w-full">
+          Privacy Policy
+        </a>
+        <span class="text-[#E3E8E1] dark:text-[#22302A] hidden sm:inline">|</span>
+        <a href="#" class="text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#2E7D32] dark:after:bg-[#66BB6A] after:transition-all after:duration-300 hover:after:w-full">
+          Terms of Service
+        </a>
+        <span class="text-[#E3E8E1] dark:text-[#22302A] hidden sm:inline">|</span>
+        <a href="#" class="text-[#4B5C50] dark:text-[#8FA393] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#2E7D32] dark:after:bg-[#66BB6A] after:transition-all after:duration-300 hover:after:w-full">
+          Cookie Policy
+        </a>
       </div>
-
-      <!-- Trust Badges -->
-      <div class="flex flex-wrap justify-center gap-3 mt-6">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
-          <i class="text-lg text-green-500 fa-solid fa-shield-check"></i>
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">100% Genuine Medicines</span>
-        </div>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
-          <i class="text-lg text-green-500 fa-solid fa-truck-fast"></i>
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Free Delivery</span>
-        </div>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
-          <i class="text-lg text-teal-500 fa-solid fa-user-doctor"></i>
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Expert Consultation</span>
-        </div>
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
-          <i class="text-lg text-orange-500 fa-solid fa-clock-rotate-left"></i>
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">24/7 Service</span>
-        </div>
-      </div>
-
-      <!-- Payment Methods -->
-      <div class="mt-6">
-        <p class="mb-2 text-xs text-center text-gray-500 dark:text-gray-500">We Accept:</p>
-        <div class="flex items-center justify-center space-x-3">
-          <div class="flex items-center justify-center w-10 h-6 rounded bg-green-50 dark:bg-gray-800">
-            <span class="text-xs font-bold text-green-600 dark:text-green-400">VISA</span>
-          </div>
-          <div class="flex items-center justify-center w-10 h-6 rounded bg-green-50 dark:bg-gray-800">
-            <span class="text-xs font-bold text-green-800 dark:text-green-300">MC</span>
-          </div>
-          <i class="text-lg text-green-500 fab fa-cc-paypal"></i>
-          <i class="text-lg text-gray-700 fab fa-google-pay dark:text-gray-300"></i>
-          <i class="text-lg text-gray-800 fab fa-apple-pay dark:text-gray-200"></i>
-          <div class="text-xs text-gray-600 dark:text-gray-400">UPI | Net Banking | COD</div>
-        </div>
-      </div>
+      
+      <!-- Back to Top Button -->
+      <button id="back-to-top" class="fixed bottom-8 right-8 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-[#2E7D32] dark:bg-[#3F9142] text-white hover:bg-[#276b2b] dark:hover:bg-[#4CAF50] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 opacity-0 pointer-events-none translate-y-4">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+      </button>
     </div>
   </div>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top" 
-    class="fixed z-40 flex items-center justify-center w-12 h-12 text-white transition-all duration-300 translate-y-10 rounded-full shadow-lg opacity-0 bottom-6 right-6 bg-gradient-to-r from-green-600 to-teal-500 hover:shadow-xl group">
-    <i class="fa-solid fa-chevron-up"></i>
-    <span class="absolute px-2 py-1 mr-2 text-xs text-white transition-opacity duration-200 bg-gray-800 rounded opacity-0 right-full group-hover:opacity-100 whitespace-nowrap">
-      Back to Top
-    </span>
-  </button>
 </footer>
 
-<!-- Footer JavaScript -->
+<style>
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.4s ease-out;
+  }
+  
+  /* Newsletter Response Styles */
+  #subscription-response.success #subscription-message {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    border: 1px solid #A5D6A7;
+  }
+  
+  #subscription-response.error #subscription-message {
+    background-color: #FFEBEE;
+    color: #C62828;
+    border: 1px solid #EF9A9A;
+  }
+  
+  .dark #subscription-response.success #subscription-message {
+    background-color: #1D2E21;
+    color: #66BB6A;
+    border: 1px solid #2E7D32;
+  }
+  
+  .dark #subscription-response.error #subscription-message {
+    background-color: #2B1815;
+    color: #E28880;
+    border: 1px solid #B3453D;
+  }
+  
+  #subscription-response.success #subscription-message i,
+  #subscription-response.error #subscription-message i {
+    font-size: 1rem;
+  }
+  
+  /* Back to Top Button Animation */
+  #back-to-top.show {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Smooth Transitions for All Interactive Elements */
+  .footer-link {
+    position: relative;
+  }
+  
+  /* Hover Glow Effect for Social Icons */
+  .social-icon:hover {
+    filter: drop-shadow(0 0 8px rgba(46, 125, 50, 0.3));
+  }
+</style>
+
 <script>
-  // Update current year in copyright
+  // Set current year
   document.getElementById('current-year').textContent = new Date().getFullYear();
 
-  // Newsletter Form Submission
+  // Newsletter form submission with inline response
   const newsletterForm = document.getElementById('newsletter-form');
-  newsletterForm?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const emailInput = this.querySelector('input[type="email"]');
-    const email = emailInput.value.trim();
-    
-    if (email && validateEmail(email)) {
-      // Show success message (you can replace with actual API call)
-      showNotification('Subscribed successfully! Check your email for confirmation.', 'success');
-      emailInput.value = '';
-    } else {
-      showNotification('Please enter a valid email address.', 'error');
-    }
-  });
-
-  // Email validation
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }
-
-  // Notification function
-  function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 ${
-      type === 'success' 
-        ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300' 
-        : 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300'
-    }`;
-    notification.innerHTML = `
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i>
-        <span>${message}</span>
-      </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Remove notification after 3 seconds
-    setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transform = 'translateX(100%)';
-      setTimeout(() => {
-        document.body.removeChild(notification);
-      }, 300);
-    }, 3000);
-  }
-
-  // Back to Top Button
-  const backToTopButton = document.getElementById('back-to-top');
+  const subscriptionResponse = document.getElementById('subscription-response');
+  const subscriptionMessage = document.getElementById('subscription-message');
   
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      backToTopButton.classList.remove('opacity-0', 'translate-y-10');
-      backToTopButton.classList.add('opacity-100', 'translate-y-0');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      const submitBtn = this.querySelector('button[type="submit"]');
+      
+      // Disable button and show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>...';
+      
+      // Simulate API call (replace with actual API call)
+      setTimeout(() => {
+        // Simulate success
+        const success = true; // Change to false to test error state
+        
+        // Show response
+        subscriptionResponse.classList.remove('hidden', 'success', 'error', 'animate-slide-down');
+        
+        if (success) {
+          subscriptionResponse.classList.add('success', 'animate-slide-down');
+          subscriptionMessage.innerHTML = `
+            <i class="fa-regular fa-circle-check"></i>
+            <span>Thank you! You've been subscribed successfully.</span>
+          `;
+          this.reset();
+        } else {
+          subscriptionResponse.classList.add('error', 'animate-slide-down');
+          subscriptionMessage.innerHTML = `
+            <i class="fa-regular fa-circle-xmark"></i>
+            <span>Something went wrong. Please try again.</span>
+          `;
+        }
+        
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-regular fa-paper-plane mr-2"></i>';
+        
+        // Auto-hide response after 5 seconds
+        setTimeout(() => {
+          subscriptionResponse.classList.remove('animate-slide-down');
+          setTimeout(() => {
+            subscriptionResponse.classList.add('hidden');
+          }, 300);
+        }, 5000);
+        
+      }, 1500);
+    });
+  }
+
+  // Back to Top Button with proper scroll detection
+  const backToTopBtn = document.getElementById('back-to-top');
+  let isFooterVisible = false;
+  
+  function checkScrollPosition() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const footer = document.querySelector('footer');
+    
+    // Show button when scrolled down more than 300px
+    if (scrollY > 300) {
+      backToTopBtn.classList.add('show');
     } else {
-      backToTopButton.classList.remove('opacity-100', 'translate-y-0');
-      backToTopButton.classList.add('opacity-0', 'translate-y-10');
+      backToTopBtn.classList.remove('show');
+    }
+    
+    // Check if footer is visible in viewport
+    if (footer) {
+      const footerRect = footer.getBoundingClientRect();
+      const footerTop = footerRect.top;
+      const footerBottom = footerRect.bottom;
+      
+      // If footer is at the bottom of the viewport or visible
+      if (footerTop < windowHeight && footerBottom > 0) {
+        isFooterVisible = true;
+        // Position button slightly above footer if overlapping
+        if (footerTop < windowHeight - 100) {
+          const offset = Math.min(20, windowHeight - footerTop + 20);
+          backToTopBtn.style.bottom = `${offset + 20}px`;
+        } else {
+          backToTopBtn.style.bottom = '2rem';
+        }
+      } else {
+        isFooterVisible = false;
+        backToTopBtn.style.bottom = '2rem';
+      }
+    }
+  }
+
+  // Throttled scroll listener for better performance
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        checkScrollPosition();
+        ticking = false;
+      });
+      ticking = true;
     }
   });
 
-  backToTopButton?.addEventListener('click', () => {
+  // Check on load and resize
+  window.addEventListener('load', checkScrollPosition);
+  window.addEventListener('resize', checkScrollPosition);
+
+  // Smooth scroll to top
+  backToTopBtn?.addEventListener('click', function() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   });
 
-  // Smooth scroll for anchor links in footer
-  document.querySelectorAll('footer a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  // Keyboard accessibility for back to top button
+  backToTopBtn?.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if (targetId !== '#') {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   });
 </script>
-
-<style>
-  /* Logo outline effect matching navbar */
-  .logo-outline {
-    -webkit-filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.5))
-                    drop-shadow(0 0 6px rgba(59, 130, 246, 0.3));
-    filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.5))
-            drop-shadow(0 0 6px rgba(59, 130, 246, 0.3));
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .dark .logo-outline {
-    -webkit-filter: drop-shadow(0 0 3px rgba(45, 212, 191, 0.6))
-                    drop-shadow(0 0 8px rgba(45, 212, 191, 0.4));
-    filter: drop-shadow(0 0 3px rgba(45, 212, 191, 0.6))
-            drop-shadow(0 0 8px rgba(45, 212, 191, 0.4));
-  }
-  
-  /* Hover effects for links */
-  footer a {
-    position: relative;
-  }
-  
-  footer a:not(.no-underline):hover::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right, #3b82f6, #2dd4bf);
-    opacity: 0.7;
-  }
-  
-  /* Gradient border for sections */
-  .section-divider {
-    position: relative;
-  }
-  
-  .section-divider::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(to right, 
-      transparent, 
-      rgba(59, 130, 246, 0.3), 
-      transparent);
-  }
-</style>

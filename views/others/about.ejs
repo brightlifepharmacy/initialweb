@@ -1,505 +1,623 @@
+<!-- about.ejs -->
 <% layout("/layouts/boilerplate") %>
 
-<!-- About Page -->
-<div class="min-h-screen bg-gradient-to-b from-white to-green-50 dark:from-gray-900 dark:to-gray-800">
+<main class="min-h-screen font-body">
   
   <!-- Hero Section -->
-  <section class="relative py-16 overflow-hidden md:py-24">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 bg-green-500 opacity-5"></div>
-    
-    <!-- Floating Elements -->
-    <div class="absolute top-20 left-10 animate-float-slow">
-      <div class="flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-2xl">
-        <i class="text-2xl text-green-500 fa-solid fa-heart-pulse dark:text-green-400"></i>
-      </div>
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#E8F5E9] via-white to-[#F7F8F5] dark:from-[#0E1712] dark:via-[#111B15] dark:to-[#0A120E] pt-16 pb-20 lg:pt-24 lg:pb-28 transition-colors duration-300">
+    <!-- Decorative Background -->
+    <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 dark:opacity-5">
+      <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#2E7D32] blur-3xl"></div>
+      <div class="absolute bottom-20 right-40 w-96 h-96 rounded-full bg-[#C99A2E] blur-3xl"></div>
     </div>
+    <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2E7D32] via-[#C99A2E] to-[#2E7D32] dark:from-[#4CAF50] dark:via-[#E3C069] dark:to-[#4CAF50] opacity-60"></div>
     
-    <div class="absolute bottom-20 right-10 animate-float">
-      <div class="flex items-center justify-center bg-teal-100 w-14 h-14 dark:bg-teal-900/30 rounded-2xl">
-        <i class="text-xl text-teal-500 fa-solid fa-stethoscope dark:text-teal-400"></i>
-      </div>
-    </div>
-    
-    <div class="container relative z-10 px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <!-- Page Header -->
-        <div class="inline-flex items-center px-4 py-2 mb-8 space-x-2 bg-white rounded-full shadow-sm dark:bg-gray-800">
-          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">About BrightLife Pharmacy</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32] mb-6 animate-fade-in">
+          <span class="w-2 h-2 rounded-full bg-[#2E7D32] dark:bg-[#66BB6A] animate-pulse"></span>
+          <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">Trusted Medical Pharmacy</span>
         </div>
         
-        <h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
-          <span class="block text-gray-800 dark:text-white">Our Commitment to</span>
-          <span class="block text-transparent bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text animate-gradient-x">Your Health</span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-[#12261A] dark:text-[#F2F8F0] mb-6 animate-slide-up">
+          Quality Allopathic <br>
+          <span class="bg-gradient-to-r from-[#2E7D32] to-[#C99A2E] dark:from-[#4CAF50] dark:to-[#E3C069] bg-clip-text text-transparent">Medicines & Care</span>
         </h1>
         
-        <p class="max-w-3xl mx-auto mb-8 text-xl leading-relaxed text-gray-600 dark:text-gray-300">
-          For over a decade, BrightLife Pharmacy has been the trusted healthcare partner for thousands of families, 
-          providing genuine allopathic medicines and surgical supplies with expert care and compassion.
+        <p class="text-lg md:text-xl text-[#4B5C50] dark:text-[#8FA393] max-w-3xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
+          Since 2020, Bright-Life Pharmacy has been your trusted partner in allopathic healthcare. 
+          We provide authentic medicines, expert pharmaceutical guidance, and compassionate care 
+          to help you live a healthier life.
         </p>
         
         <!-- Stats -->
-        <div class="grid grid-cols-2 gap-6 mt-12 md:grid-cols-4">
-          <div class="text-center">
-            <div class="mb-2 text-3xl font-bold text-green-600 md:text-4xl dark:text-green-400">
-              <span class="counter" data-target="15">0</span>+
-            </div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 animate-slide-up animation-delay-400">
+          <div class="bg-white/70 dark:bg-[#16211A]/70 backdrop-blur-sm rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl font-bold text-[#2E7D32] dark:text-[#66BB6A] font-display">2000+</div>
+            <div class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">Allopathic Medicines</div>
           </div>
-          <div class="text-center">
-            <div class="mb-2 text-3xl font-bold text-green-600 md:text-4xl dark:text-green-400">
-              <span class="counter" data-target="5000">0</span>+
-            </div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Products Available</div>
+          <div class="bg-white/70 dark:bg-[#16211A]/70 backdrop-blur-sm rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl font-bold text-[#2E7D32] dark:text-[#66BB6A] font-display">15K+</div>
+            <div class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">Happy Customers</div>
           </div>
-          <div class="text-center">
-            <div class="mb-2 text-3xl font-bold text-green-600 md:text-4xl dark:text-green-400">
-              <span class="counter" data-target="50000">0</span>+
-            </div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Happy Customers</div>
+          <div class="bg-white/70 dark:bg-[#16211A]/70 backdrop-blur-sm rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl font-bold text-[#2E7D32] dark:text-[#66BB6A] font-display">98%</div>
+            <div class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">Customer Satisfaction</div>
           </div>
-          <div class="text-center">
-            <div class="mb-2 text-3xl font-bold text-green-600 md:text-4xl dark:text-green-400">
-              24/7
-            </div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">Service Hours</div>
+          <div class="bg-white/70 dark:bg-[#16211A]/70 backdrop-blur-sm rounded-2xl p-6 border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl font-bold text-[#2E7D32] dark:text-[#66BB6A] font-display">4.9★</div>
+            <div class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">Rating on App</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Our Story Section -->
-  <section class="py-16 bg-white md:py-24 dark:bg-gray-800">
-    <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-        <!-- Image/Visual -->
-        <div class="relative">
-          <div class="overflow-hidden shadow-2xl rounded-3xl">
-            <div class="relative aspect-w-4 aspect-h-3 bg-gradient-to-br from-green-400 to-teal-400">
-              <!-- Pharmacy Interior -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent">
-              </div>
-              <div class="relative z-10 flex flex-col justify-end h-full p-8">
-                <img src="/images/brightlife.png" alt="">
-                <div class="text-white">
-                  <h3 class="mb-2 text-2xl font-bold">Our Pharmacy</h3>
-                  <p class="text-white/90">State-of-the-art facility with modern equipment</p>
-                </div>
-              </div>
-            </div>
+  <!-- Our Medical Services Section -->
+  <section class="py-16 lg:py-20 bg-white dark:bg-[#111B15] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32] mb-4">
+          <i class="fa-solid fa-stethoscope text-[#2E7D32] dark:text-[#66BB6A] text-sm"></i>
+          <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">Our Services</span>
+        </div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[#12261A] dark:text-[#F2F8F0]">
+          Comprehensive <span class="text-[#2E7D32] dark:text-[#66BB6A]">Healthcare Services</span>
+        </h2>
+        <p class="text-[#4B5C50] dark:text-[#8FA393] mt-4 text-lg">
+          From prescription medicines to home healthcare, we offer a complete range of services.
+        </p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service 1 - Medicine Delivery -->
+        <div class="group bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] hover:border-[#2E7D32] dark:hover:border-[#66BB6A] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-truck-medical text-2xl text-[#2E7D32] dark:text-[#66BB6A]"></i>
           </div>
-          
-          <!-- Floating Badge -->
-          <div class="absolute p-4 bg-white border border-gray-100 shadow-xl -bottom-6 -right-6 dark:bg-gray-800 rounded-2xl dark:border-gray-700">
-            <div class="flex items-center space-x-3">
-              <div class="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full dark:bg-green-900/30">
-                <i class="text-green-600 fa-solid fa-award dark:text-green-400"></i>
-              </div>
-              <div>
-                <div class="font-bold text-gray-800 dark:text-white">ISO 9001:2015</div>
-                <div class="text-xs text-gray-600 dark:text-gray-400">Certified</div>
-              </div>
-            </div>
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Home Medicine Delivery</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Get your prescribed allopathic medicines delivered to your doorstep within 24 hours. 
+            Safe, secure, and temperature-controlled delivery.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-sm text-[#2E7D32] dark:text-[#66BB6A]">
+            <i class="fa-regular fa-clock"></i>
+            <span>Delivery within 24 hours</span>
           </div>
         </div>
-
-        <!-- Content -->
-        <div class="space-y-6">
-          <div class="inline-block">
-            <span class="text-sm font-semibold tracking-wider text-green-600 uppercase dark:text-green-400">Our Story</span>
-            <div class="w-16 h-1 mt-2 bg-gradient-to-r from-green-500 to-teal-400"></div>
+        
+        <!-- Service 2 - Home Care -->
+        <div class="group bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] hover:border-[#C99A2E] dark:hover:border-[#E3C069] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-[#FFF8E1] dark:bg-[#2D2410] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-house-chimney-medical text-2xl text-[#C99A2E] dark:text-[#E3C069]"></i>
           </div>
-          
-          <h2 class="text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-            A Legacy of Trust & Care Since 2010
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Home Care Services</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Professional nursing care, post-operative care, and elderly care at home. 
+            Our trained staff ensures comfort and recovery in familiar surroundings.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-sm text-[#C99A2E] dark:text-[#E3C069]">
+            <i class="fa-regular fa-heart"></i>
+            <span>24/7 care available</span>
+          </div>
+        </div>
+        
+        <!-- Service 3 - Health Checkups -->
+        <div class="group bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] hover:border-[#2E7D32] dark:hover:border-[#66BB6A] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-heart-pulse text-2xl text-[#2E7D32] dark:text-[#66BB6A]"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Health Checkup Packages</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Comprehensive health checkup packages including blood tests, cardiac screening, 
+            and preventive health assessments at discounted rates.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-sm text-[#2E7D32] dark:text-[#66BB6A]">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Book online easily</span>
+          </div>
+        </div>
+        
+        <!-- Service 4 - Lab Testing -->
+        <div class="group bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] hover:border-[#C99A2E] dark:hover:border-[#E3C069] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-[#FFF8E1] dark:bg-[#2D2410] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-flask text-2xl text-[#C99A2E] dark:text-[#E3C069]"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Lab Testing Services</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Partnered with NABL-accredited labs for accurate blood tests, pathology reports, 
+            and diagnostic services with home sample collection.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-sm text-[#C99A2E] dark:text-[#E3C069]">
+            <i class="fa-regular fa-file-lines"></i>
+            <span>Reports in 24-48 hours</span>
+          </div>
+        </div>
+        
+        <!-- Service 5 - Medicine Consultation -->
+        <div class="group bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] hover:border-[#2E7D32] dark:hover:border-[#66BB6A] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-user-doctor text-2xl text-[#2E7D32] dark:text-[#66BB6A]"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Medicine Consultation</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Expert pharmacists provide detailed consultation on allopathic medicines, 
+            dosage, side effects, and drug interactions for safe medication use.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-sm text-[#2E7D32] dark:text-[#66BB6A]">
+            <i class="fa-regular fa-comment-medical"></i>
+            <span>Free consultation</span>
+          </div>
+        </div>
+        
+        <!-- Service 6 - Prescription Management -->
+        <div class="group bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] hover:border-[#C99A2E] dark:hover:border-[#E3C069] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-[#FFF8E1] dark:bg-[#2D2410] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-prescription-bottle-medical text-2xl text-[#C99A2E] dark:text-[#E3C069]"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Prescription Management</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Digital prescription storage, automated refill reminders, and medicine 
+            synchronization for chronic conditions and long-term treatments.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-sm text-[#C99A2E] dark:text-[#E3C069]">
+            <i class="fa-regular fa-bell"></i>
+            <span>Auto-refill reminders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Allopathic Medicines Section -->
+  <section class="py-16 lg:py-20 bg-[#F7F8F5] dark:bg-[#0A120E] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32] mb-4">
+          <i class="fa-solid fa-pills text-[#2E7D32] dark:text-[#66BB6A] text-sm"></i>
+          <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">Our Range</span>
+        </div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[#12261A] dark:text-[#F2F8F0]">
+          Extensive Range of <span class="text-[#2E7D32] dark:text-[#66BB6A]">Allopathic Medicines</span>
+        </h2>
+        <p class="text-[#4B5C50] dark:text-[#8FA393] mt-4 text-lg">
+          We stock a comprehensive range of allopathic medicines from leading pharmaceutical companies.
+        </p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white dark:bg-[#111B15] rounded-2xl p-6 text-center border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div class="text-4xl mb-3">💊</div>
+          <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">Prescription Drugs</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">All FDA-approved medicines</p>
+        </div>
+        
+        <div class="bg-white dark:bg-[#111B15] rounded-2xl p-6 text-center border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div class="text-4xl mb-3">💉</div>
+          <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">Injectables & Vaccines</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">Cold chain maintained</p>
+        </div>
+        
+        <div class="bg-white dark:bg-[#111B15] rounded-2xl p-6 text-center border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div class="text-4xl mb-3">🧴</div>
+          <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">Topical & Dermal</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">Creams, ointments, gels</p>
+        </div>
+        
+        <div class="bg-white dark:bg-[#111B15] rounded-2xl p-6 text-center border border-[#E3E8E1] dark:border-[#22302A] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div class="text-4xl mb-3">🫧</div>
+          <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">OTC Medicines</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] mt-1">Over-the-counter drugs</p>
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center">
+        <a href="/products" class="inline-flex items-center gap-2 px-6 py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-full transition-all duration-300 hover:scale-105">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Browse All Medicines
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="py-16 lg:py-20 bg-white dark:bg-[#111B15] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Mission -->
+        <div class="space-y-6 animate-slide-right">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32]">
+            <i class="fa-solid fa-bullseye text-[#2E7D32] dark:text-[#66BB6A] text-sm"></i>
+            <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">Our Mission</span>
+          </div>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-[#12261A] dark:text-[#F2F8F0]">
+            Making Allopathic Healthcare <br><span class="text-[#2E7D32] dark:text-[#66BB6A]">Accessible to All</span>
           </h2>
-          
-          <div class="space-y-4 text-gray-600 dark:text-gray-300">
-            <p>
-              Founded in 2010 by Dr. Rajesh Verma, BrightLife Pharmacy began as a small neighborhood pharmacy 
-              with a big vision: to provide accessible, reliable healthcare to every family in our community.
-            </p>
-            
-            <p>
-              What started as a single store has grown into a trusted healthcare institution, serving thousands 
-              of customers with genuine allopathic medicines, surgical supplies, and expert medical guidance.
-            </p>
-            
-            <p>
-              Our journey is built on three core principles: <strong class="text-green-600 dark:text-green-400">Quality, Trust, and Compassion</strong>. 
-              Every medicine we dispense undergoes rigorous quality checks, and every customer receives 
-              personalized care from our certified pharmacists.
-            </p>
+          <p class="text-[#4B5C50] dark:text-[#8FA393] leading-relaxed text-lg">
+            Our mission is to provide authentic, high-quality allopathic medicines at affordable prices, 
+            backed by expert pharmaceutical guidance and compassionate care. We believe that everyone 
+            deserves access to safe and effective healthcare.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-[#E8F5E9] dark:bg-[#1D2E21] rounded-full text-sm text-[#2E7D32] dark:text-[#66BB6A]">
+              <i class="fa-solid fa-check-circle mr-2"></i>Quality Assurance
+            </span>
+            <span class="px-4 py-2 bg-[#E8F5E9] dark:bg-[#1D2E21] rounded-full text-sm text-[#2E7D32] dark:text-[#66BB6A]">
+              <i class="fa-solid fa-check-circle mr-2"></i>Expert Guidance
+            </span>
+            <span class="px-4 py-2 bg-[#E8F5E9] dark:bg-[#1D2E21] rounded-full text-sm text-[#2E7D32] dark:text-[#66BB6A]">
+              <i class="fa-solid fa-check-circle mr-2"></i>Affordable Pricing
+            </span>
           </div>
-          
-          <!-- Founder Quote -->
-          <div class="p-6 mt-8 border-l-4 border-green-500 bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl">
-            <i class="mb-4 text-2xl text-green-400 fa-solid fa-quote-left"></i>
-            <p class="italic text-gray-700 dark:text-gray-300">
-              "Healthcare is not just about medicines; it's about understanding each patient's unique needs 
-              and providing solutions with empathy and expertise."
-            </p>
-            <div class="flex items-center mt-4">
-              <div class="flex items-center justify-center w-10 h-10 mr-3 bg-green-100 rounded-full dark:bg-gray-700">
-                <span class="font-bold text-green-600 dark:text-green-400">RV</span>
-              </div>
-              <div>
-                <div class="font-bold text-gray-800 dark:text-white">Dr. Rajesh Verma</div>
-                <div class="text-sm text-gray-600 dark:text-gray-400">Founder & Chief Pharmacist</div>
-              </div>
-            </div>
+        </div>
+        
+        <!-- Vision -->
+        <div class="space-y-6 animate-slide-left">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF8E1] dark:bg-[#2D2410] border border-[#FFE082] dark:border-[#C99A2E]">
+            <i class="fa-solid fa-eye text-[#C99A2E] dark:text-[#E3C069] text-sm"></i>
+            <span class="text-xs font-medium text-[#C99A2E] dark:text-[#E3C069] uppercase tracking-wider">Our Vision</span>
+          </div>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-[#12261A] dark:text-[#F2F8F0]">
+            A Healthier Community <br><span class="text-[#C99A2E] dark:text-[#E3C069]">Through Quality Medicine</span>
+          </h2>
+          <p class="text-[#4B5C50] dark:text-[#8FA393] leading-relaxed text-lg">
+            We envision a community where every individual has access to the right allopathic medicines 
+            and healthcare information. Through education, innovation, and personalized care, we're 
+            building a healthier tomorrow.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-[#FFF8E1] dark:bg-[#2D2410] rounded-full text-sm text-[#C99A2E] dark:text-[#E3C069]">
+              <i class="fa-solid fa-star mr-2"></i>Community Health
+            </span>
+            <span class="px-4 py-2 bg-[#FFF8E1] dark:bg-[#2D2410] rounded-full text-sm text-[#C99A2E] dark:text-[#E3C069]">
+              <i class="fa-solid fa-star mr-2"></i>Innovation
+            </span>
+            <span class="px-4 py-2 bg-[#FFF8E1] dark:bg-[#2D2410] rounded-full text-sm text-[#C99A2E] dark:text-[#E3C069]">
+              <i class="fa-solid fa-star mr-2"></i>Trust
+            </span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Our Mission & Values -->
-  <section class="py-16 md:py-24 bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700">
-    <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto mb-16 text-center">
-        <h2 class="mb-6 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-          Our Mission & Values
+  <!-- Why Choose Us -->
+  <section class="py-16 lg:py-20 bg-[#F7F8F5] dark:bg-[#0A120E] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32] mb-4">
+          <i class="fa-solid fa-certificate text-[#2E7D32] dark:text-[#66BB6A] text-sm"></i>
+          <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">Why Us</span>
+        </div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[#12261A] dark:text-[#F2F8F0]">
+          Why Choose <span class="text-[#C99A2E] dark:text-[#E3C069]">Bright-Life Pharmacy</span>
         </h2>
-        <p class="text-gray-600 dark:text-gray-300">
-          We're committed to setting new standards in pharmaceutical care through innovation, integrity, and 
-          unwavering dedication to our customers' well-being.
-        </p>
       </div>
       
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <!-- Mission Card -->
-        <div class="p-8 transition-shadow duration-300 bg-white border border-gray-100 shadow-lg dark:bg-gray-800 rounded-2xl hover:shadow-xl dark:border-gray-700">
-          <div class="flex items-center justify-center w-16 h-16 mb-6 bg-gradient-to-r from-green-500 to-green-400 rounded-2xl">
-            <i class="text-2xl text-white fa-solid fa-bullseye"></i>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-[#111B15] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class="w-16 h-16 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-shield-virus text-2xl text-[#2E7D32] dark:text-[#66BB6A]"></i>
           </div>
-          <h3 class="mb-4 text-xl font-bold text-gray-800 dark:text-white">Our Mission</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            To provide accessible, affordable, and quality healthcare solutions through genuine medicines, 
-            expert consultation, and compassionate service, ensuring every customer receives personalized care 
-            for their unique health needs.
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Authentic Medicines</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            All our allopathic medicines are sourced directly from WHO-GMP certified 
+            manufacturers with proper cold chain management.
           </p>
         </div>
         
-        <!-- Vision Card -->
-        <div class="p-8 transition-shadow duration-300 bg-white border border-gray-100 shadow-lg dark:bg-gray-800 rounded-2xl hover:shadow-xl dark:border-gray-700">
-          <div class="flex items-center justify-center w-16 h-16 mb-6 bg-gradient-to-r from-teal-500 to-teal-400 rounded-2xl">
-            <i class="text-2xl text-white fa-solid fa-eye"></i>
+        <div class="bg-white dark:bg-[#111B15] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class="w-16 h-16 rounded-full bg-[#FFF8E1] dark:bg-[#2D2410] flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-pharmacy text-2xl text-[#C99A2E] dark:text-[#E3C069]"></i>
           </div>
-          <h3 class="mb-4 text-xl font-bold text-gray-800 dark:text-white">Our Vision</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            To become the most trusted healthcare partner in the region by 2030, recognized for excellence 
-            in pharmaceutical services, community health initiatives, and innovative healthcare solutions 
-            that improve quality of life.
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Expert Pharmacists</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Our team of experienced pharmacists provides personalized guidance on 
+            allopathic medications, dosage, and potential side effects.
           </p>
         </div>
         
-        <!-- Values Card -->
-        <div class="p-8 transition-shadow duration-300 bg-white border border-gray-100 shadow-lg dark:bg-gray-800 rounded-2xl hover:shadow-xl dark:border-gray-700">
-          <div class="flex items-center justify-center w-16 h-16 mb-6 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-2xl">
-            <i class="text-2xl text-white fa-solid fa-hand-holding-heart"></i>
+        <div class="bg-white dark:bg-[#111B15] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class="w-16 h-16 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-comment-medical text-2xl text-[#2E7D32] dark:text-[#66BB6A]"></i>
           </div>
-          <h3 class="mb-4 text-xl font-bold text-gray-800 dark:text-white">Our Values</h3>
-          <div class="space-y-3">
-            <div class="flex items-center">
-              <i class="mr-3 text-green-500 fa-solid fa-check"></i>
-              <span class="text-gray-700 dark:text-gray-300">Integrity & Transparency</span>
-            </div>
-            <div class="flex items-center">
-              <i class="mr-3 text-green-500 fa-solid fa-check"></i>
-              <span class="text-gray-700 dark:text-gray-300">Patient-Centric Care</span>
-            </div>
-            <div class="flex items-center">
-              <i class="mr-3 text-green-500 fa-solid fa-check"></i>
-              <span class="text-gray-700 dark:text-gray-300">Quality & Safety First</span>
-            </div>
-            <div class="flex items-center">
-              <i class="mr-3 text-green-500 fa-solid fa-check"></i>
-              <span class="text-gray-700 dark:text-gray-300">Community Responsibility</span>
-            </div>
-          </div>
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-2">Reviews & Ratings</h3>
+          <p class="text-sm text-[#4B5C50] dark:text-[#8FA393] leading-relaxed">
+            Read genuine reviews from our customers about medicines and services. 
+            Share your experience and help others make informed decisions.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Our Team -->
-  <section class="py-16 bg-white md:py-24 dark:bg-gray-900">
-    <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto mb-16 text-center">
-        <h2 class="mb-6 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-          Meet Our Expert Team
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300">
-          Our team of certified pharmacists and healthcare professionals brings decades of combined experience 
-          to provide you with the best medical guidance and care.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-        <% const team = [
-          {
-            name: 'Dr. Rajesh Verma',
-            role: 'Founder & Chief Pharmacist',
-            experience: '25+ Years',
-            specialization: 'Clinical Pharmacy',
-            bio: 'M.Pharm, PhD in Pharmaceutical Sciences with extensive experience in clinical practice.',
-            color: 'from-green-500 to-green-400'
-          },
-          {
-            name: 'Dr. Priya Sharma',
-            role: 'Head Pharmacist',
-            experience: '15+ Years',
-            specialization: 'Pediatric Medicine',
-            bio: 'Specialized in pediatric medications and child healthcare. B.Pharm, M.Pharm.',
-            color: 'from-teal-500 to-teal-400'
-          },
-          {
-            name: 'Dr. Amit Patel',
-            role: 'Surgical Specialist',
-            experience: '12+ Years',
-            specialization: 'Surgical Supplies',
-            bio: 'Expert in surgical instruments and medical equipment. Diploma in Medical Technology.',
-            color: 'from-emerald-500 to-emerald-400'
-          },
-          {
-            name: 'Ms. Neha Kapoor',
-            role: 'Customer Care Head',
-            experience: '8+ Years',
-            specialization: 'Patient Relations',
-            bio: 'Ensuring exceptional customer experience and efficient service delivery.',
-            color: 'from-cyan-500 to-cyan-400'
-          }
-        ] %>
-        
-        <% team.forEach(member => { %>
-          <div class="overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg group dark:bg-gray-800 rounded-2xl hover:shadow-2xl hover:-translate-y-2 dark:border-gray-700">
-            <!-- Team Member Image -->
-            <div class="h-64 bg-gradient-to-r <%= member.color %> flex items-center justify-center relative overflow-hidden">
-              <div class="absolute inset-0 bg-black/20"></div>
-              <div class="flex items-center justify-center w-32 h-32 rounded-full bg-white/20 backdrop-blur-sm">
-                <i class="text-5xl text-white fa-solid fa-user-doctor"></i>
-              </div>
-              
-              <!-- Experience Badge -->
-              <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 text-sm font-bold text-green-600 rounded-full bg-white/90">
-                  <%= member.experience %>
-                </span>
-              </div>
-            </div>
-            
-            <!-- Team Member Details -->
-            <div class="p-6">
-              <h3 class="mb-1 text-xl font-bold text-gray-800 dark:text-white">
-                <%= member.name %>
-              </h3>
-              <p class="mb-3 font-medium text-green-600 dark:text-green-400">
-                <%= member.role %>
-              </p>
-              
-              <div class="mb-4">
-                <span class="inline-block px-3 py-1 text-sm font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                  <i class="mr-1 fa-solid fa-star"></i>
-                  <%= member.specialization %>
-                </span>
-              </div>
-              
-              <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">
-                <%= member.bio %>
-              </p>
-              
-              <!-- Contact Button -->
-              <button class="w-full px-4 py-2 text-sm font-medium text-green-600 transition-all duration-300 transform translate-y-2 border border-green-500 rounded-lg opacity-0 consult-btn dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 group-hover:opacity-100 group-hover:translate-y-0">
-                <i class="mr-2 fa-solid fa-comment-medical"></i>
-                Schedule Consultation
-              </button>
-            </div>
+  <!-- App Review & Feedback Section -->
+  <section class="py-16 lg:py-20 bg-white dark:bg-[#111B15] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6 animate-slide-right">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] border border-[#A5D6A7] dark:border-[#2E7D32]">
+            <i class="fa-regular fa-star text-[#2E7D32] dark:text-[#66BB6A] text-sm"></i>
+            <span class="text-xs font-medium text-[#2E7D32] dark:text-[#66BB6A] uppercase tracking-wider">App Feedback</span>
           </div>
-        <% }) %>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Overview -->
-  <section class="py-16 md:py-24 bg-gradient-to-r from-green-600 to-teal-500">
-    <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto mb-16 text-center">
-        <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">
-          Our Comprehensive Services
-        </h2>
-        <p class="text-green-100">
-          From prescription medicines to surgical supplies and expert consultations, we provide 
-          complete healthcare solutions under one roof.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <% const services = [
-          {
-            icon: 'fa-prescription',
-            title: 'Allopathic Medicines',
-            description: 'Wide range of genuine prescription and OTC medicines from trusted manufacturers.',
-            features: ['Prescription Drugs', 'OTC Medicines', 'Chronic Care', 'Pediatric']
-          },
-          {
-            icon: 'fa-syringe',
-            title: 'Surgical Supplies',
-            description: 'Complete range of sterile surgical instruments, disposables, and medical equipment.',
-            features: ['Surgical Instruments', 'Disposables', 'Medical Devices', 'Sterilization']
-          },
-          {
-            icon: 'fa-user-doctor',
-            title: 'Medical Consultation',
-            description: 'Free expert guidance from certified pharmacists for medicine usage and health queries.',
-            features: ['Medicine Guidance', 'Dosage Advice', 'Side Effects', 'Interactions']
-          },
-          {
-            icon: 'fa-truck-medical',
-            title: 'Home Delivery',
-            description: 'Fast and reliable medicine delivery to your doorstep within 2 hours.',
-            features: ['Emergency Delivery', 'Regular Refills', 'Prescription Pickup', 'Free Delivery']
-          },
-          {
-            icon: 'fa-kit-medical',
-            title: 'First Aid Solutions',
-            description: 'Complete first aid kits and emergency medical supplies for home and travel.',
-            features: ['First Aid Kits', 'Emergency Supplies', 'Wound Care', 'Burn Treatment']
-          },
-          {
-            icon: 'fa-heart-pulse',
-            title: 'Health Checkups',
-            description: 'Basic health screening and monitoring services at our pharmacy.',
-            features: ['BP Monitoring', 'Sugar Testing', 'Weight Management', 'Health Records']
-          }
-        ] %>
-        
-        <% services.forEach(service => { %>
-          <div class="p-6 transition-all duration-300 border bg-white/10 backdrop-blur-sm rounded-2xl border-white/20 hover:bg-white/20 hover:-translate-y-2">
-            <div class="flex items-center justify-center mb-6 w-14 h-14 bg-white/20 rounded-2xl">
-              <i class="fa-solid <%= service.icon %> text-white text-2xl"></i>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-[#12261A] dark:text-[#F2F8F0]">
+            Share Your <span class="text-[#C99A2E] dark:text-[#E3C069]">Experience</span>
+          </h2>
+          <p class="text-[#4B5C50] dark:text-[#8FA393] leading-relaxed text-lg">
+            Your feedback helps us improve. Rate our app, share your experience with our 
+            medicines, and suggest how we can serve you better.
+          </p>
+          
+          <div class="flex items-center gap-6">
+            <div class="text-center">
+              <div class="text-4xl font-bold text-[#2E7D32] dark:text-[#66BB6A] font-display">4.9</div>
+              <div class="flex text-[#C99A2E] dark:text-[#E3C069] text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <div class="text-xs text-[#4B5C50] dark:text-[#8FA393]">2,847 reviews</div>
             </div>
-            
-            <h3 class="mb-3 text-xl font-bold text-white">
-              <%= service.title %>
-            </h3>
-            
-            <p class="mb-4 text-green-100">
-              <%= service.description %>
-            </p>
-            
-            <div class="space-y-2">
-              <% service.features.forEach(feature => { %>
-                <div class="flex items-center text-sm text-white/90">
-                  <i class="mr-2 text-green-300 fa-solid fa-check-circle"></i>
-                  <span><%= feature %></span>
+            <div class="flex-1 space-y-1">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-8 text-[#4B5C50] dark:text-[#8FA393]">5★</span>
+                <div class="flex-1 h-2 bg-[#F0F4EE] dark:bg-[#16211A] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#2E7D32] dark:bg-[#66BB6A] rounded-full" style="width: 85%"></div>
                 </div>
-              <% }) %>
+                <span class="text-xs text-[#4B5C50] dark:text-[#8FA393]">85%</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-8 text-[#4B5C50] dark:text-[#8FA393]">4★</span>
+                <div class="flex-1 h-2 bg-[#F0F4EE] dark:bg-[#16211A] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#C99A2E] dark:bg-[#E3C069] rounded-full" style="width: 10%"></div>
+                </div>
+                <span class="text-xs text-[#4B5C50] dark:text-[#8FA393]">10%</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-8 text-[#4B5C50] dark:text-[#8FA393]">3★</span>
+                <div class="flex-1 h-2 bg-[#F0F4EE] dark:bg-[#16211A] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#FFE082] dark:bg-[#C99A2E] rounded-full" style="width: 3%"></div>
+                </div>
+                <span class="text-xs text-[#4B5C50] dark:text-[#8FA393]">3%</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-8 text-[#4B5C50] dark:text-[#8FA393]">2★</span>
+                <div class="flex-1 h-2 bg-[#F0F4EE] dark:bg-[#16211A] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#FFCC80] dark:bg-[#C99A2E] rounded-full" style="width: 1%"></div>
+                </div>
+                <span class="text-xs text-[#4B5C50] dark:text-[#8FA393]">1%</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-8 text-[#4B5C50] dark:text-[#8FA393]">1★</span>
+                <div class="flex-1 h-2 bg-[#F0F4EE] dark:bg-[#16211A] rounded-full overflow-hidden">
+                  <div class="h-full bg-[#EF9A9A] dark:bg-[#B3453D] rounded-full" style="width: 1%"></div>
+                </div>
+                <span class="text-xs text-[#4B5C50] dark:text-[#8FA393]">1%</span>
+              </div>
             </div>
           </div>
-        <% }) %>
-      </div>
-    </div>
-  </section>
-
-  <!-- Certifications & Accreditations -->
-  <section class="py-16 bg-white md:py-24 dark:bg-gray-800">
-    <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto mb-16 text-center">
-        <h2 class="mb-6 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-          Certifications & Accreditations
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300">
-          Our commitment to quality and safety is validated by certifications from leading healthcare authorities.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
-        <% const certifications = [
-          { name: 'ISO 9001:2015', org: 'Quality Management', icon: 'fa-certificate' },
-          { name: 'FDA Approved', org: 'Drugs Control', icon: 'fa-pills' },
-          { name: 'GST Registered', org: 'Govt. of India', icon: 'fa-file-contract' },
-          { name: 'PCI Licensed', org: 'Pharmacy Council', icon: 'fa-award' }
-        ] %>
+          
+          <a href="#" class="inline-flex items-center gap-2 px-6 py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-full transition-all duration-300 hover:scale-105">
+            <i class="fa-regular fa-pen-to-square"></i>
+            Write a Review
+          </a>
+        </div>
         
-        <% certifications.forEach(cert => { %>
-          <div class="flex items-center gap-4 p-4 text-left transition-transform duration-300 border border-gray-100 shadow-sm rounded-2xl bg-gray-50 hover:-translate-y-1 hover:shadow-lg dark:border-gray-700 dark:bg-gray-900/60">
-            <div class="flex items-center justify-center w-16 h-16 shrink-0 rounded-2xl bg-gradient-to-r from-green-100 to-teal-100 dark:from-gray-700 dark:to-gray-600 sm:h-20 sm:w-20">
-              <i class="fa-solid <%= cert.icon %> text-2xl text-green-600 dark:text-green-400 sm:text-3xl"></i>
-            </div>
-            <div class="min-w-0">
-              <div class="text-base font-bold leading-tight text-gray-800 sm:text-lg dark:text-white">
-                <%= cert.name %>
+        <div class="bg-[#F7F8F5] dark:bg-[#0A120E] rounded-2xl p-8 border border-[#E3E8E1] dark:border-[#22302A] animate-slide-left">
+          <h3 class="font-display font-semibold text-xl text-[#12261A] dark:text-[#F2F8F0] mb-4">Quick Feedback</h3>
+          <form id="feedback-form" class="space-y-4">
+            <div>
+              <label class="block text-sm text-[#4B5C50] dark:text-[#8FA393] mb-1">Your Experience</label>
+              <div class="flex gap-2 text-2xl text-[#C99A2E] dark:text-[#E3C069]">
+                <i class="fa-regular fa-star cursor-pointer hover:scale-125 transition-transform" data-star="1"></i>
+                <i class="fa-regular fa-star cursor-pointer hover:scale-125 transition-transform" data-star="2"></i>
+                <i class="fa-regular fa-star cursor-pointer hover:scale-125 transition-transform" data-star="3"></i>
+                <i class="fa-regular fa-star cursor-pointer hover:scale-125 transition-transform" data-star="4"></i>
+                <i class="fa-regular fa-star cursor-pointer hover:scale-125 transition-transform" data-star="5"></i>
               </div>
-              <div class="mt-1 text-sm leading-snug text-gray-600 dark:text-gray-400">
-                <%= cert.org %>
-              </div>
             </div>
-          </div>
-        <% }) %>
+            <div>
+              <textarea placeholder="Share your feedback about our medicines and services..." 
+                class="w-full px-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all resize-none"
+                rows="3"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-xl transition-all duration-300">
+              <i class="fa-regular fa-paper-plane mr-2"></i>
+              Submit Feedback
+            </button>
+          </form>
+          <div id="feedback-response" class="mt-4 hidden text-center text-sm"></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Call to Action -->
-  <section class="py-16 md:py-24 bg-gradient-to-br from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700">
-    <div class="container px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="mb-6 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-          Ready to Experience Quality Healthcare?
-        </h2>
-        
-        <p class="max-w-2xl mx-auto mb-8 text-lg text-gray-600 dark:text-gray-300">
-          Visit BrightLife Pharmacy today or contact us for expert medical guidance. 
-          Your health journey begins with us.
-        </p>
-        
-        <div class="flex flex-col justify-center gap-4 sm:flex-row">
-          <a href="/contact" 
-             class="flex items-center justify-center px-8 py-4 font-bold text-center text-white transition-all duration-300 bg-gradient-to-r from-green-600 to-teal-500 rounded-xl hover:shadow-2xl hover:scale-105">
-            <i class="mr-3 fa-solid fa-location-dot"></i>
-            Visit Our Pharmacy
-          </a>
-          
-          <a href="tel:+911234567890" 
-             class="flex items-center justify-center px-8 py-4 font-bold text-center text-green-600 transition-all duration-300 bg-white border-2 border-green-500 dark:bg-gray-800 dark:text-green-400 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/20">
-            <i class="mr-3 fa-solid fa-phone"></i>
-            Call: +91 12345 67890
-          </a>
-        </div>
-        
-        <!-- Pharmacy Info -->
-        <div class="pt-8 mt-12 border-t border-gray-300 dark:border-gray-600">
-          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div class="text-center">
-              <div class="mb-2 text-2xl font-bold text-green-600 dark:text-green-400">
-                <i class="fa-solid fa-clock"></i>
-              </div>
-              <div class="font-medium text-gray-800 dark:text-white">8:00 AM - 10:00 PM</div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Monday - Saturday</div>
-            </div>
-            
-            <div class="text-center">
-              <div class="mb-2 text-2xl font-bold text-green-600 dark:text-green-400">
-                <i class="fa-solid fa-location-dot"></i>
-              </div>
-              <div class="font-medium text-gray-800 dark:text-white">123 Medical Street</div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Mumbai, Maharashtra 400001</div>
-            </div>
-            
-            <div class="text-center">
-              <div class="mb-2 text-2xl font-bold text-green-600 dark:text-green-400">
-                <i class="fa-solid fa-envelope"></i>
-              </div>
-              <div class="font-medium text-gray-800 dark:text-white">info@brightlifepharmacy.com</div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Email Us Anytime</div>
-            </div>
-          </div>
-        </div>
+  <section class="relative overflow-hidden bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] dark:from-[#1D2E21] dark:to-[#0E1712] py-16 lg:py-20">
+    <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
+      <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#C99A2E] blur-3xl"></div>
+      <div class="absolute bottom-0 left-20 w-64 h-64 rounded-full bg-[#4CAF50] blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+        Need Allopathic Medicines? <span class="text-[#E3C069]">We're Here</span>
+      </h2>
+      <p class="text-[#A5D6A7] dark:text-[#8FA393] text-lg mb-8 max-w-2xl mx-auto">
+        Browse our extensive range of allopathic medicines, read reviews, and order with confidence.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/products" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#2E7D32] font-semibold rounded-full hover:bg-[#E8F5E9] transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <i class="fa-solid fa-pills"></i>
+          Browse Medicines
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#2E7D32] transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <i class="fa-solid fa-headset"></i>
+          Get Help
+        </a>
       </div>
     </div>
   </section>
-</div>
+</main>
 
+
+<style>
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-slide-right {
+    animation: slideRight 0.8s ease-out;
+  }
+  
+  .animate-slide-left {
+    animation: slideLeft 0.8s ease-out;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+  
+  /* Star Rating */
+  .star-active {
+    color: #C99A2E;
+  }
+  
+  .dark .star-active {
+    color: #E3C069;
+  }
+</style>
+
+<script>
+  // Star Rating System
+  const stars = document.querySelectorAll('[data-star]');
+  let selectedRating = 0;
+  
+  stars.forEach(star => {
+    star.addEventListener('click', function() {
+      selectedRating = parseInt(this.dataset.star);
+      stars.forEach((s, index) => {
+        if (index < selectedRating) {
+          s.className = 'fa-solid fa-star cursor-pointer hover:scale-125 transition-transform star-active';
+        } else {
+          s.className = 'fa-regular fa-star cursor-pointer hover:scale-125 transition-transform';
+        }
+      });
+    });
+    
+    star.addEventListener('mouseover', function() {
+      const hoverRating = parseInt(this.dataset.star);
+      stars.forEach((s, index) => {
+        if (index < hoverRating) {
+          s.className = 'fa-solid fa-star cursor-pointer hover:scale-125 transition-transform star-active';
+        } else if (index >= selectedRating || !selectedRating) {
+          s.className = 'fa-regular fa-star cursor-pointer hover:scale-125 transition-transform';
+        }
+      });
+    });
+    
+    star.addEventListener('mouseout', function() {
+      stars.forEach((s, index) => {
+        if (index < selectedRating) {
+          s.className = 'fa-solid fa-star cursor-pointer hover:scale-125 transition-transform star-active';
+        } else {
+          s.className = 'fa-regular fa-star cursor-pointer hover:scale-125 transition-transform';
+        }
+      });
+    });
+  });
+
+  // Feedback Form
+  const feedbackForm = document.getElementById('feedback-form');
+  const feedbackResponse = document.getElementById('feedback-response');
+  
+  feedbackForm?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const textarea = this.querySelector('textarea');
+    
+    if (!selectedRating) {
+      feedbackResponse.className = 'mt-4 text-center text-sm text-[#C62828] dark:text-[#E28880]';
+      feedbackResponse.textContent = '⚠️ Please select a rating first!';
+      feedbackResponse.classList.remove('hidden');
+      setTimeout(() => feedbackResponse.classList.add('hidden'), 3000);
+      return;
+    }
+    
+    if (!textarea.value.trim()) {
+      feedbackResponse.className = 'mt-4 text-center text-sm text-[#C62828] dark:text-[#E28880]';
+      feedbackResponse.textContent = '⚠️ Please share your feedback!';
+      feedbackResponse.classList.remove('hidden');
+      setTimeout(() => feedbackResponse.classList.add('hidden'), 3000);
+      return;
+    }
+    
+    // Simulate submission
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
+    
+    setTimeout(() => {
+      feedbackResponse.className = 'mt-4 text-center text-sm text-[#2E7D32] dark:text-[#66BB6A] animate-slide-up';
+      feedbackResponse.innerHTML = '✅ Thank you for your valuable feedback!';
+      feedbackResponse.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-regular fa-paper-plane mr-2"></i>Submit Feedback';
+      this.reset();
+      selectedRating = 0;
+      stars.forEach(s => s.className = 'fa-regular fa-star cursor-pointer hover:scale-125 transition-transform');
+      
+      setTimeout(() => feedbackResponse.classList.add('hidden'), 5000);
+    }, 1500);
+  });
+</script>

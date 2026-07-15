@@ -1,260 +1,239 @@
 <!-- navbar.ejs -->
-<nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-all duration-300 border-b border-green-50 dark:border-gray-800">
+<nav class="bg-white dark:bg-[#111B15] sticky top-0 z-50 border-b border-[#E3E8E1] dark:border-[#22302A] transition-colors duration-300 font-body">
   <div class="w-full">
-    <div class="flex justify-between items-center py-4 px-4 max-w-full">
-      
-      <!-- Logo Section -->
-      <div class="w-16 h-16 rounded-md 
-                flex items-center justify-center flex-shrink-0 logo-outline">
-      <img src="images/logo2.png"
-           alt="BrightLife Pharmacy Logo"
-           class="w-16 h-16 object-contain" />
-    </div>
+    <div class="flex justify-between items-center py-3 px-4 md:px-8 max-w-full">
 
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-1">
-        
-        <!-- Search Bar -->
-        <div class="relative mr-4">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <i class="fa-solid fa-search text-gray-400"></i>
-          </div>
-          <input 
-            type="text" 
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 flex-shrink-0">
+        <div class="w-11 h-11 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center p-1.5">
+          <img src="/images/logo2.png" alt="Bright-Life Pharmacy logo" class="w-full h-full object-contain" />
+        </div>
+        <div class="hidden sm:block leading-tight">
+          <p class="font-display font-semibold text-base text-[#12261A] dark:text-[#F2F8F0]">Bright-Life</p>
+          <p class="text-[11px] font-mono text-[#4B5C50] dark:text-[#8FA393] -mt-0.5">Pharmacy</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-4">
+
+        <!-- Search -->
+        <div class="relative">
+          <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-[#8A978C] dark:text-[#6E8175] text-sm"></i>
+          <input
+            type="text"
             id="search-input"
             placeholder="Search medicines, products..."
-            class="pl-10 pr-4 py-2 w-64 border border-gray-300 dark:border-gray-700 rounded-full bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+            class="pl-10 pr-10 py-2.5 w-64 rounded-full border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40 dark:focus:ring-[#4CAF50]/40 transition-all"
           >
-          <button type="button" id="search-btn" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-600 dark:text-green-400 hover:text-green-800">
+          <button type="button" id="search-btn" aria-label="Search" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#2E7D32] dark:text-[#66BB6A] hover:text-[#1B5E20] dark:hover:text-[#4CAF50] text-sm">
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
 
-        <!-- Navigation Links -->
-        <div class="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1">
-          <a href="/" 
-            class="<%= currentPath === '/' 
-              ? 'bg-white dark:bg-gray-900 text-green-600 dark:text-green-400 font-semibold shadow-sm' 
-              : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-white dark:hover:bg-gray-900' %> 
-              px-4 py-2 rounded-full transition-all duration-200 text-sm font-medium">
-            <i class="fa-solid fa-house mr-2"></i>Home
+        <!-- Nav links -->
+        <div class="flex items-center gap-1 bg-[#F0F4EE] dark:bg-[#16211A] rounded-full p-1 border border-[#E3E8E1] dark:border-[#22302A]">
+          <a href="/"
+            class="<%= currentPath === '/'
+              ? 'bg-white dark:bg-[#0E1712] text-[#2E7D32] dark:text-[#66BB6A] font-semibold shadow-sm'
+              : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:text-[#2E7D32] dark:hover:text-[#66BB6A]' %>
+              px-4 py-2 rounded-full transition-all duration-200 text-sm">
+            <i class="fa-solid fa-house mr-1.5"></i>Home
           </a>
-          
-          <a href="/products" 
-            class="<%= currentPath === '/products' || currentPath.includes('/product') 
-              ? 'bg-white dark:bg-gray-900 text-green-600 dark:text-green-400 font-semibold shadow-sm' 
-              : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-white dark:hover:bg-gray-900' %> 
-              px-4 py-2 rounded-full transition-all duration-200 text-sm font-medium">
-            <i class="fa-solid fa-pills mr-2"></i>Products
+
+          <a href="/products"
+            class="<%= currentPath === '/products' || currentPath.includes('/product')
+              ? 'bg-white dark:bg-[#0E1712] text-[#2E7D32] dark:text-[#66BB6A] font-semibold shadow-sm'
+              : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:text-[#2E7D32] dark:hover:text-[#66BB6A]' %>
+              px-4 py-2 rounded-full transition-all duration-200 text-sm">
+            <i class="fa-solid fa-pills mr-1.5"></i>Products
           </a>
-          
-          <a href="/blogs" 
-            class="<%= currentPath === '/blogs' || currentPath.includes('/blog') 
-              ? 'bg-white dark:bg-gray-900 text-green-600 dark:text-green-400 font-semibold shadow-sm' 
-              : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-white dark:hover:bg-gray-900' %> 
-              px-4 py-2 rounded-full transition-all duration-200 text-sm font-medium">
-            <i class="fa-solid fa-blog mr-2"></i>Blogs
+
+          <a href="/blogs"
+            class="<%= currentPath === '/blogs' || currentPath.includes('/blog')
+              ? 'bg-white dark:bg-[#0E1712] text-[#2E7D32] dark:text-[#66BB6A] font-semibold shadow-sm'
+              : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:text-[#2E7D32] dark:hover:text-[#66BB6A]' %>
+              px-4 py-2 rounded-full transition-all duration-200 text-sm">
+            <i class="fa-solid fa-blog mr-1.5"></i>Blogs
           </a>
-          
-          <a href="/about" 
-            class="<%= currentPath === '/about' 
-              ? 'bg-white dark:bg-gray-900 text-green-600 dark:text-green-400 font-semibold shadow-sm' 
-              : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-white dark:hover:bg-gray-900' %> 
-              px-4 py-2 rounded-full transition-all duration-200 text-sm font-medium">
-            <i class="fa-solid fa-circle-info mr-2"></i>About
+
+          <a href="/about"
+            class="<%= currentPath === '/about'
+              ? 'bg-white dark:bg-[#0E1712] text-[#2E7D32] dark:text-[#66BB6A] font-semibold shadow-sm'
+              : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:text-[#2E7D32] dark:hover:text-[#66BB6A]' %>
+              px-4 py-2 rounded-full transition-all duration-200 text-sm">
+            <i class="fa-solid fa-circle-info mr-1.5"></i>About
           </a>
-          
-          <a href="/contact" 
-            class="<%= currentPath === '/contact' 
-              ? 'bg-white dark:bg-gray-900 text-green-600 dark:text-green-400 font-semibold shadow-sm' 
-              : 'text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-white dark:hover:bg-gray-900' %> 
-              px-4 py-2 rounded-full transition-all duration-200 text-sm font-medium">
-            <i class="fa-solid fa-phone mr-2"></i>Contact
+
+          <a href="/contact"
+            class="<%= currentPath === '/contact'
+              ? 'bg-white dark:bg-[#0E1712] text-[#2E7D32] dark:text-[#66BB6A] font-semibold shadow-sm'
+              : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:text-[#2E7D32] dark:hover:text-[#66BB6A]' %>
+              px-4 py-2 rounded-full transition-all duration-200 text-sm">
+            <i class="fa-solid fa-phone mr-1.5"></i>Contact
           </a>
         </div>
 
-        <!-- User Actions -->
-        <div class="flex items-center space-x-3 ml-4">
-          <% if(currUser) { %>
-            <a href="/profile" 
-              class="flex items-center space-x-2 px-4 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200">
-              <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-teal-400 rounded-full flex items-center justify-center">
-                <span class="text-white text-sm font-bold">
+        <!-- User actions -->
+        <div class="flex items-center gap-2 pl-2 border-l border-[#E3E8E1] dark:border-[#22302A]">
+          <% if (currUser) { %>
+            <a href="/profile"
+              class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full hover:bg-[#F0F4EE] dark:hover:bg-[#16211A] transition-colors">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#2E7D32] to-[#C99A2E] flex items-center justify-center">
+                <span class="text-white text-xs font-semibold">
                   <%= currUser.name ? currUser.name.charAt(0).toUpperCase() : 'U' %>
                 </span>
               </div>
-              <span class="text-gray-700 dark:text-gray-300 font-medium hidden lg:block">
+              <span class="text-sm font-medium text-[#12261A] dark:text-[#E9F2E7] hidden lg:block">
                 <%= currUser.name ? currUser.name.split(' ')[0] : 'Profile' %>
               </span>
             </a>
-            
-            <a href="/logout" 
-              class="px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-all duration-200 font-medium">
-              <i class="fa-solid fa-right-from-bracket mr-2"></i>
-              <span class="hidden lg:inline">Logout</span>
+
+            <a href="/logout"
+              class="w-9 h-9 flex items-center justify-center rounded-full text-[#B3453D] dark:text-[#E28880] hover:bg-[#FBEAE8] dark:hover:bg-[#2B1815] transition-colors" aria-label="Logout" title="Logout">
+              <i class="fa-solid fa-right-from-bracket text-sm"></i>
             </a>
           <% } else { %>
-            <a href="/login" 
-              class="px-4 py-2 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-full transition-all duration-200 font-medium">
-              <i class="fa-solid fa-user mr-2"></i>
-              <span class="hidden lg:inline">Login</span>
+            <a href="/login"
+              class="px-4 py-2 text-sm font-medium text-[#2E7D32] dark:text-[#66BB6A] hover:bg-[#E8F5E9] dark:hover:bg-[#1D2E21] rounded-full transition-colors">
+              Log in
             </a>
-            
-            <a href="/signup" 
-              class="px-4 py-2 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-full hover:shadow-lg transition-all duration-200 font-medium hover:scale-105">
-              <i class="fa-solid fa-user-plus mr-2"></i>
-              <span class="hidden lg:inline">Sign Up</span>
+
+            <a href="/signup"
+              class="px-4 py-2 text-sm font-semibold bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white rounded-full transition-colors">
+              Sign up
             </a>
           <% } %>
 
-          <!-- Dark Mode Toggle -->
-          <button type="button" id="theme-toggle" 
-            class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-yellow-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200">
-            <i id="theme-icon" class="fa-solid fa-moon"></i>
+          <!-- Theme toggle -->
+          <button type="button" id="theme-toggle"
+            class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F4EE] dark:bg-[#16211A] border border-[#E3E8E1] dark:border-[#22302A] text-[#4B5C50] hover:bg-[#E3E8E1] dark:hover:bg-[#1D2E21] transition-colors">
+            <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <div class="flex items-center space-x-3 md:hidden">
-        <!-- Mobile Search Button -->
-        <button type="button" id="mobile-search-btn" class="p-2 text-gray-700 dark:text-gray-300">
+      <!-- Mobile controls -->
+      <div class="flex items-center gap-1 lg:hidden">
+        <button type="button" id="mobile-search-btn" aria-label="Search" class="w-9 h-9 flex items-center justify-center text-[#4B5C50] dark:text-[#A9BDAE]">
           <i class="fa-solid fa-search"></i>
         </button>
-        
-        <!-- Mobile Theme Toggle -->
-        <button type="button" id="mobile-theme-toggle" class="p-2 text-gray-700 dark:text-yellow-400">
-          <i id="mobile-theme-icon" class="fa-solid fa-moon"></i>
+
+        <button type="button" id="mobile-theme-toggle" aria-label="Toggle theme" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F4EE] dark:bg-[#16211A] text-[#4B5C50]">
+          <i id="mobile-theme-icon" class="fa-solid fa-moon text-sm"></i>
         </button>
-        
-        <!-- Mobile Menu Toggle -->
-        <button type="button" id="mobile-menu-button" class="p-2 text-gray-700 dark:text-gray-300">
-          <i class="fa-solid fa-bars text-xl"></i>
+
+        <button type="button" id="mobile-menu-button" aria-label="Open menu" class="w-9 h-9 flex items-center justify-center text-[#12261A] dark:text-[#E9F2E7]">
+          <i class="fa-solid fa-bars text-lg"></i>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Search Bar -->
-    <div id="mobile-search" class="hidden md:hidden py-3 border-t border-gray-200 dark:border-gray-800">
+    <!-- Mobile search bar -->
+    <div id="mobile-search" class="hidden md:hidden px-4 pb-3 border-t border-[#E3E8E1] dark:border-[#22302A] pt-3">
       <div class="relative">
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <i class="fa-solid fa-search text-gray-400"></i>
-        </div>
-        <input 
-          type="text" 
+        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-[#8A978C] dark:text-[#6E8175] text-sm"></i>
+        <input
+          type="text"
           id="mobile-search-input"
           placeholder="Search medicines, products..."
-          class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          class="w-full pl-10 pr-4 py-3 rounded-xl border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] placeholder-[#8A978C] dark:placeholder-[#6E8175] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40"
         >
       </div>
     </div>
   </div>
 
-  <!-- Mobile Sidebar Menu -->
-  <div id="mobile-menu" 
-    class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 md:hidden">
-    <div class="absolute inset-0 bg-black/50" id="mobile-menu-overlay"></div>
-    
-    <div class="absolute right-0 top-0 h-full w-80 bg-white dark:bg-gray-900 shadow-xl">
-      <!-- Mobile Menu Header -->
-      <div class="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-md 
-                flex items-center justify-center flex-shrink-0 logo-outline">
-      <img src="images/logo2.png"
-           alt="BrightLife Pharmacy Logo"
-           class="w-10 h-10 object-contain" />
-    </div>
+  <!-- Mobile slide-in menu -->
+  <div id="mobile-menu" class="fixed bg-transparent inset-0 z-50 transform translate-x-full transition-transform duration-300 lg:hidden">
+    <div class="absolute inset-0" id="mobile-menu-overlay"></div>
+
+    <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-[#111B15] border-l border-[#E3E8E1] dark:border-[#22302A]">
+      <div class="p-4 border-b border-[#E3E8E1] dark:border-[#22302A] flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center p-1.5">
+            <img src="/images/logo2.png" alt="Bright-Life Pharmacy logo" class="w-full h-full object-contain" />
+          </div>
           <div>
-            <h2 class="font-bold text-gray-800 dark:text-white">BrightLife</h2>
-            <p class="text-xs text-gray-500 dark:text-gray-400">Pharmacy</p>
+            <p class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">Bright-Life</p>
+            <p class="text-[11px] font-mono text-[#4B5C50] dark:text-[#8FA393] -mt-0.5">Pharmacy</p>
           </div>
         </div>
-        <button type="button" id="mobile-menu-close" class="p-2 text-gray-700 dark:text-gray-300">
-          <i class="fa-solid fa-xmark text-xl"></i>
+        <button type="button" id="mobile-menu-close" aria-label="Close menu" class="w-9 h-9 flex items-center justify-center text-[#4B5C50] dark:text-[#A9BDAE]">
+          <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
 
-      <!-- Mobile Menu Content -->
       <div class="p-4 space-y-1">
-        <a href="/" 
-          class="<%= currentPath === '/' 
-            ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-semibold' 
-            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' %> 
-            flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200">
-          <i class="fa-solid fa-house w-6"></i>
-          <span>Home</span>
-        </a>
-        
-        <a href="/products" 
-          class="<%= currentPath === '/products' || currentPath.includes('/product') 
-            ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-semibold' 
-            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' %> 
-            flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200">
-          <i class="fa-solid fa-pills w-6"></i>
-          <span>Products</span>
-        </a>
-        
-        <a href="/blogs" 
-          class="<%= currentPath === '/blogs' || currentPath.includes('/blog') 
-            ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-semibold' 
-            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' %> 
-            flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200">
-          <i class="fa-solid fa-blog w-6"></i>
-          <span>Blogs</span>
-        </a>
-        
-        <a href="/about" 
-          class="<%= currentPath === '/about' 
-            ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-semibold' 
-            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' %> 
-            flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200">
-          <i class="fa-solid fa-circle-info w-6"></i>
-          <span>About Us</span>
-        </a>
-        
-        <a href="/contact" 
-          class="<%= currentPath === '/contact' 
-            ? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-semibold' 
-            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' %> 
-            flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200">
-          <i class="fa-solid fa-phone w-6"></i>
-          <span>Contact</span>
+        <a href="/"
+          class="<%= currentPath === '/'
+            ? 'bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] font-semibold'
+            : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A]' %>
+            flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-sm">
+          <i class="fa-solid fa-house w-5"></i><span>Home</span>
         </a>
 
-        <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-800">
-          <% if(currUser) { %>
-            <a href="/profile" 
-              class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200">
-              <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-400 rounded-full flex items-center justify-center">
-                <span class="text-white font-bold">
+        <a href="/products"
+          class="<%= currentPath === '/products' || currentPath.includes('/product')
+            ? 'bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] font-semibold'
+            : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A]' %>
+            flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-sm">
+          <i class="fa-solid fa-pills w-5"></i><span>Products</span>
+        </a>
+
+        <a href="/blogs"
+          class="<%= currentPath === '/blogs' || currentPath.includes('/blog')
+            ? 'bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] font-semibold'
+            : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A]' %>
+            flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-sm">
+          <i class="fa-solid fa-blog w-5"></i><span>Blogs</span>
+        </a>
+
+        <a href="/about"
+          class="<%= currentPath === '/about'
+            ? 'bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] font-semibold'
+            : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A]' %>
+            flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-sm">
+          <i class="fa-solid fa-circle-info w-5"></i><span>About us</span>
+        </a>
+
+        <a href="/contact"
+          class="<%= currentPath === '/contact'
+            ? 'bg-[#E8F5E9] dark:bg-[#1D2E21] text-[#2E7D32] dark:text-[#66BB6A] font-semibold'
+            : 'text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A]' %>
+            flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-sm">
+          <i class="fa-solid fa-phone w-5"></i><span>Contact</span>
+        </a>
+
+        <div class="pt-4 mt-4 border-t border-[#E3E8E1] dark:border-[#22302A] space-y-1">
+          <% if (currUser) { %>
+            <a href="/profile"
+              class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#F0F4EE] dark:hover:bg-[#16211A] transition-colors">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#2E7D32] to-[#C99A2E] flex items-center justify-center">
+                <span class="text-white text-xs font-semibold">
                   <%= currUser.name ? currUser.name.charAt(0).toUpperCase() : 'U' %>
                 </span>
               </div>
               <div>
-                <p class="font-medium text-gray-800 dark:text-white">
-                  <%= currUser.name ? currUser.name : 'User Profile' %>
+                <p class="text-sm font-medium text-[#12261A] dark:text-[#F2F8F0]">
+                  <%= currUser.name ? currUser.name : 'User profile' %>
                 </p>
-                <p class="text-sm text-gray-500 dark:text-gray-400">View Profile</p>
+                <p class="text-xs text-[#4B5C50] dark:text-[#8FA393]">View profile</p>
               </div>
             </a>
-            
-            <a href="/logout" 
-              class="flex items-center space-x-3 px-4 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-all duration-200 mt-1">
-              <i class="fa-solid fa-right-from-bracket w-6"></i>
-              <span>Logout</span>
+
+            <a href="/logout"
+              class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#B3453D] dark:text-[#E28880] hover:bg-[#FBEAE8] dark:hover:bg-[#2B1815] transition-colors text-sm">
+              <i class="fa-solid fa-right-from-bracket w-5"></i><span>Logout</span>
             </a>
           <% } else { %>
-            <a href="/login" 
-              class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200">
-              <i class="fa-solid fa-user w-6 text-green-600 dark:text-green-400"></i>
-              <span>Login</span>
+            <a href="/login"
+              class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#2E7D32] dark:text-[#66BB6A] hover:bg-[#E8F5E9] dark:hover:bg-[#1D2E21] transition-colors text-sm">
+              <i class="fa-solid fa-user w-5"></i><span>Log in</span>
             </a>
-            
-            <a href="/signup" 
-              class="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-xl hover:shadow-lg transition-all duration-200 mt-1">
-              <i class="fa-solid fa-user-plus w-6"></i>
-              <span>Sign Up</span>
+
+            <a href="/signup"
+              class="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#2E7D32] dark:bg-[#3F9142] text-white transition-colors text-sm font-semibold">
+              <i class="fa-solid fa-user-plus w-5"></i><span>Sign up</span>
             </a>
           <% } %>
         </div>
@@ -263,122 +242,61 @@
   </div>
 </nav>
 
-<!-- JavaScript for Navbar Functionality -->
 <script>
-  // Theme Toggle
+  // Theme toggle
   const themeToggle = document.getElementById('theme-toggle');
   const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
   const mobileThemeIcon = document.getElementById('mobile-theme-icon');
-  
-  function toggleTheme() {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      themeIcon.className = 'fa-solid fa-moon';
-      mobileThemeIcon.className = 'fa-solid fa-moon';
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      themeIcon.className = 'fa-solid fa-sun text-yellow-400';
-      mobileThemeIcon.className = 'fa-solid fa-sun text-yellow-400';
-    }
+
+  function applyThemeIcons(isDark) {
+    const cls = isDark ? 'fa-solid fa-sun text-sm text-[#E3C069]' : 'fa-solid fa-moon text-sm';
+    themeIcon.className = cls;
+    mobileThemeIcon.className = cls;
   }
-  
+
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    applyThemeIcons(isDark);
+  }
+
   themeToggle?.addEventListener('click', toggleTheme);
   mobileThemeToggle?.addEventListener('click', toggleTheme);
-  
-  // Check for saved theme preference
-  if (localStorage.getItem('theme') === 'dark' || 
+
+  if (localStorage.getItem('theme') === 'dark' ||
       (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark');
-    themeIcon.className = 'fa-solid fa-sun text-yellow-400';
-    mobileThemeIcon.className = 'fa-solid fa-sun text-yellow-400';
+    applyThemeIcons(true);
   }
-  
-  // Mobile Menu Toggle
+
+  // Mobile menu
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenuClose = document.getElementById('mobile-menu-close');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-  
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu.classList.remove('translate-x-full');
-  });
-  
-  mobileMenuClose?.addEventListener('click', () => {
-    mobileMenu.classList.add('translate-x-full');
-  });
-  
-  mobileMenuOverlay?.addEventListener('click', () => {
-    mobileMenu.classList.add('translate-x-full');
-  });
-  
-  // Mobile Search Toggle
+
+  mobileMenuButton?.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+  mobileMenuClose?.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+  mobileMenuOverlay?.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+
+  // Mobile search toggle
   const mobileSearchBtn = document.getElementById('mobile-search-btn');
   const mobileSearch = document.getElementById('mobile-search');
-  
-  mobileSearchBtn?.addEventListener('click', () => {
-    mobileSearch.classList.toggle('hidden');
-  });
-  
-  // Search Functionality
+  mobileSearchBtn?.addEventListener('click', () => mobileSearch.classList.toggle('hidden'));
+
+  // Search
   const searchInput = document.getElementById('search-input');
   const mobileSearchInput = document.getElementById('mobile-search-input');
   const searchBtn = document.getElementById('search-btn');
-  
+
   function performSearch(query) {
-    if (query.trim()) {
-      window.location.href = `/products?search=${encodeURIComponent(query)}`;
-    }
+    if (query.trim()) window.location.href = `/products?search=${encodeURIComponent(query)}`;
   }
-  
-  searchBtn?.addEventListener('click', () => {
-    performSearch(searchInput.value);
-  });
-  
-  searchInput?.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      performSearch(searchInput.value);
-    }
-  });
-  
+
+  searchBtn?.addEventListener('click', () => performSearch(searchInput.value));
+  searchInput?.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(searchInput.value); });
   mobileSearchInput?.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      performSearch(mobileSearchInput.value);
-      mobileSearch.classList.add('hidden');
-    }
+    if (e.key === 'Enter') { performSearch(mobileSearchInput.value); mobileSearch.classList.add('hidden'); }
   });
 </script>
-
-<style>
-  .logo-outline {
-    -webkit-filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.5))
-                    drop-shadow(0 0 6px rgba(59, 130, 246, 0.3));
-    filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.5))
-            drop-shadow(0 0 6px rgba(59, 130, 246, 0.3));
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .dark .logo-outline {
-    -webkit-filter: drop-shadow(0 0 3px rgba(45, 212, 191, 0.6))
-                    drop-shadow(0 0 8px rgba(45, 212, 191, 0.4));
-    filter: drop-shadow(0 0 3px rgba(45, 212, 191, 0.6))
-            drop-shadow(0 0 8px rgba(45, 212, 191, 0.4));
-  }
-  
-  .active-nav {
-    position: relative;
-  }
-  
-  .active-nav::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, #3b82f6, #2dd4bf);
-    border-radius: 2px;
-  }
-</style>
