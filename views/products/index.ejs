@@ -81,7 +81,8 @@
     color: #66BB6A;
   }
   
-  .custom-checkbox input[type="checkbox"] {
+  .custom-checkbox input[type="checkbox"],
+  .custom-checkbox input[type="radio"] {
     display: none;
   }
   
@@ -116,6 +117,64 @@
     color: white;
     font-size: 12px;
     font-weight: bold;
+  }
+  
+  /* Custom Radio Button */
+  .custom-radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 0;
+    transition: color 0.2s;
+  }
+  
+  .custom-radio:hover {
+    color: #2E7D32;
+  }
+  
+  .dark .custom-radio:hover {
+    color: #66BB6A;
+  }
+  
+  .custom-radio input[type="radio"] {
+    display: none;
+  }
+  
+  .custom-radio .radiomark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #C5D0C0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  
+  .dark .custom-radio .radiomark {
+    border-color: #2A3A31;
+  }
+  
+  .custom-radio input:checked + .radiomark {
+    border-color: #2E7D32;
+  }
+  
+  .dark .custom-radio input:checked + .radiomark {
+    border-color: #3F9142;
+  }
+  
+  .custom-radio input:checked + .radiomark::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2E7D32;
+  }
+  
+  .dark .custom-radio input:checked + .radiomark::after {
+    background: #3F9142;
   }
   
   /* Price Range Slider */
@@ -209,13 +268,49 @@
     box-shadow: 0 12px 30px rgba(0,0,0,0.3);
   }
   
-  /* Mobile Filter Drawer */
-  .filter-drawer {
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Mobile Filter Modal - POPUP STYLE */
+  .filter-modal {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
   }
   
-  .filter-drawer.open {
-    transform: translateX(0);
+  .filter-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .filter-modal .modal-content {
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s ease;
+    max-height: 90vh;
+  }
+  
+  .filter-modal.active .modal-content {
+    transform: scale(1) translateY(0);
+  }
+  
+  .filter-modal .modal-body {
+    max-height: calc(90vh - 140px);
+    overflow-y: auto;
+  }
+  
+  /* Custom scrollbar for modal body */
+  .modal-body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .modal-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .modal-body::-webkit-scrollbar-thumb {
+    background: #2E7D32;
+    border-radius: 2px;
+  }
+  
+  .dark .modal-body::-webkit-scrollbar-thumb {
+    background: #3F9142;
   }
 </style>
 
@@ -249,7 +344,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex gap-8">
       
-      <!-- Filter Sidebar -->
+      <!-- Filter Sidebar (Desktop) -->
       <aside class="hidden md:block w-64 lg:w-72 flex-shrink-0">
         <div class="sticky top-24 bg-white dark:bg-[#111B15] rounded-2xl border border-[#E3E8E1] dark:border-[#22302A] p-5">
           
@@ -380,25 +475,25 @@
           <details class="filter-section" open>
             <summary class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7]">Rating</summary>
             <div class="filter-content space-y-1">
-              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <label class="custom-radio text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
                 <input type="radio" name="rating" value="4">
-                <span class="checkmark"></span>
+                <span class="radiomark"></span>
                 <div class="flex items-center gap-1">
                   <span class="text-[#C99A2E]">★★★★★</span>
                   <span class="text-xs opacity-60">(4.5+)</span>
                 </div>
               </label>
-              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <label class="custom-radio text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
                 <input type="radio" name="rating" value="3">
-                <span class="checkmark"></span>
+                <span class="radiomark"></span>
                 <div class="flex items-center gap-1">
                   <span class="text-[#C99A2E]">★★★★☆</span>
                   <span class="text-xs opacity-60">(3.5+)</span>
                 </div>
               </label>
-              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <label class="custom-radio text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
                 <input type="radio" name="rating" value="2">
-                <span class="checkmark"></span>
+                <span class="radiomark"></span>
                 <div class="flex items-center gap-1">
                   <span class="text-[#C99A2E]">★★★☆☆</span>
                   <span class="text-xs opacity-60">(2.5+)</span>
@@ -469,56 +564,189 @@
     </div>
   </div>
 
-  <!-- Mobile Filter Drawer -->
-  <div id="filter-drawer" class="fixed inset-0 z-50 md:hidden pointer-events-none">
-    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300" id="filter-overlay"></div>
-    <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-[#111B15] transform translate-x-full transition-transform duration-300 filter-drawer shadow-2xl pointer-events-auto">
-      <div class="p-4 border-b border-[#E3E8E1] dark:border-[#22302A] flex justify-between items-center">
-        <h3 class="font-display font-semibold text-[#12261A] dark:text-[#F2F8F0]">Filters</h3>
-        <button id="filter-close" class="w-9 h-9 flex items-center justify-center text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A] rounded-full transition-colors">
-          <i class="fa-solid fa-xmark text-lg"></i>
+  <!-- Mobile Filter Modal - POPUP -->
+  <div id="filter-modal" class="filter-modal fixed inset-0 z-50 flex items-center justify-center px-4">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="filter-modal-overlay"></div>
+    
+    <!-- Modal Content -->
+    <div class="modal-content relative bg-white dark:bg-[#111B15] rounded-2xl w-full max-w-md mx-auto shadow-2xl border border-[#E3E8E1] dark:border-[#22302A]">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-4 border-b border-[#E3E8E1] dark:border-[#22302A]">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-sliders text-[#2E7D32] dark:text-[#66BB6A]"></i>
+          <h3 class="font-display font-semibold text-lg text-[#12261A] dark:text-[#F2F8F0]">Filters</h3>
+          <button id="modal-clear-filters" class="text-xs text-[#2E7D32] dark:text-[#66BB6A] hover:underline ml-2">
+            Clear all
+          </button>
+        </div>
+        <button id="filter-modal-close" class="w-9 h-9 flex items-center justify-center text-[#4B5C50] dark:text-[#A9BDAE] hover:bg-[#F0F4EE] dark:hover:bg-[#16211A] rounded-full transition-colors">
+          <i class="fa-solid fa-xmark text-xl"></i>
         </button>
       </div>
-      <div class="p-4 overflow-y-auto h-[calc(100%-140px)]">
-        <!-- Mobile filter content - same as sidebar but simplified -->
-        <div class="space-y-4">
-          <!-- Category -->
-          <div>
-            <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Category</h4>
-            <div class="space-y-1">
-              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
-                <input type="checkbox" checked><span class="checkmark"></span>Tablets
-              </label>
-              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
-                <input type="checkbox"><span class="checkmark"></span>Syrups
-              </label>
-              <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
-                <input type="checkbox"><span class="checkmark"></span>Injectables
-              </label>
-            </div>
+      
+      <!-- Modal Body -->
+      <div class="modal-body p-4 space-y-5">
+        
+        <!-- Category -->
+        <div>
+          <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Category</h4>
+          <div class="grid grid-cols-2 gap-1">
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="tablets" checked>
+              <span class="checkmark"></span>
+              Tablets
+              <span class="ml-auto text-xs opacity-60">(89)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="syrups">
+              <span class="checkmark"></span>
+              Syrups
+              <span class="ml-auto text-xs opacity-60">(42)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="injectables">
+              <span class="checkmark"></span>
+              Injectables
+              <span class="ml-auto text-xs opacity-60">(28)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="topical">
+              <span class="checkmark"></span>
+              Topical
+              <span class="ml-auto text-xs opacity-60">(35)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="diabetic">
+              <span class="checkmark"></span>
+              Diabetic Care
+              <span class="ml-auto text-xs opacity-60">(24)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="supplements">
+              <span class="checkmark"></span>
+              Supplements
+              <span class="ml-auto text-xs opacity-60">(30)</span>
+            </label>
           </div>
-          
-          <!-- Price -->
-          <div>
-            <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Price Range</h4>
-            <input type="range" min="0" max="5000" value="5000" class="price-slider">
-            <div class="flex gap-2 mt-2">
-              <input type="number" value="0" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm">
-              <input type="number" value="5000" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm">
-            </div>
+        </div>
+        
+        <!-- Price Range -->
+        <div>
+          <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Price Range</h4>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">₹<span id="modal-price-min">0</span></span>
+            <span class="text-sm text-[#4B5C50] dark:text-[#8FA393]">₹<span id="modal-price-max">5000</span></span>
+          </div>
+          <input type="range" min="0" max="5000" value="5000" step="100" class="price-slider" id="modal-price-slider">
+          <div class="flex gap-2 mt-2">
+            <input type="number" id="modal-price-input-min" value="0" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40">
+            <input type="number" id="modal-price-input-max" value="5000" class="w-1/2 px-3 py-1.5 rounded-lg border border-[#E3E8E1] dark:border-[#2A3A31] bg-[#F7F8F5] dark:bg-[#16211A] text-sm text-[#12261A] dark:text-[#E9F2E7] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]/40">
+          </div>
+        </div>
+        
+        <!-- Prescription -->
+        <div>
+          <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Prescription</h4>
+          <div class="space-y-1">
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="rx">
+              <span class="checkmark"></span>
+              Prescription Required
+              <span class="ml-auto text-xs opacity-60">(56)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="otc">
+              <span class="checkmark"></span>
+              OTC (No Prescription)
+              <span class="ml-auto text-xs opacity-60">(192)</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- Brand -->
+        <div>
+          <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Brand</h4>
+          <div class="grid grid-cols-2 gap-1">
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="cipla">
+              <span class="checkmark"></span>
+              Cipla
+              <span class="ml-auto text-xs opacity-60">(34)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="sun-pharma">
+              <span class="checkmark"></span>
+              Sun Pharma
+              <span class="ml-auto text-xs opacity-60">(28)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="dr-reddy">
+              <span class="checkmark"></span>
+              Dr. Reddy's
+              <span class="ml-auto text-xs opacity-60">(22)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="gsk">
+              <span class="checkmark"></span>
+              GSK
+              <span class="ml-auto text-xs opacity-60">(18)</span>
+            </label>
+            <label class="custom-checkbox text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="checkbox" value="pfizer">
+              <span class="checkmark"></span>
+              Pfizer
+              <span class="ml-auto text-xs opacity-60">(15)</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- Rating -->
+        <div>
+          <h4 class="font-medium text-sm text-[#12261A] dark:text-[#E9F2E7] mb-2">Rating</h4>
+          <div class="space-y-1">
+            <label class="custom-radio text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="radio" name="modal-rating" value="4">
+              <span class="radiomark"></span>
+              <div class="flex items-center gap-1">
+                <span class="text-[#C99A2E]">★★★★★</span>
+                <span class="text-xs opacity-60">(4.5+)</span>
+              </div>
+            </label>
+            <label class="custom-radio text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="radio" name="modal-rating" value="3">
+              <span class="radiomark"></span>
+              <div class="flex items-center gap-1">
+                <span class="text-[#C99A2E]">★★★★☆</span>
+                <span class="text-xs opacity-60">(3.5+)</span>
+              </div>
+            </label>
+            <label class="custom-radio text-sm text-[#4B5C50] dark:text-[#A9BDAE]">
+              <input type="radio" name="modal-rating" value="2">
+              <span class="radiomark"></span>
+              <div class="flex items-center gap-1">
+                <span class="text-[#C99A2E]">★★★☆☆</span>
+                <span class="text-xs opacity-60">(2.5+)</span>
+              </div>
+            </label>
           </div>
         </div>
       </div>
-      <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#111B15]">
-        <button class="w-full py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-xl transition-colors">
+      
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-[#E3E8E1] dark:border-[#22302A] flex gap-3">
+        <button id="modal-apply-filters" class="flex-1 py-3 bg-[#2E7D32] hover:bg-[#276b2b] dark:bg-[#3F9142] dark:hover:bg-[#4CAF50] text-white font-medium rounded-xl transition-colors">
           Apply Filters
+        </button>
+        <button id="modal-reset-filters" class="px-5 py-3 border border-[#E3E8E1] dark:border-[#22302A] text-[#4B5C50] dark:text-[#8FA393] hover:border-[#2E7D32] dark:hover:border-[#66BB6A] hover:text-[#2E7D32] dark:hover:text-[#66BB6A] font-medium rounded-xl transition-colors">
+          Reset
         </button>
       </div>
     </div>
   </div>
 
 </main>
-
 
 <script>
   // ===================== PRODUCT DATA =====================
@@ -700,9 +928,137 @@
     });
   }
 
+  // ===================== MOBILE FILTER MODAL =====================
+  function initMobileFilterModal() {
+    const filterToggle = document.getElementById('filter-toggle-mobile');
+    const filterModal = document.getElementById('filter-modal');
+    const modalOverlay = document.getElementById('filter-modal-overlay');
+    const modalClose = document.getElementById('filter-modal-close');
+    const modalApply = document.getElementById('modal-apply-filters');
+    const modalReset = document.getElementById('modal-reset-filters');
+    const modalClear = document.getElementById('modal-clear-filters');
+    
+    function openModal() {
+      filterModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Sync modal filters with desktop filters
+      syncModalFilters();
+    }
+    
+    function closeModal() {
+      filterModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    function syncModalFilters() {
+      // Sync checkboxes
+      const desktopCheckboxes = document.querySelectorAll('.filter-section:first-of-type input[type="checkbox"]');
+      const modalCheckboxes = document.querySelectorAll('#filter-modal .modal-body .custom-checkbox input[type="checkbox"]');
+      
+      modalCheckboxes.forEach((modalCb, index) => {
+        if (desktopCheckboxes[index]) {
+          modalCb.checked = desktopCheckboxes[index].checked;
+        }
+      });
+      
+      // Sync prescription
+      const desktopRx = document.querySelector('.filter-section:nth-of-type(3) input[value="rx"]');
+      const modalRx = document.querySelector('#filter-modal input[value="rx"]');
+      if (desktopRx && modalRx) modalRx.checked = desktopRx.checked;
+      
+      const desktopOtc = document.querySelector('.filter-section:nth-of-type(3) input[value="otc"]');
+      const modalOtc = document.querySelector('#filter-modal input[value="otc"]');
+      if (desktopOtc && modalOtc) modalOtc.checked = desktopOtc.checked;
+      
+      // Sync price
+      const desktopSlider = document.getElementById('price-slider');
+      const modalSlider = document.getElementById('modal-price-slider');
+      if (desktopSlider && modalSlider) {
+        modalSlider.value = desktopSlider.value;
+        document.getElementById('modal-price-max').textContent = desktopSlider.value;
+        document.getElementById('modal-price-input-max').value = desktopSlider.value;
+      }
+    }
+    
+    function applyModalFilters() {
+      // Sync from modal to desktop
+      const modalCheckboxes = document.querySelectorAll('#filter-modal .modal-body .custom-checkbox input[type="checkbox"]');
+      const desktopCheckboxes = document.querySelectorAll('.filter-section:first-of-type input[type="checkbox"]');
+      
+      modalCheckboxes.forEach((modalCb, index) => {
+        if (desktopCheckboxes[index]) {
+          desktopCheckboxes[index].checked = modalCb.checked;
+        }
+      });
+      
+      // Sync prescription
+      const modalRx = document.querySelector('#filter-modal input[value="rx"]');
+      const desktopRx = document.querySelector('.filter-section:nth-of-type(3) input[value="rx"]');
+      if (modalRx && desktopRx) desktopRx.checked = modalRx.checked;
+      
+      const modalOtc = document.querySelector('#filter-modal input[value="otc"]');
+      const desktopOtc = document.querySelector('.filter-section:nth-of-type(3) input[value="otc"]');
+      if (modalOtc && desktopOtc) desktopOtc.checked = modalOtc.checked;
+      
+      // Sync price
+      const modalSlider = document.getElementById('modal-price-slider');
+      const desktopSlider = document.getElementById('price-slider');
+      if (modalSlider && desktopSlider) {
+        desktopSlider.value = modalSlider.value;
+        document.getElementById('price-max').textContent = modalSlider.value;
+        document.getElementById('price-input-max').value = modalSlider.value;
+      }
+      
+      closeModal();
+      applyFilters();
+    }
+    
+    function resetModalFilters() {
+      document.querySelectorAll('#filter-modal .modal-body .custom-checkbox input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      document.querySelectorAll('#filter-modal .modal-body .custom-radio input[type="radio"]').forEach(rb => {
+        rb.checked = false;
+      });
+      document.getElementById('modal-price-slider').value = 5000;
+      document.getElementById('modal-price-max').textContent = '5000';
+      document.getElementById('modal-price-input-max').value = 5000;
+    }
+    
+    // Event listeners
+    filterToggle?.addEventListener('click', openModal);
+    modalClose?.addEventListener('click', closeModal);
+    modalOverlay?.addEventListener('click', closeModal);
+    modalApply?.addEventListener('click', applyModalFilters);
+    modalReset?.addEventListener('click', resetModalFilters);
+    modalClear?.addEventListener('click', resetModalFilters);
+    
+    // Close on escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && filterModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+    
+    // Modal price slider
+    const modalSlider = document.getElementById('modal-price-slider');
+    const modalPriceMax = document.getElementById('modal-price-max');
+    const modalPriceInputMax = document.getElementById('modal-price-input-max');
+    
+    if (modalSlider) {
+      modalSlider.addEventListener('input', function() {
+        const val = this.value;
+        modalPriceMax.textContent = val;
+        modalPriceInputMax.value = val;
+      });
+    }
+  }
+
   // ===================== INIT =====================
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
+    initMobileFilterModal();
     
     // Price slider
     const slider = document.getElementById('price-slider');
@@ -758,30 +1114,5 @@
         renderProducts();
       }
     });
-    
-    // Mobile filter drawer
-    const filterToggle = document.getElementById('filter-toggle-mobile');
-    const filterDrawer = document.getElementById('filter-drawer');
-    const filterOverlay = document.getElementById('filter-overlay');
-    const filterClose = document.getElementById('filter-close');
-    
-    if (filterToggle && filterDrawer) {
-      filterToggle.addEventListener('click', function() {
-        filterDrawer.classList.add('open');
-        filterDrawer.style.pointerEvents = 'auto';
-        filterOverlay.style.opacity = '1';
-      });
-      
-      const closeFilter = () => {
-        filterDrawer.classList.remove('open');
-        setTimeout(() => {
-          filterDrawer.style.pointerEvents = 'none';
-        }, 300);
-        filterOverlay.style.opacity = '0';
-      };
-      
-      filterClose?.addEventListener('click', closeFilter);
-      filterOverlay?.addEventListener('click', closeFilter);
-    }
   });
 </script>

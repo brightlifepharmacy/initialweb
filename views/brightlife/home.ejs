@@ -26,18 +26,22 @@
 
   /* 3D Scene Perspective Core */
   .scene-3d {
-    perspective: 1200px;
+    perspective: 1500px; /* Perspective enhanced for better depth */
     transform-style: preserve-3d;
   }
   .object-3d {
     transform-style: preserve-3d;
-    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform;
   }
-  .layer-depth-sm { transform: translateZ(20px); }
-  .layer-depth-md { transform: translateZ(50px); }
-  .layer-depth-lg { transform: translateZ(90px); }
+  
+  /* Precision Z-axis depths */
+  .layer-depth-back { transform: translateZ(-50px) scale(0.9); }
+  .layer-depth-sm { transform: translateZ(30px); }
+  .layer-depth-md { transform: translateZ(70px); }
+  .layer-depth-lg { transform: translateZ(120px); }
 
-  /* Smooth Levitation Keyframes */
+  /* Smooth Levitation Keyframes (Retained existing animations) */
   @keyframes float-y {
     0%, 100% { transform: translateY(0px) rotate(6deg); }
     50% { transform: translateY(-12px) rotate(4deg); }
@@ -48,12 +52,38 @@
   }
   .animate-float { animation: float-y 6s ease-in-out infinite; }
   .animate-float-reverse { animation: float-reverse 7s ease-in-out infinite; }
+
+  /* Extra subtle rotation for 3D sub-elements */
+  @keyframes spin-slow {
+    0% { transform: translateZ(40px) rotate(0deg); }
+    100% { transform: translateZ(40px) rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  /* Dynamic 3D interactive aura/glow follow */
+  .glow-follow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(102,187,106,0.15) 0%, rgba(102,187,106,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    z-index: 1;
+  }
+  #hero-interactive-zone:hover .glow-follow {
+    opacity: 1;
+  }
 </style>
 
 <div class="font-body bg-[#F7F8F5] dark:bg-[#0E1712] text-[#12261A] dark:text-[#E9F2E7] transition-colors duration-300">
 
   <!-- ============ IMPROVED HERO WITH INTERACTIVE 3D ANIMATION ============ -->
-  <section class="relative overflow-hidden border-b border-[#E3E8E1] dark:border-[#22302A] scene-3d">
+  <section id="hero-section" class="relative overflow-hidden border-b border-[#E3E8E1] dark:border-[#22302A] scene-3d">
     <!-- Ambient Backdrop elements -->
     <div class="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-[40%] bg-[#E8F5E9] dark:bg-[#16261C] opacity-70 dark:opacity-40 rotate-12 pointer-events-none"></div>
     <div class="absolute top-40 -right-10 w-[220px] h-[220px] rounded-full border-[10px] border-[#D4A63A]/30 dark:border-[#D4A63A]/20 pointer-events-none"></div>
@@ -124,17 +154,29 @@
       </div>
 
       <!-- Right Column: Interactive Parallax 3D Animation Graphic -->
-      <div class="relative flex justify-center items-center py-8 min-h-[400px]" id="hero-interactive-zone">
+      <div class="relative flex justify-center items-center py-8 min-h-[420px] select-none" id="hero-interactive-zone">
+        
+        <!-- Live Light Follower (Glow Aura) -->
+        <div class="glow-follow" id="glow-light"></div>
+
         <div class="object-3d relative w-80 h-80 md:w-[26rem] md:h-[26rem] flex items-center justify-center">
           
           <!-- Layer 1: Base 3D Shifting Backdrop Blob -->
-          <div class="animate-float absolute w-72 h-72 md:w-96 md:h-96 rounded-[38%] bg-gradient-to-br from-[#66BB6A] to-[#2E7D32] dark:from-[#3F9142] dark:to-[#1B5E20] shadow-2xl opacity-95 transition-transform duration-300"></div>
+          <div class="animate-float absolute w-72 h-72 md:w-96 md:h-96 rounded-[38%] bg-gradient-to-br from-[#66BB6A] to-[#2E7D32] dark:from-[#3F9142] dark:to-[#1B5E20] shadow-2xl opacity-95 transition-transform duration-300 layer-depth-back"></div>
           
           <!-- Layer 2: Concentric 3D Geometric Border Frame -->
           <div class="animate-float-reverse absolute w-76 h-76 md:w-[25rem] md:h-[25rem] rounded-[42%] border-2 border-white/40 dark:border-white/10 transition-transform duration-300"></div>
 
+          <!-- EXTRA 3D ELEMENT: Floating Tiny Pills in background layer -->
+          <div class="absolute w-full h-full pointer-events-none layer-depth-sm">
+            <!-- Green Pill top-left -->
+            <div class="absolute top-10 left-6 w-8 h-4 rounded-full bg-[#E8F5E9]/80 border border-emerald-500/20 rotate-[35deg] shadow-md animate-float"></div>
+            <!-- Gold Pill bottom-right -->
+            <div class="absolute bottom-16 right-4 w-10 h-5 rounded-full bg-[#FDF6E3]/90 border border-amber-500/20 -rotate-12 shadow-md animate-float-reverse"></div>
+          </div>
+
           <!-- Layer 3: Central Floating Medical Icon (Deep Depth Z-Axis) -->
-          <div class="layer-depth-md absolute transition-transform duration-300 drop-shadow-[0_15px_40px_rgba(0,0,0,0.35)]">
+          <div class="layer-depth-md absolute transition-transform duration-300 drop-shadow-[0_20px_50px_rgba(46,125,50,0.4)]">
             <svg class="w-48 h-48 md:w-60 md:h-60 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 20c0-4.5 3-7.5 6-9s6 4.5 6 9" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16" />
@@ -143,8 +185,13 @@
             </svg>
           </div>
 
-          <!-- Layer 4: Interactive Floating Microcard (Frontmost Layer) -->
-          <div class="layer-depth-lg absolute -bottom-4 -left-4 md:-left-8 bg-white dark:bg-[#16211A] border border-[#E3E8E1] dark:border-[#2A3A31] rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.12)] px-5 py-4 flex items-center gap-3.5 transform transition-transform duration-300 hover:scale-105">
+          <!-- EXTRA 3D ELEMENT: Rotating cross medical icon floating on the front -->
+          <div class="absolute top-12 right-12 text-[#D4A63A] w-6 h-6 animate-spin-slow pointer-events-none">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/></svg>
+          </div>
+
+          <!-- Layer 4: Interactive Floating Microcard (Frontmost Layer with distinct depth) -->
+          <div class="layer-depth-lg absolute -bottom-4 -left-4 md:-left-8 bg-white/90 dark:bg-[#16211A]/95 backdrop-blur-md border border-[#E3E8E1] dark:border-[#2A3A31] rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] px-5 py-4 flex items-center gap-3.5 transform transition-transform duration-300 hover:scale-105 cursor-pointer">
             <div class="w-10 h-10 rounded-full bg-[#E8F5E9] dark:bg-[#1D2E21] flex items-center justify-center shadow-inner shrink-0">
               <svg class="w-5 h-5 text-[#2E7D32] dark:text-[#66BB6A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -157,7 +204,7 @@
           </div>
 
           <!-- Layer 5: Secondary Floating Microcard (Right Top Layer) -->
-          <div class="layer-depth-sm absolute -top-4 -right-4 md:-right-8 bg-white dark:bg-[#16211A] border border-[#E3E8E1] dark:border-[#2A3A31] rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.12)] px-4 py-3 flex items-center gap-3 transform transition-transform duration-300">
+          <div class="layer-depth-md absolute -top-4 -right-4 md:-right-8 bg-white/90 dark:bg-[#16211A]/95 backdrop-blur-md border border-[#E3E8E1] dark:border-[#2A3A31] rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.12)] px-4 py-3 flex items-center gap-3 transform transition-all duration-300 hover:scale-105 cursor-pointer">
             <span class="flex h-3 w-3 relative">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -170,6 +217,8 @@
 
     </div>
   </section>
+
+
 
   <!-- ============ TRUST STRIP ============ -->
   <section class="border-b border-[#E3E8E1] dark:border-[#22302A] bg-white dark:bg-[#111B15]">
@@ -463,27 +512,51 @@
 </div>
 
 <!-- Interactive Mouse Tracking Script -->
+<!-- Interactive Mouse Tracking & Real 3D Parallax Script -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const interactiveZone = document.getElementById('hero-interactive-zone');
     const target3DObject = interactiveZone?.querySelector('.object-3d');
+    const glowLight = document.getElementById('glow-light');
 
     if (!interactiveZone || !target3DObject) return;
 
+    // Smooth transition control parameters
+    let animationFrameId = null;
+
     interactiveZone.addEventListener('mousemove', (e) => {
       const rect = interactiveZone.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      // Calculate smooth tilt values
-      const rotateX = -(y / rect.height) * 24; 
-      const rotateY = (x / rect.width) * 24;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-      target3DObject.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      // Update light source tracker dynamically
+      if (glowLight) {
+        glowLight.style.left = `${x}px`;
+        glowLight.style.top = `${y}px`;
+      }
+
+      // Calculate tilt angles based on cursor offset from center
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = -((e.clientY - rect.top - centerY) / centerY) * 20; // max 20 degrees
+      const rotateY = ((e.clientX - rect.left - centerX) / centerX) * 20;
+
+      // Cancel previous frame to avoid lag
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+
+      // Render 3D transform with higher performance utilizing requestAnimationFrame
+      animationFrameId = requestAnimationFrame(() => {
+        target3DObject.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
     });
 
+    // Reset layout elements smoothly when cursor leaves
     interactiveZone.addEventListener('mouseleave', () => {
-      // Return smoothly to original state on mouse leave
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
       target3DObject.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
   });
