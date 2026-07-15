@@ -25,64 +25,51 @@ const userRouter = require("./routes/user.js");
 const authRouter = require("./routes/authRoutes.js");
 const productsRouter = require("./routes/products.js");
 
-const dbUrl = process.env.ATLUSDB_URL || process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/brightlifepharmacy";
+const dbUrl = process.env.ATLUSDB_URL;
 
 main()
   .then(() => {
     console.log("connected to DB");
   })
   .catch((err) => {
-    console.log("DB connection skipped or failed:", err.message);
+    console.log(err);
   });
 
 async function main() {
-  try {
-    await mongoose.connect(dbUrl);
-  } catch (err) {
-    if (process.env.ATLUSDB_URL || process.env.MONGODB_URI) {
-      throw err;
-    }
-  }
+  await mongoose.connect(dbUrl);
 }
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-// Fallback placeholder for missing image.png requests
-app.get('/image.png', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'image.png'));
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  // crypto: {
+  //   secret: process.env.SECRET,
+  // },
+  touchAfter: 24 * 3600,
 });
 
-const hasMongoSessionStore = Boolean(process.env.ATLUSDB_URL || process.env.MONGODB_URI);
-const store = hasMongoSessionStore
-  ? MongoStore.create({
-      mongoUrl: dbUrl,
-      touchAfter: 24 * 60 * 60,
-    })
-  : undefined;
-
-if (store) {
-  store.on("error", (err) => {
-    console.log("error in mongo session store", err);
-  });
-}
+store.on("error", (err) => {
+  console.log("error in mongo session store", err);
+});
 
 const sessionOptions = {
   store,
-  secret: process.env.SECRET || "brightlifepharmacy-local-secret",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    expire: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 7 * 24 * 60 * 60 * 1000,
+    //httpOnly: true,
   },
 };
-
-app.set("trust proxy", 1);
 
 app.use(session(sessionOptions));
 app.use(flash());
